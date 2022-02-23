@@ -24,7 +24,7 @@
     /* justify-content: space-between; */
     white-space: nowrap;
     overflow: hidden;
-    padding: 5px 3px 5px 7px;
+    padding: 5px 3px;
   }
 
   .title {

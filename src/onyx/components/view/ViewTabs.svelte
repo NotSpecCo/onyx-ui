@@ -4,6 +4,7 @@
   import { activateGroup, deactivateGroup, groupItemMap } from '../../stores/navigator';
   import { activeTab, tabs, viewing } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
+  import Typography from '../Typography.svelte';
 
   let otherTabs = [];
   $: otherTabs = $tabs.filter((a) => a.id !== $activeTab);
@@ -16,6 +17,7 @@
 </script>
 
 <div class="root" use:navigator={{ groupId: NAV_GROUP, initialSelectedId: $activeTab }}>
+  <Typography align="center" type="caption">Press again for app menu</Typography>
   <div data-nav-scroller>
     {#each otherTabs as tab, i}
       <div class="tab-root">
@@ -41,10 +43,7 @@
 
 <style>
   .root {
-    background-color: var(--card-dim-bg-color);
-    color: var(--card-primary-text-color);
     border-radius: var(--radius) var(--radius) 0 0;
-    /* opacity: 0.9; */
   }
   .tab-root {
     background-color: var(--card-dim-bg-color);
