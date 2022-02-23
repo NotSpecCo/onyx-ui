@@ -31,9 +31,9 @@
             viewing.set('content');
           }}
         >
-          <div class="tab-title">{tab.title}</div>
+          <div>{tab.title}</div>
           {#if shortcutFromIndex(i)}
-            <div class="tab-shortcut">{shortcutFromIndex(i)}</div>
+            <div class="shortcut">{shortcutFromIndex(i)}</div>
           {/if}
         </div>
       </div>
@@ -63,9 +63,7 @@
     justify-content: space-between;
     font-weight: 600;
   }
-  .tab-title {
-  }
-  .tab-shortcut {
+  .shortcut {
     color: var(--card-secondary-text-color);
   }
   .tab.focused {

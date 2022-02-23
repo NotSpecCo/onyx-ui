@@ -33,14 +33,12 @@ export function setSelectedId(groupId: symbol, itemId?: string) {
 }
 
 export function activateGroup(id: symbol) {
-  // console.log('activateGroup', id);
   const other = get(groups).filter((a) => a.id !== id);
   const newGroups = [...other, { id, focusedItemId: null }];
   groups.set(newGroups);
 }
 
 export function deactivateGroup(id: any) {
-  // console.log('deactivateGroup', id);
   const newGroups = get(groups).filter((a) => a.id !== id);
   groups.set(newGroups);
 }

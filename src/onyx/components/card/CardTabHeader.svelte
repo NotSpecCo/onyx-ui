@@ -21,7 +21,6 @@
 <style>
   .root {
     display: flex;
-    /* justify-content: space-between; */
     white-space: nowrap;
     overflow: hidden;
     padding: 5px 3px;
@@ -31,6 +30,5 @@
     flex: 1;
     font-weight: 600;
     text-align: center;
-    /* margin-left: 18px; */
   }
 </style>

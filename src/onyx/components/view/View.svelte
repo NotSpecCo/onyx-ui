@@ -25,7 +25,6 @@
   onKeyPress(
     {
       SoftLeft: () => {
-        console.log('SoftLeft');
         if ($viewing === 'content' && $viewTabs.length > 1) {
           viewing.set('tabs');
         } else if ($viewing === 'content') {
@@ -35,15 +34,8 @@
         } else {
           viewing.set('content');
         }
-        // if ($drawerOpen) {
-        //   drawerOpen.set(false);
-        // }
-
-        // if (!$)
-        // menuOpen.set(!$menuOpen);
       },
       SoftRight: () => {
-        console.log('SoftRight');
         viewing.set($viewing === 'drawer' ? 'content' : 'drawer');
       },
       Backspace: () => {

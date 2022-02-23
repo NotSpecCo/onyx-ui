@@ -39,6 +39,7 @@
   .icon {
     margin-right: 5px;
   }
+
   .container {
     flex: 1;
   }

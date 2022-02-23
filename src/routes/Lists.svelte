@@ -11,7 +11,6 @@
   import { shortcutFromIndex } from '../onyx/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
-  console.log('params');
 
   const tabs = [
     { id: 'info', title: 'Information' },

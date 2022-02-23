@@ -3,7 +3,6 @@
   import type { Navigation } from '../../models';
   import { groupItemMap } from '../../stores/navigator';
 
-  export let className: string = '';
   export let navi: Navigation;
 
   const groupId = getContext<Symbol>('nav-group');
@@ -13,7 +12,7 @@
 </script>
 
 <div
-  class={`root ${className}`}
+  class="root"
   class:focused
   data-nav-id={navi.itemId}
   data-nav-shortcut={navi.shortcutKey}
@@ -23,19 +22,6 @@
   <slot />
 </div>
 
-<!-- <div
-  class={`root ${className}`}
-  class:selected={navi.itemId === selectedItemId}
-  use:navigator={{
-    areaId: navi.areaId,
-    itemId: navi.itemId,
-    shortcutKey: navi.shortcutKey,
-    onFocus: navi.onFocus,
-    onSelect: navi.onSelect,
-  }}
->
-  <slot />
-</div> -->
 <style>
   .root {
   }

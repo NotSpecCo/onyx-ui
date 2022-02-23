@@ -8,7 +8,6 @@
 
   export let actions: DrawerAction[] = [];
 
-  const items = new Array(10).fill(null);
   const NAV_GROUP = Symbol();
   setContext('nav-group', NAV_GROUP);
 
