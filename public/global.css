@@ -1,0 +1,83 @@
+:root {
+  --drawer-bg-color: #000000;
+  --drawer-accent-color: #7e94a0;
+  --drawer-primary-text-color: rgba(255, 255, 255, 0.88);
+  --drawer-secondary-text-color: rgba(255, 255, 255, 0.5);
+  --drawer-accent-text-color: var(--drawer-accent-color);
+  --drawer-highlight-bg-color: rgba(255, 255, 255, 0.2);
+  --drawer-highlight-text-color: rgba(255, 255, 255, 0.88);
+  --drawer-divider-color: rgba(255, 255, 255, 0.1);
+
+  --card-bg-color: #ffffff;
+  --card-dim-bg-color: #efefef;
+  --card-accent-color: #7e94a0;
+  --card-primary-text-color: rgba(0, 0, 0, 0.88);
+  --card-secondary-text-color: rgba(0, 0, 0, 0.5);
+  --card-accent-text-color: var(--card-accent-color);
+  --card-highlight-bg-color: rgba(0, 0, 0, 0.1);
+  --card-highlight-text-color: rgba(0, 0, 0, 0.88);
+  --card-divider-color: rgba(0, 0, 0, 0.1);
+
+  --scrim-color: rgba(0, 0, 0, 0.7);
+
+  --radius: 12px;
+
+  --base-font-size: 10px;
+  font-size: var(--base-font-size);
+
+  /* Apply defaults */
+  --bg-color: var(--drawer-bg-color);
+  --accent-color: var(--drawer-accent-color);
+  --primary-text-color: var(--drawer-primary-text-color);
+  --secondary-text-color: var(--drawer-secondary-text-color);
+  --accent-text-color: var(--drawer-accent-text-color);
+  --highlight-bg-color: var(--drawer-highlight-bg-color);
+  --highlight-text-color: var(--drawer-highlight-text-color);
+  --divider-color: var(--drawer-divider-color);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: var(--bg-color);
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: var(--primary-text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--accent-text-color);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
