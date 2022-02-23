@@ -18,7 +18,7 @@
 
 <View>
   <!-- <ViewHeader>View Header</ViewHeader> -->
-  <ViewContent>
+  <ViewContent slot="content">
     <Card>
       <CardHeader title="Home" />
       <CardContent>

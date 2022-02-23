@@ -62,31 +62,78 @@
     { stopPropagation: true }
   );
 
+  let menuHeight: number | null = null;
+  let tabsHeight: number | null = null;
+  let drawerHeight: number | null = null;
+
+  let offset = 0;
+  $: {
+    switch ($viewing) {
+      case 'appmenu':
+        offset = menuHeight;
+        break;
+      case 'tabs':
+        offset = tabsHeight;
+        break;
+      case 'drawer':
+        offset = -drawerHeight;
+        break;
+      default:
+        offset = 0;
+    }
+  }
+
   onDestroy(() => {
     resetView();
     resetNavigation();
   });
 </script>
 
-<div class="root">
-  {#if $viewing === 'appmenu'}
-    <slot name="appmenu" />
-  {/if}
-  {#if $viewing === 'tabs'}
-    <ViewTabs />
-  {/if}
-  <slot />
-  <slot name="dashboard" />
-  {#if $viewing === 'drawer'}
-    <slot name="drawer" />
-  {/if}
+<div class="root" class:end={$viewing === 'drawer'}>
+  <div bind:clientHeight={menuHeight}>
+    {#if $viewing === 'appmenu'}
+      <slot name="appmenu" />
+    {/if}
+  </div>
+  <div bind:clientHeight={tabsHeight}>
+    {#if $viewing === 'tabs'}
+      <ViewTabs />
+    {/if}
+  </div>
+  <div class="content" style={`transform: translateY(${offset}px)`}>
+    <slot name="content" />
+    <slot name="dashboard" />
+  </div>
+  <div bind:clientHeight={drawerHeight}>
+    {#if $viewing === 'drawer'}
+      <slot name="drawer" />
+    {/if}
+  </div>
 </div>
 
 <style>
   .root {
-    /* position: relative; */
+    position: relative;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+  .end {
+    justify-content: flex-end;
+  }
+  .content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    transition: transform 250ms;
+    transform: translateY(0px);
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 </style>

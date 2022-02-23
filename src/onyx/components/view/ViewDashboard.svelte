@@ -6,5 +6,6 @@
 <style>
   .root {
     display: flex;
+    background-color: var(--bg-color);
   }
 </style>

@@ -22,7 +22,7 @@
 
 <View {tabs} activeTab={params.tabId || tabs[0].id} onTabChange={(tab) => replace(`/tabs/${tab}`)}>
   <AppMenu slot="appmenu" />
-  <ViewContent>
+  <ViewContent slot="content">
     {#if params.tabId === tabs[0].id}
       <Card tabId={tabs[0].id}>
         <CardTabHeader />
