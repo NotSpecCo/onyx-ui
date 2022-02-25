@@ -5,12 +5,13 @@
 
   export let label: string;
   export let checked: boolean;
+  export let disabled: boolean = false;
   export let onChange: (val: boolean) => void;
 
   const itemId = uuidv4();
 </script>
 
-<FormRow {label} navi={{ itemId, onSelect: () => onChange(!checked) }}>
+<FormRow {label} {disabled} navi={{ itemId, onSelect: () => !disabled && onChange(!checked) }}>
   <Checkbox {checked} />
 </FormRow>
 

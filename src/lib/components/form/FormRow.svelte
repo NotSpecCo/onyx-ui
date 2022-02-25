@@ -3,22 +3,30 @@
   import NavItem from '../navigate/NavItem.svelte';
 
   export let label: string;
+  export let disabled = false;
   export let navi: Navigation;
 </script>
 
 <NavItem {navi}>
   <div class="root">
-    <div>{label}</div>
-    <slot />
+    <div class="content" class:disabled>
+      <div>{label}</div>
+      <slot />
+    </div>
   </div>
 </NavItem>
 
 <style>
   .root {
+    border-bottom: 1px solid var(--divider-color);
+  }
+  .content {
     padding: 5px 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var(--divider-color);
+  }
+  .disabled {
+    opacity: 0.4;
   }
 </style>

@@ -19,6 +19,7 @@
 
 <FormRow
   {label}
+  {disabled}
   navi={{
     itemId,
     onFocus: () => (focused = true),

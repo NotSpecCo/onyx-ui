@@ -105,6 +105,7 @@
           <CheckboxRow
             label="Checkbox 5"
             checked={values.checkbox5}
+            disabled={true}
             onChange={(val) => (values.checkbox5 = val)}
           />
         </CardContent>
@@ -161,6 +162,7 @@
               { id: '2', label: 'Two' },
               { id: '3', label: 'Three' },
             ]}
+            disabled={true}
             onChange={(val) => (values.inlineSelect5 = val)}
           />
         </CardContent>
@@ -202,6 +204,7 @@
             value={values.numericRange5}
             min={1}
             max={20}
+            disabled={true}
             onChange={(val) => (values.numericRange5 = val)}
           />
         </CardContent>
@@ -238,6 +241,7 @@
             label="Input 5"
             value={values.input5}
             placeholder="Enter text..."
+            disabled={true}
             onChange={(val) => (values.input5 = val)}
           />
         </CardContent>

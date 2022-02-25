@@ -7,19 +7,21 @@
   export let label: string = undefined;
   export let value: string = undefined;
   export let options: SelectOption[] = [];
+  export let disabled = false;
   export let onChange: (val: string) => void;
 
   const itemId = uuidv4();
-  let enabled = false;
+  let focused = false;
 </script>
 
 <FormRow
   {label}
+  {disabled}
   navi={{
     itemId,
-    onFocus: () => (enabled = true),
-    onBlur: () => (enabled = false),
+    onFocus: () => (focused = true),
+    onBlur: () => (focused = false),
   }}
 >
-  <InlineSelect {value} {options} {onChange} disabled={!enabled} />
+  <InlineSelect {value} {options} {onChange} disabled={disabled || !focused} />
 </FormRow>

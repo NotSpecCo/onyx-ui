@@ -7,19 +7,21 @@
   export let value: number = undefined;
   export let min: number;
   export let max: number;
+  export let disabled = false;
   export let onChange: (val: number) => void;
 
   const itemId = uuidv4();
-  let enabled = false;
+  let focused = false;
 </script>
 
 <FormRow
   {label}
+  {disabled}
   navi={{
     itemId,
-    onFocus: () => (enabled = true),
-    onBlur: () => (enabled = false),
+    onFocus: () => (focused = true),
+    onBlur: () => (focused = false),
   }}
 >
-  <NumericRange {value} {min} {max} {onChange} disabled={!enabled} />
+  <NumericRange {value} {min} {max} {onChange} disabled={disabled || !focused} />
 </FormRow>
