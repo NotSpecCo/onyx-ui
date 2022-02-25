@@ -46,12 +46,12 @@ export function navigator(node: HTMLElement, config: Config) {
 
     const focusedItemId = getFocusedItemId(config.groupId);
     const items: HTMLElement[] = Array.from(node.querySelectorAll(`[data-nav-id]`));
-    const focusedItemIndex = items.findIndex((a) => a.dataset.navId === focusedItemId);
+    const currentItemIndex = items.findIndex((a) => a.dataset.navId === focusedItemId);
 
     // Handle Enter key
-    if (items[focusedItemIndex] && ev.key === 'Enter') {
-      items[focusedItemIndex].dispatchEvent(new CustomEvent('itemfocus'));
-      items[focusedItemIndex].dispatchEvent(new CustomEvent('itemselect'));
+    if (items[currentItemIndex] && ev.key === 'Enter') {
+      items[currentItemIndex].dispatchEvent(new CustomEvent('itemfocus'));
+      items[currentItemIndex].dispatchEvent(new CustomEvent('itemselect'));
       return;
     }
 
@@ -60,6 +60,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (shortcutItem) {
       scrollIntoView(scroller, shortcutItem, 'auto');
       setSelectedId(config.groupId, shortcutItem.dataset.navId);
+      items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemblur'));
       shortcutItem.dispatchEvent(new CustomEvent('itemfocus'));
       shortcutItem.dispatchEvent(new CustomEvent('itemselect'));
       return;
@@ -70,7 +71,7 @@ export function navigator(node: HTMLElement, config: Config) {
     // If at first item and more content above, scroll up
     if (
       scroller &&
-      (items.length === 0 || focusedItemIndex === 0) &&
+      (items.length === 0 || currentItemIndex === 0) &&
       ev.key === 'ArrowUp' &&
       scroller.scrollTop > 0
     ) {
@@ -82,7 +83,7 @@ export function navigator(node: HTMLElement, config: Config) {
     // If at last item and more content below, scroll down
     if (
       scroller &&
-      focusedItemIndex === items.length - 1 &&
+      currentItemIndex === items.length - 1 &&
       ev.key === 'ArrowDown' &&
       scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight
     ) {
@@ -93,14 +94,15 @@ export function navigator(node: HTMLElement, config: Config) {
 
     // Find next item and scroll to it
     let nextItem = null;
-    if (ev.key === 'ArrowUp' && focusedItemIndex === 0) {
+    if (ev.key === 'ArrowUp' && currentItemIndex === 0) {
       nextItem = null;
     } else {
-      const idx = getIndexWrap(items, focusedItemIndex, ev.key === 'ArrowUp' ? -1 : 1);
+      const idx = getIndexWrap(items, currentItemIndex, ev.key === 'ArrowUp' ? -1 : 1);
       nextItem = items[idx];
     }
 
     setSelectedId(config.groupId, nextItem?.dataset?.navId);
+    items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemblur'));
     nextItem?.dispatchEvent(new CustomEvent('itemfocus'));
 
     scrollIntoView(scroller, nextItem, 'smooth');

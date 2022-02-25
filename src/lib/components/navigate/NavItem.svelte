@@ -17,6 +17,7 @@
   data-nav-id={navi.itemId}
   data-nav-shortcut={navi.shortcutKey}
   on:itemfocus={navi.onFocus}
+  on:itemblur={navi.onBlur}
   on:itemselect={navi.onSelect}
 >
   <slot />

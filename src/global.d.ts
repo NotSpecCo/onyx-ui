@@ -8,6 +8,7 @@ declare namespace svelte.JSX {
     onitemselected?: any;
     onitemchanged?: any;
     onitemfocus?: any;
+    onitemblur?: any;
     onitemselect?: any;
     class?: string;
     // You can replace any with something more specific if you like
