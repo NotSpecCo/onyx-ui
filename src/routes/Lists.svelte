@@ -1,14 +1,14 @@
 <script lang="ts">
   import { replace } from 'svelte-spa-router';
-  import Card from '../onyx/components/card/Card.svelte';
-  import CardContent from '../onyx/components/card/CardContent.svelte';
-  import CardTabHeader from '../onyx/components/card/CardTabHeader.svelte';
-  import ListItem from '../onyx/components/list/ListItem.svelte';
-  import Typography from '../onyx/components/Typography.svelte';
-  import View from '../onyx/components/view/View.svelte';
-  import ViewContent from '../onyx/components/view/ViewContent.svelte';
-  import { registerView, view } from '../onyx/stores/view';
-  import { shortcutFromIndex } from '../onyx/utils/shortcutFromIndex';
+  import Card from '../lib/components/card/Card.svelte';
+  import CardContent from '../lib/components/card/CardContent.svelte';
+  import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
+  import ListItem from '../lib/components/list/ListItem.svelte';
+  import Typography from '../lib/components/Typography.svelte';
+  import View from '../lib/components/view/View.svelte';
+  import ViewContent from '../lib/components/view/ViewContent.svelte';
+  import { registerView, view } from '../lib/stores/view';
+  import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
 

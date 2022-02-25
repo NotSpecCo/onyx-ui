@@ -9,10 +9,10 @@
   import MdTextFields from 'svelte-icons/md/MdTextFields.svelte';
   import MdTextFormat from 'svelte-icons/md/MdTextFormat.svelte';
   import { push } from 'svelte-spa-router';
-  import { navigator } from '../onyx/actions/navigator';
-  import ListItem from '../onyx/components/list/ListItem.svelte';
-  import { activateGroup, deactivateGroup } from '../onyx/stores/navigator';
-  import { shortcutFromIndex } from '../onyx/utils/shortcutFromIndex';
+  import { navigator } from '../lib/actions/navigator';
+  import ListItem from '../lib/components/list/ListItem.svelte';
+  import { activateGroup, deactivateGroup } from '../lib/stores/navigator';
+  import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
   const NAV_GROUP = Symbol();
   setContext('nav-group', NAV_GROUP);

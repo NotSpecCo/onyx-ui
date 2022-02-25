@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
+import { getStorageItem, setStorageItem, StorageKey } from '../lib/utils/storage';
 import { Density, Settings, TextSize, Theme } from '../models';
-import { getStorageItem, setStorageItem, StorageKey } from '../onyx/utils/storage';
 
 const defaultSettings: Settings = {
   theme: Theme.Light,

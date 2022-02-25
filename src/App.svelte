@@ -1,7 +1,7 @@
 <script lang="ts">
   import Router from 'svelte-spa-router';
   import AppMenu from './components/AppMenu.svelte';
-  import { registerAppMenu } from './onyx/stores/view';
+  import { registerAppMenu } from './lib/stores/view';
   import Drawer from './routes/Drawer.svelte';
   import Home from './routes/Home.svelte';
   import Lists from './routes/Lists.svelte';
