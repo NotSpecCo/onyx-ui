@@ -30,7 +30,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (
       !groupActive ||
       ![...dpadKeys, ...shortcutKeys].includes(ev.key) ||
-      (shortcutKeys.includes(ev.key) && target?.tagName.toLowerCase() === 'input')
+      (!['ArrowUp', 'ArrowDown'].includes(ev.key) && target?.tagName.toLowerCase() === 'input')
     ) {
       return;
     }

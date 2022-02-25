@@ -5,6 +5,7 @@
   import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
+  import InputRow from '../lib/components/form/InputRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
@@ -35,6 +36,11 @@
         title: 'Numeric Range',
         onSelect: () => replace(`/forms/numericRange`),
       },
+      {
+        id: 'input',
+        title: 'Input',
+        onSelect: () => replace(`/forms/input`),
+      },
     ],
     activeTabId: params.tabId ?? 'info',
   });
@@ -55,6 +61,11 @@
     numericRange3: 1,
     numericRange4: 1,
     numericRange5: 1,
+    input1: '',
+    input2: '',
+    input3: '',
+    input4: '',
+    input5: '',
   };
 </script>
 
@@ -192,6 +203,42 @@
             min={1}
             max={20}
             onChange={(val) => (values.numericRange5 = val)}
+          />
+        </CardContent>
+      </Card>
+    {:else if params.tabId === $view.tabs[4].id}
+      <Card tabId={$view.tabs[4].id}>
+        <CardTabHeader />
+        <CardContent>
+          <InputRow
+            label="Input 1"
+            value={values.input1}
+            placeholder="Enter text..."
+            onChange={(val) => (values.input1 = val)}
+          />
+          <InputRow
+            label="Input 2"
+            value={values.input2}
+            placeholder="Enter text..."
+            onChange={(val) => (values.input2 = val)}
+          />
+          <InputRow
+            label="Input 3"
+            value={values.input3}
+            placeholder="Enter text..."
+            onChange={(val) => (values.input3 = val)}
+          />
+          <InputRow
+            label="Input 4"
+            value={values.input4}
+            placeholder="Enter text..."
+            onChange={(val) => (values.input4 = val)}
+          />
+          <InputRow
+            label="Input 5"
+            value={values.input5}
+            placeholder="Enter text..."
+            onChange={(val) => (values.input5 = val)}
           />
         </CardContent>
       </Card>
