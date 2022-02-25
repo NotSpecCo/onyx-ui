@@ -57,8 +57,6 @@ export function switchTab(value: 1 | -1) {
   const current = v.tabs.findIndex((a) => a.id === get(view).activeTabId);
   const next = getIndexWrap(v.tabs, current, value);
 
-  console.log('switch', current, next);
-
   const newTabs = v.tabs.map((a) => ({ ...a, active: false }));
   newTabs[next >= 0 ? next : 0].active = true;
 
