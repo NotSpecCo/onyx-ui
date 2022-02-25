@@ -5,6 +5,7 @@
   import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
+  import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
@@ -29,6 +30,11 @@
         title: 'Inline Select',
         onSelect: () => replace(`/forms/inlineSelect`),
       },
+      {
+        id: 'numericRange',
+        title: 'Numeric Range',
+        onSelect: () => replace(`/forms/numericRange`),
+      },
     ],
     activeTabId: params.tabId ?? 'info',
   });
@@ -44,6 +50,11 @@
     inlineSelect3: '1',
     inlineSelect4: '1',
     inlineSelect5: '1',
+    numericRange1: 1,
+    numericRange2: 1,
+    numericRange3: 1,
+    numericRange4: 1,
+    numericRange5: 1,
   };
 </script>
 
@@ -140,6 +151,47 @@
               { id: '3', label: 'Three' },
             ]}
             onChange={(val) => (values.inlineSelect5 = val)}
+          />
+        </CardContent>
+      </Card>
+    {:else if params.tabId === $view.tabs[3].id}
+      <Card tabId={$view.tabs[3].id}>
+        <CardTabHeader />
+        <CardContent>
+          <NumericRangeRow
+            label="Range 1"
+            value={values.numericRange1}
+            min={1}
+            max={20}
+            onChange={(val) => (values.numericRange1 = val)}
+          />
+          <NumericRangeRow
+            label="Range 2"
+            value={values.numericRange2}
+            min={1}
+            max={20}
+            onChange={(val) => (values.numericRange2 = val)}
+          />
+          <NumericRangeRow
+            label="Range 3"
+            value={values.numericRange3}
+            min={1}
+            max={20}
+            onChange={(val) => (values.numericRange3 = val)}
+          />
+          <NumericRangeRow
+            label="Range 4"
+            value={values.numericRange4}
+            min={1}
+            max={20}
+            onChange={(val) => (values.numericRange4 = val)}
+          />
+          <NumericRangeRow
+            label="Range 5"
+            value={values.numericRange5}
+            min={1}
+            max={20}
+            onChange={(val) => (values.numericRange5 = val)}
           />
         </CardContent>
       </Card>
