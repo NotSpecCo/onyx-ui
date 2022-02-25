@@ -15,13 +15,13 @@
   registerView({
     tabs: [
       { id: 'info', title: 'Information', onSelect: () => replace(`/lists/info`) },
-      { id: 'single', title: 'Single Line List', onSelect: () => replace(`/lists,/single`) },
+      { id: 'single', title: 'Single Line List', onSelect: () => replace(`/lists/single`) },
       { id: 'two', title: 'Two Line List', onSelect: () => replace(`/lists/two`) },
-      { id: 'three', title: 'Three Line List', onSelect: () => replace(`/lists,/three`) },
+      { id: 'three', title: 'Three Line List', onSelect: () => replace(`/lists/three`) },
       {
         id: 'shortcuts',
         title: 'List With Shortcuts',
-        onSelect: () => replace(`/lis,ts/shortcuts`),
+        onSelect: () => replace(`/lists/shortcuts`),
       },
       { id: 'images', title: 'List With Images', onSelect: () => replace(`/lists/images`) },
     ],
