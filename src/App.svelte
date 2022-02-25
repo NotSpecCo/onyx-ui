@@ -2,6 +2,7 @@
   import Router from 'svelte-spa-router';
   import AppMenu from './components/AppMenu.svelte';
   import { registerAppMenu } from './lib/stores/view';
+  import AppSettings from './routes/AppSettings.svelte';
   import Drawer from './routes/Drawer.svelte';
   import Form from './routes/Form.svelte';
   import Home from './routes/Home.svelte';
@@ -18,6 +19,7 @@
     '/lists/:tabId?': Lists,
     '/drawer/:tabId?': Drawer,
     '/forms/:tabId?': Form,
+    '/settings/:tabId?': AppSettings,
   };
 </script>
 
