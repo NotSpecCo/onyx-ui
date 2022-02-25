@@ -2,45 +2,30 @@
   import { onDestroy } from 'svelte';
   import { location, pop } from 'svelte-spa-router';
   import { onKeyPress } from '../../hooks';
-  import type { Tab } from '../../models';
   import { resetNavigation } from '../../stores/navigator';
-  import {
-    activeTab as viewActiveTab,
-    registerTabs,
-    resetView,
-    tabs as viewTabs,
-    viewing,
-  } from '../../stores/view';
+  import { appMenu, resetView, updateView, view } from '../../stores/view';
+  import Drawer from '../drawer/Drawer.svelte';
   import ViewTabs from './ViewTabs.svelte';
-
-  export let tabs: Tab[] = [];
-  export let activeTab: string = null;
-  export let onTabChange: (tabId: string) => void = null;
-
-  registerTabs(tabs, activeTab);
-  const unsubscribe = viewActiveTab.subscribe((tabId) => onTabChange?.(tabId));
-
-  onDestroy(() => unsubscribe());
 
   onKeyPress(
     {
       SoftLeft: () => {
-        if ($viewing === 'content' && $viewTabs.length > 1) {
-          viewing.set('tabs');
-        } else if ($viewing === 'content') {
-          viewing.set('appmenu');
-        } else if ($viewing === 'tabs') {
-          viewing.set('appmenu');
+        if ($view.viewing === 'content' && $view.tabs.length > 1) {
+          updateView({ viewing: 'tabs' });
+        } else if ($view.viewing === 'content') {
+          updateView({ viewing: 'appmenu' });
+        } else if ($view.viewing === 'tabs') {
+          updateView({ viewing: 'appmenu' });
         } else {
-          viewing.set('content');
+          updateView({ viewing: 'content' });
         }
       },
       SoftRight: () => {
-        viewing.set($viewing === 'drawer' ? 'content' : 'drawer');
+        updateView({ viewing: $view.viewing === 'drawer' ? 'content' : 'drawer' });
       },
       Backspace: () => {
-        if ($viewing !== 'content') {
-          viewing.set('content');
+        if ($view.viewing !== 'content') {
+          updateView({ viewing: 'content' });
           return;
         }
 
@@ -60,7 +45,7 @@
 
   let offset = 0;
   $: {
-    switch ($viewing) {
+    switch ($view.viewing) {
       case 'appmenu':
         offset = menuHeight;
         break;
@@ -81,24 +66,24 @@
   });
 </script>
 
-<div class="root" class:end={$viewing === 'drawer'}>
+<div class="root" class:end={$view.viewing === 'drawer'}>
   <div bind:clientHeight={menuHeight}>
-    {#if $viewing === 'appmenu'}
-      <slot name="appmenu" />
+    {#if $view.viewing === 'appmenu'}
+      <svelte:component this={$appMenu} />
     {/if}
   </div>
   <div bind:clientHeight={tabsHeight}>
-    {#if $viewing === 'tabs'}
+    {#if $view.viewing === 'tabs'}
       <ViewTabs />
     {/if}
   </div>
   <div class="content" style={`transform: translateY(${offset}px)`}>
-    <slot name="content" />
+    <slot />
     <slot name="dashboard" />
   </div>
   <div bind:clientHeight={drawerHeight}>
-    {#if $viewing === 'drawer'}
-      <slot name="drawer" />
+    {#if $view.viewing === 'drawer'}
+      <Drawer />
     {/if}
   </div>
 </div>

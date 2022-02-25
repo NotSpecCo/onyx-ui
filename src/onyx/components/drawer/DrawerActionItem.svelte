@@ -6,7 +6,6 @@
   export let icon: any = null;
   export let primaryText: string = null;
   export let secondaryText: string = null;
-
   export let navi: Navigation;
 </script>
 

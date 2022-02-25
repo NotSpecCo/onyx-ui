@@ -4,12 +4,12 @@
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
   import { IconSize } from '../../enums/icon';
   import type { CardContext } from '../../models';
-  import { tabs } from '../../stores/view';
+  import { view } from '../../stores/view';
   import Icon from '../icon/Icon.svelte';
 
   const context = getContext<CardContext>('card');
 
-  const title = $tabs.find((a) => a.id === context.tabId)?.title;
+  const title = $view.tabs.find((a) => a.id === context.tabId)?.title;
 </script>
 
 <div class="root">

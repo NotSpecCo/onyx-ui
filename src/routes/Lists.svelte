@@ -1,6 +1,5 @@
 <script lang="ts">
   import { replace } from 'svelte-spa-router';
-  import AppMenu from '../components/AppMenu.svelte';
   import Card from '../onyx/components/card/Card.svelte';
   import CardContent from '../onyx/components/card/CardContent.svelte';
   import CardTabHeader from '../onyx/components/card/CardTabHeader.svelte';
@@ -8,34 +7,58 @@
   import Typography from '../onyx/components/Typography.svelte';
   import View from '../onyx/components/view/View.svelte';
   import ViewContent from '../onyx/components/view/ViewContent.svelte';
+  import { registerView, view } from '../onyx/stores/view';
   import { shortcutFromIndex } from '../onyx/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
 
-  const tabs = [
-    { id: 'info', title: 'Information' },
-    { id: 'single', title: 'Single Line List' },
-    { id: 'two', title: 'Two Line List' },
-    { id: 'three', title: 'Three Line List' },
-    { id: 'shortcuts', title: 'List With Shortcuts' },
-    { id: 'images', title: 'List With Images' },
-  ];
+  registerView({
+    tabs: [
+      { id: 'info', title: 'Information', onSelect: () => replace(`/lists/info`) },
+      { id: 'single', title: 'Single Line List', onSelect: () => replace(`/lists,/single`) },
+      { id: 'two', title: 'Two Line List', onSelect: () => replace(`/lists/two`) },
+      { id: 'three', title: 'Three Line List', onSelect: () => replace(`/lists,/three`) },
+      {
+        id: 'shortcuts',
+        title: 'List With Shortcuts',
+        onSelect: () => replace(`/lis,ts/shortcuts`),
+      },
+      { id: 'images', title: 'List With Images', onSelect: () => replace(`/lists/images`) },
+    ],
+    activeTabId: params.tabId ?? 'info',
+    drawerItems: [
+      {
+        id: '1',
+        primaryText: 'Drawer action 1',
+        onSelect: () => console.log('home select drawer 1'),
+      },
+      {
+        id: '2',
+        primaryText: 'Drawer action 2',
+        onSelect: () => console.log('home select drawer 2'),
+      },
+      {
+        id: '3',
+        primaryText: 'Drawer action 3',
+        onSelect: () => console.log('home select drawer 3'),
+      },
+    ],
+  });
 
   const items = new Array(10).fill(null);
 </script>
 
-<View {tabs} activeTab={params.tabId || tabs[0].id} onTabChange={(tab) => replace(`/lists/${tab}`)}>
-  <AppMenu slot="appmenu" />
+<View>
   <ViewContent>
-    {#if params.tabId === tabs[0].id}
-      <Card tabId={tabs[0].id}>
+    {#if params.tabId === $view.tabs[0].id}
+      <Card tabId={$view.tabs[0].id}>
         <CardTabHeader />
         <CardContent>
           <Typography>List info</Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[1].id}
-      <Card tabId={tabs[1].id}>
+    {:else if params.tabId === $view.tabs[1].id}
+      <Card tabId={$view.tabs[1].id}>
         <CardTabHeader />
         <CardContent>
           {#each items as item, i}
@@ -48,8 +71,8 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[2].id}
-      <Card tabId={tabs[2].id}>
+    {:else if params.tabId === $view.tabs[2].id}
+      <Card tabId={$view.tabs[2].id}>
         <CardTabHeader />
         <CardContent>
           {#each items as item, i}
@@ -63,8 +86,8 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[3].id}
-      <Card tabId={tabs[3].id}>
+    {:else if params.tabId === $view.tabs[3].id}
+      <Card tabId={$view.tabs[3].id}>
         <CardTabHeader />
         <CardContent>
           {#each items as item, i}
@@ -79,8 +102,8 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[4].id}
-      <Card tabId={tabs[4].id}>
+    {:else if params.tabId === $view.tabs[4].id}
+      <Card tabId={$view.tabs[4].id}>
         <CardTabHeader />
         <CardContent>
           {#each items as item, i}
@@ -95,8 +118,8 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[5].id}
-      <Card tabId={tabs[5].id}>
+    {:else if params.tabId === $view.tabs[5].id}
+      <Card tabId={$view.tabs[5].id}>
         <CardTabHeader />
         <CardContent>
           {#each items as item, i}

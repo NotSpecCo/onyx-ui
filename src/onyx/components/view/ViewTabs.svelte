@@ -2,12 +2,12 @@
   import { onDestroy, setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
   import { activateGroup, deactivateGroup, groupItemMap } from '../../stores/navigator';
-  import { activeTab, tabs, viewing } from '../../stores/view';
+  import { updateView, view } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
   import Typography from '../Typography.svelte';
 
   let otherTabs = [];
-  $: otherTabs = $tabs.filter((a) => a.id !== $activeTab);
+  $: otherTabs = $view.tabs.filter((a) => a.id !== $view.activeTabId);
 
   const NAV_GROUP = Symbol();
   setContext('nav-group', NAV_GROUP);
@@ -16,7 +16,7 @@
   onDestroy(() => deactivateGroup(NAV_GROUP));
 </script>
 
-<div class="root" use:navigator={{ groupId: NAV_GROUP, initialSelectedId: $activeTab }}>
+<div class="root" use:navigator={{ groupId: NAV_GROUP, initialSelectedId: $view.activeTabId }}>
   <Typography align="center" type="caption">Press again for app menu</Typography>
   <div data-nav-scroller>
     {#each otherTabs as tab, i}
@@ -26,10 +26,7 @@
           class:focused={tab.id === $groupItemMap[NAV_GROUP]}
           data-nav-id={tab.id}
           data-nav-shortcut={i + 1}
-          on:itemselect={() => {
-            activeTab.set(tab.id);
-            viewing.set('content');
-          }}
+          on:itemselect={() => updateView({ viewing: 'content', activeTabId: tab.id })}
         >
           <div>{tab.title}</div>
           {#if shortcutFromIndex(i)}

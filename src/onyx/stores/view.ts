@@ -1,32 +1,66 @@
 import { get, writable } from 'svelte/store';
-import type { Tab } from '../models';
+import type { DrawerAction, Tab } from '../models';
 import { getIndexWrap } from '../utils/array';
 
-// View
-export const viewing = writable<'appmenu' | 'tabs' | 'content' | 'drawer'>('content');
+type ViewConfig = {
+  viewing: 'appmenu' | 'tabs' | 'content' | 'drawer';
+  tabs: Tab[];
+  activeTabId: string | null;
+  drawerItems: DrawerAction[];
+};
 
-// Tabs
-export const tabs = writable<Tab[]>([]);
-export const activeTab = writable<string | null>(null);
+const defaultViewConfig: ViewConfig = {
+  viewing: 'content',
+  tabs: [],
+  activeTabId: null,
+  drawerItems: [],
+};
 
-export function registerTabs(data: Tab[], active: string | null) {
-  tabs.set(data);
-  if (active) activeTab.set(active);
+export const view = writable<ViewConfig>(defaultViewConfig);
+export const appMenu = writable<any>(null);
+
+export function registerAppMenu(menu: any) {
+  appMenu.set(menu);
 }
 
-export function switchTab(value: 1 | -1) {
-  if (get(tabs).length < 2) {
-    return;
+export function registerView(data: Partial<Omit<ViewConfig, 'activeTab'>>) {
+  view.set({ ...defaultViewConfig, ...data });
+
+  if (data.activeTabId) {
+    get(view)
+      .tabs.find((a) => a.id === data.activeTabId)
+      ?.onSelect?.();
   }
+}
 
-  const current = get(tabs).findIndex((a) => a.id === get(activeTab));
-  const next = getIndexWrap(get(tabs), current, value);
+export function updateView(data: Partial<ViewConfig>) {
+  view.update((val) => ({ ...val, ...data }));
 
-  activeTab.set(get(tabs)[next]?.id);
+  if (data.activeTabId) {
+    get(view)
+      .tabs.find((a) => a.id === data.activeTabId)
+      ?.onSelect?.();
+  }
 }
 
 export function resetView() {
-  viewing.set('content');
-  tabs.set([]);
-  activeTab.set(null);
+  view.set(defaultViewConfig);
+}
+
+export function switchTab(value: 1 | -1) {
+  const v = get(view);
+
+  if (v.tabs.length < 2) {
+    return;
+  }
+
+  const current = v.tabs.findIndex((a) => a.id === get(view).activeTabId);
+  const next = getIndexWrap(v.tabs, current, value);
+
+  console.log('switch', current, next);
+
+  const newTabs = v.tabs.map((a) => ({ ...a, active: false }));
+  newTabs[next >= 0 ? next : 0].active = true;
+
+  updateView({ activeTabId: v.tabs[next].id });
 }

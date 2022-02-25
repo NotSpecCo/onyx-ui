@@ -1,6 +1,5 @@
 <script lang="ts">
   import { replace } from 'svelte-spa-router';
-  import AppMenu from '../components/AppMenu.svelte';
   import Card from '../onyx/components/card/Card.svelte';
   import CardContent from '../onyx/components/card/CardContent.svelte';
   import CardTabHeader from '../onyx/components/card/CardTabHeader.svelte';
@@ -8,23 +7,59 @@
   import Typography from '../onyx/components/Typography.svelte';
   import View from '../onyx/components/view/View.svelte';
   import ViewContent from '../onyx/components/view/ViewContent.svelte';
+  import { registerView, view } from '../onyx/stores/view';
   import { shortcutFromIndex } from '../onyx/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
 
-  const tabs = [
-    { id: 'info', title: 'Information' },
-    { id: 'list', title: 'List Tab' },
-    { id: 'tab', title: 'Text Tab' },
-    { id: 'empty', title: 'Empty Tab' },
-  ];
+  registerView({
+    tabs: [
+      {
+        id: 'info',
+        title: 'Information',
+        onSelect: () => replace(`/tabs/info`),
+      },
+      {
+        id: 'list',
+        title: 'List Tab',
+        onSelect: () => replace(`/tabs/list`),
+      },
+      {
+        id: 'text',
+        title: 'Text Tab',
+        onSelect: () => replace(`/tabs/text`),
+      },
+      {
+        id: 'empty',
+        title: 'Empty Tab',
+        onSelect: () => replace(`/tabs/empty`),
+      },
+    ],
+    activeTabId: params.tabId ?? 'info',
+    drawerItems: [
+      {
+        id: '1',
+        primaryText: 'Drawer action 1',
+        onSelect: () => console.log('home select drawer 1'),
+      },
+      {
+        id: '2',
+        primaryText: 'Drawer action 2',
+        onSelect: () => console.log('home select drawer 2'),
+      },
+      {
+        id: '3',
+        primaryText: 'Drawer action 3',
+        onSelect: () => console.log('home select drawer 3'),
+      },
+    ],
+  });
 </script>
 
-<View {tabs} activeTab={params.tabId || tabs[0].id} onTabChange={(tab) => replace(`/tabs/${tab}`)}>
-  <AppMenu slot="appmenu" />
-  <ViewContent slot="content">
-    {#if params.tabId === tabs[0].id}
-      <Card tabId={tabs[0].id}>
+<View>
+  <ViewContent>
+    {#if params.tabId === $view.tabs[0].id}
+      <Card tabId={$view.tabs[0].id}>
         <CardTabHeader />
         <CardContent>
           <Typography>
@@ -45,8 +80,8 @@
           </Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[1].id}
-      <Card tabId={tabs[1].id}>
+    {:else if params.tabId === $view.tabs[1].id}
+      <Card tabId={$view.tabs[1].id}>
         <CardTabHeader />
         <CardContent>
           {#each new Array(10).fill(null) as item, i}
@@ -61,8 +96,8 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[2].id}
-      <Card tabId={tabs[2].id}>
+    {:else if params.tabId === $view.tabs[2].id}
+      <Card tabId={$view.tabs[2].id}>
         <CardTabHeader />
         <CardContent>
           <Typography>
@@ -93,8 +128,8 @@
           </Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === tabs[3].id}
-      <Card tabId={tabs[3].id}>
+    {:else if params.tabId === $view.tabs[3].id}
+      <Card tabId={$view.tabs[3].id}>
         <CardTabHeader />
         <CardContent />
       </Card>

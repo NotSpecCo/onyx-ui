@@ -1,11 +1,13 @@
 <script lang="ts">
-  import AppMenu from '../components/AppMenu.svelte';
   import Card from '../onyx/components/card/Card.svelte';
   import CardContent from '../onyx/components/card/CardContent.svelte';
   import CardHeader from '../onyx/components/card/CardHeader.svelte';
   import Typography from '../onyx/components/Typography.svelte';
   import View from '../onyx/components/view/View.svelte';
   import ViewContent from '../onyx/components/view/ViewContent.svelte';
+  import { registerView } from '../onyx/stores/view';
+
+  registerView({});
 </script>
 
 <View>
@@ -39,5 +41,4 @@
       </CardContent>
     </Card>
   </ViewContent>
-  <AppMenu slot="appmenu" />
 </View>

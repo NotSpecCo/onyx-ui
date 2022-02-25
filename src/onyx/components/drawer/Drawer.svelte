@@ -1,12 +1,10 @@
 <script lang="ts">
   import { onDestroy, onMount, setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
-  import type { DrawerAction } from '../../models';
   import { activateGroup, deactivateGroup } from '../../stores/navigator';
+  import { view } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
-  import DrawerItem from './DrawerItem.svelte';
-
-  export let actions: DrawerAction[] = [];
+  import DrawerActionItem from './DrawerActionItem.svelte';
 
   const NAV_GROUP = Symbol();
   setContext('nav-group', NAV_GROUP);
@@ -17,8 +15,8 @@
 
 <div class="root" use:navigator={{ groupId: NAV_GROUP }}>
   <div class="scroller" data-nav-scroller>
-    {#each actions as action, i}
-      <DrawerItem
+    {#each $view.drawerItems as action, i}
+      <DrawerActionItem
         primaryText={action.primaryText}
         secondaryText={action.secondaryText}
         navi={{
