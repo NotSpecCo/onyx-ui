@@ -8,6 +8,7 @@
   export let value: string | number = undefined;
   export let options: SelectOption[] = [];
   export let disabled = false;
+  export let wrap = false;
   export let onChange: (val: string | number) => void;
 
   const itemId = uuidv4();
@@ -23,5 +24,5 @@
     onBlur: () => (focused = false),
   }}
 >
-  <InlineSelect {value} {options} {onChange} disabled={disabled || !focused} />
+  <InlineSelect {value} {options} {onChange} disabled={disabled || !focused} {wrap} />
 </FormRow>
