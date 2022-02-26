@@ -11,6 +11,7 @@ const defaultSettings: Settings = {
   displayDensity: Density.Normal,
   borderRadius: 14,
   animations: Animations.Normal,
+  showHintText: true,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);

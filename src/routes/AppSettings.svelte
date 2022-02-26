@@ -4,6 +4,7 @@
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardHeader from '../lib/components/card/CardHeader.svelte';
+  import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
   import InputRow from '../lib/components/form/InputRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
@@ -94,6 +95,11 @@
             min={0}
             max={32}
             onChange={(val) => handleChange('borderRadius', val)}
+          />
+          <CheckboxRow
+            label="Show Hint Text"
+            checked={$settings.showHintText}
+            onChange={(val) => handleChange('showHintText', val)}
           />
         </CardContent>
       </Card>

@@ -1,10 +1,14 @@
 <script lang="ts">
-  import { ViewState } from '../../enums';
+  import { getContext } from 'svelte';
+  import { ContextKey, ViewState } from '../../enums';
+  import type { SettingsContext } from '../../models';
   import { groupItemMap } from '../../stores/navigator';
   import { updateView, view } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
+
+  const settings = getContext<SettingsContext>(ContextKey.Settings);
 
   let otherCards = [];
   $: otherCards = $view.cards.filter((a) => a.id !== $view.activeCardId);
@@ -13,7 +17,9 @@
 </script>
 
 <NavGroup groupId={NAV_GROUP_ID}>
-  <Typography align="center" type="caption">Press again for app menu</Typography>
+  {#if $settings.showHintText}
+    <Typography align="center" type="caption">Press again for app menu</Typography>
+  {/if}
   <div data-nav-scroller>
     {#each otherCards as card, i}
       <div class="card-root">

@@ -5,6 +5,7 @@ export type BaseSettings = {
   displayDensity: Density;
   borderRadius: number;
   animations: Animations;
+  showHintText: boolean;
   theme: Theme;
   accentColor: string;
   cardAccentColor: string;
