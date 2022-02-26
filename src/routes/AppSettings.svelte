@@ -112,13 +112,13 @@
           <InputRow
             label="Accent Color"
             value={$settings.accentColor}
-            placeholder="Enter text..."
+            placeholder="Enter color..."
             onChange={(val) => handleChange('accentColor', val)}
           />
           <InputRow
             label="Card Accent Color"
             value={$settings.cardAccentColor}
-            placeholder="Enter text..."
+            placeholder="Enter color..."
             onChange={(val) => handleChange('cardAccentColor', val)}
           />
         </CardContent>

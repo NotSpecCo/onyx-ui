@@ -48,7 +48,9 @@ export function navigator(node: HTMLElement, config: Config) {
       !groupActive ||
       ev.shiftKey || // Allow Shift+ArrowLeft/Right to trigger soft keys
       ![...dpadKeys, ...shortcutKeys].includes(ev.key) ||
-      (!['ArrowUp', 'ArrowDown'].includes(ev.key) && target?.tagName.toLowerCase() === 'input')
+      (!['ArrowUp', 'ArrowDown'].includes(ev.key) && target?.tagName.toLowerCase() === 'input') ||
+      (!['ArrowUp', 'ArrowDown'].includes(ev.key) &&
+        (target?.attributes as any).role?.value === 'textbox')
     ) {
       return;
     }
