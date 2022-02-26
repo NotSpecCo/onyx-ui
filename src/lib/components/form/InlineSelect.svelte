@@ -7,9 +7,9 @@
   import { getIndex } from '../../utils/array';
   import Icon from '../icon/Icon.svelte';
 
-  export let value: string = undefined;
+  export let value: string | number = undefined;
   export let options: SelectOption[] = [];
-  export let onChange: (val: string) => void;
+  export let onChange: (val: string | number) => void;
   export let disabled = false;
 </script>
 

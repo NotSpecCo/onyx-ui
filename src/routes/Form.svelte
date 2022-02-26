@@ -47,7 +47,7 @@
     activeCardId: params.cardId ?? 'info',
   });
 
-  let values = {
+  let values: any = {
     checkbox1: true,
     checkbox2: false,
     checkbox3: false,

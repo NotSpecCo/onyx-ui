@@ -5,10 +5,10 @@
   import InlineSelect from './InlineSelect.svelte';
 
   export let label: string = undefined;
-  export let value: string = undefined;
+  export let value: string | number = undefined;
   export let options: SelectOption[] = [];
   export let disabled = false;
-  export let onChange: (val: string) => void;
+  export let onChange: (val: string | number) => void;
 
   const itemId = uuidv4();
   let focused = false;
