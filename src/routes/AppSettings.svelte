@@ -10,7 +10,7 @@
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { Animations, DataStatus, Density, TextSize, Theme } from '../lib/enums';
+  import { Animations, DataStatus, Density, TextSize, TextWeight, Theme } from '../lib/enums';
   import { registerView, updateView, view } from '../lib/stores/view';
   import { themes } from '../lib/themes';
   import type { Settings } from '../models';
@@ -66,6 +66,16 @@
               { id: TextSize.Largest, label: 'Largest' },
             ]}
             onChange={(val) => handleChange('textSize', val)}
+          />
+          <InlineSelectRow
+            label="Text Weight"
+            value={$settings.textWeight}
+            options={[
+              { id: TextWeight.Light, label: 'Light' },
+              { id: TextWeight.Medium, label: 'Medium' },
+              { id: TextWeight.Heavy, label: 'Heavy' },
+            ]}
+            onChange={(val) => handleChange('textWeight', val)}
           />
           <InlineSelectRow
             label="Display Density"

@@ -24,6 +24,9 @@
   --radius: 14px;
   --animation-speed: 300ms;
 
+  --regular-font-weight: 400;
+  --bold-font-weight: 600;
+
   --base-font-size: 10px;
   font-size: var(--base-font-size);
 
@@ -46,7 +49,7 @@ body {
   margin: 0;
   background: var(--bg-color);
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: var(--regular-font-weight);
   color: var(--primary-text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -52,7 +52,7 @@
 
   .title {
     flex: 1;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
     text-align: center;
     min-width: 0;
     overflow: hidden;

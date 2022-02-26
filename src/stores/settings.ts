@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { Animations, Density, TextSize, Theme } from '../lib/enums';
+import { Animations, Density, TextSize, TextWeight, Theme } from '../lib/enums';
 import { getStorageItem, setStorageItem, StorageKey } from '../lib/utils/storage';
 import type { Settings } from '../models';
 
@@ -8,6 +8,7 @@ const defaultSettings: Settings = {
   accentColor: '#707C99',
   cardAccentColor: '#707C99',
   textSize: TextSize.Medium,
+  textWeight: TextWeight.Medium,
   displayDensity: Density.Normal,
   borderRadius: 14,
   animations: Animations.Normal,

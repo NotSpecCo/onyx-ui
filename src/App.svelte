@@ -3,7 +3,7 @@
   import { setContext } from 'svelte';
   import Router from 'svelte-spa-router';
   import AppMenu from './components/AppMenu.svelte';
-  import { ContextKey, TextSize } from './lib/enums';
+  import { ContextKey, TextSize, TextWeight } from './lib/enums';
   import type { SettingsContext } from './lib/models';
   import { registerAppMenu } from './lib/stores/view';
   import { themes } from './lib/themes';
@@ -47,6 +47,20 @@
     document.documentElement.style.setProperty(
       '--base-font-size',
       `${textSize[$settings.textSize]}px`
+    );
+
+    const weight = {
+      [TextWeight.Light]: { regular: 300, bold: 400 },
+      [TextWeight.Medium]: { regular: 400, bold: 600 },
+      [TextWeight.Heavy]: { regular: 600, bold: 700 },
+    };
+    document.documentElement.style.setProperty(
+      '--regular-font-weight',
+      `${weight[$settings.textWeight].regular}`
+    );
+    document.documentElement.style.setProperty(
+      '--bold-font-weight',
+      `${weight[$settings.textWeight].bold}`
     );
 
     // Display Density

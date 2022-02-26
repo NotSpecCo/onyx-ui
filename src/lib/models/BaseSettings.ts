@@ -1,7 +1,8 @@
-import type { Animations, Density, TextSize, Theme } from '../enums';
+import type { Animations, Density, TextSize, TextWeight, Theme } from '../enums';
 
 export type BaseSettings = {
   textSize: TextSize;
+  textWeight: TextWeight;
   displayDensity: Density;
   borderRadius: number;
   animations: Animations;

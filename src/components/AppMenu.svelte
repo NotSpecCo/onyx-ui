@@ -63,7 +63,7 @@
   }
   .header {
     padding: 5px;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
     color: var(--accent-text-color);
     text-align: center;
   }

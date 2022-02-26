@@ -5,5 +5,6 @@ export * from './density';
 export * from './iconColor';
 export * from './iconSize';
 export * from './textSize';
+export * from './textWeight';
 export * from './theme';
 export * from './viewState';

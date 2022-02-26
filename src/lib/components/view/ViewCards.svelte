@@ -60,7 +60,7 @@
     margin-bottom: -15px;
     display: flex;
     justify-content: space-between;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
   }
   .title {
     min-width: 0;

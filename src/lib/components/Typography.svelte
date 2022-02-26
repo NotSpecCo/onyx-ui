@@ -28,29 +28,29 @@
 
   .caption {
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: var(--regular-font-weight);
   }
   .body {
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: var(--regular-font-weight);
   }
   .bodyLarge {
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: var(--regular-font-weight);
   }
   .titleSmall {
     font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
     text-transform: uppercase;
   }
   .title {
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
     text-transform: uppercase;
   }
   .titleLarge {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: var(--bold-font-weight);
     text-transform: uppercase;
   }
 
