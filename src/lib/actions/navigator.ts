@@ -97,7 +97,6 @@ export function navigator(node: HTMLElement, config: Config) {
       ev.key === 'ArrowUp' &&
       scroller.scrollTop > 0
     ) {
-      console.log('scroll up'); // TODO: Scroll
       scrollContent('up', scroller);
       return;
     }
@@ -109,7 +108,6 @@ export function navigator(node: HTMLElement, config: Config) {
       ev.key === 'ArrowDown' &&
       scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight
     ) {
-      console.log('scroll down'); // TODO: Scroll
       scrollContent('down', scroller);
       return;
     }

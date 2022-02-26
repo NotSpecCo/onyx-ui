@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { ViewState } from '../../enums';
   import { groupItemMap } from '../../stores/navigator';
   import { updateView, view } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
@@ -21,7 +22,7 @@
           class:focused={card.id === $groupItemMap[NAV_GROUP_ID]}
           data-nav-id={card.id}
           data-nav-shortcut={i + 1}
-          on:itemselect={() => updateView({ viewing: 'content', activeCardId: card.id })}
+          on:itemselect={() => updateView({ viewing: ViewState.Content, activeCardId: card.id })}
         >
           <div>{card.title}</div>
           {#if shortcutFromIndex(i)}

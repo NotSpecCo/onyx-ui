@@ -10,6 +10,7 @@
   import { push } from 'svelte-spa-router';
   import ListItem from '../lib/components/list/ListItem.svelte';
   import NavGroup from '../lib/components/nav/NavGroup.svelte';
+  import { ViewState } from '../lib/enums';
   import { updateView } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
@@ -43,7 +44,7 @@
           shortcutKey: shortcutFromIndex(i),
           onSelect: () => {
             if (location.hash.startsWith(`#${item.route}`)) {
-              updateView({ viewing: 'content' });
+              updateView({ viewing: ViewState.Content });
               return;
             }
             push(item.route);
