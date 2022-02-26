@@ -6,6 +6,7 @@
   import Icon from '../icon/Icon.svelte';
 
   export let value: number;
+  export let valueLabel: string = undefined;
   export let min: number;
   export let max: number;
   export let onChange: (val: number) => void;
@@ -34,7 +35,7 @@
   }}
 >
   <Icon size={IconSize.Small}><MdChevronLeft /></Icon>
-  <div>{value}</div>
+  <div>{`${value}${valueLabel ?? ''}`}</div>
   <Icon size={IconSize.Small}><MdChevronRight /></Icon>
 </div>
 

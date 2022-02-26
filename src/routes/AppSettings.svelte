@@ -90,6 +90,7 @@
           <NumericRangeRow
             label="Border Radius"
             value={$settings.borderRadius}
+            valueLabel="px"
             min={0}
             max={32}
             onChange={(val) => handleChange('borderRadius', val)}

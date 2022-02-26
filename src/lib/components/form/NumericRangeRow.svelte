@@ -4,6 +4,7 @@
   import NumericRange from './NumericRange.svelte';
 
   export let label: string = undefined;
+  export let valueLabel: string = undefined;
   export let value: number = undefined;
   export let min: number;
   export let max: number;
@@ -23,5 +24,5 @@
     onBlur: () => (focused = false),
   }}
 >
-  <NumericRange {value} {min} {max} {onChange} disabled={disabled || !focused} />
+  <NumericRange {value} {valueLabel} {min} {max} {onChange} disabled={disabled || !focused} />
 </FormRow>
