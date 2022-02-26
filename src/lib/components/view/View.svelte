@@ -111,7 +111,7 @@
     bottom: 0;
     left: 0;
     height: 100vh;
-    transition: transform 250ms;
+    transition: transform var(--animation-speed);
     transform: translateY(0px);
     z-index: 9;
     display: flex;

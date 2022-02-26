@@ -10,6 +10,7 @@
 
   --card-bg-color: #ffffff;
   --card-dim-bg-color: #efefef;
+  --card-border-color: #000000;
   --card-accent-color: #7e94a0;
   --card-primary-text-color: rgba(0, 0, 0, 0.88);
   --card-secondary-text-color: rgba(0, 0, 0, 0.5);
@@ -20,7 +21,8 @@
 
   --scrim-color: rgba(0, 0, 0, 0.7);
 
-  --radius: 12px;
+  --radius: 14px;
+  --animation-speed: 300ms;
 
   --base-font-size: 10px;
   font-size: var(--base-font-size);

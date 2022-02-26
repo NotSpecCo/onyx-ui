@@ -1,11 +1,11 @@
-import { Theme } from './models/Settings';
+import { Theme } from './enums';
 
 export type ThemeConfig = {
   id: Theme;
   values: {
     [key: string]: string;
     // Drawer
-    drawerBgcolor: string;
+    drawerBgColor: string;
     drawerAccentColor: string;
     drawerPrimaryTextColor: string;
     drawerSecondaryTextColor: string;
@@ -14,7 +14,9 @@ export type ThemeConfig = {
     drawerHighlightTextColor: string;
     drawerDividerColor: string;
     // Card
-    cardBgcolor: string;
+    cardBgColor: string;
+    cardDimBgColor: string;
+    cardBorderColor: string;
     cardAccentColor: string;
     cardPrimaryTextColor: string;
     cardSecondaryTextColor: string;
@@ -32,20 +34,22 @@ export const themes: ThemeConfig[] = [
     id: Theme.Light,
     values: {
       // Drawer
-      drawerBgcolor: '#000000',
-      drawerAccentColor: '#485665',
+      drawerBgColor: '#000000',
+      drawerAccentColor: '#707C99',
       drawerPrimaryTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerSecondaryTextColor: 'rgba(255, 255, 255, 0.5)',
-      drawerAccentTextColor: '#485665',
+      drawerAccentTextColor: '#707C99',
       drawerHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
       drawerHighlightTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
       // Card
-      cardBgcolor: '#ffffff',
-      cardAccentColor: '#485665',
+      cardBgColor: '#ffffff',
+      cardDimBgColor: '#efefef',
+      cardBorderColor: '#aaa',
+      cardAccentColor: '#707C99',
       cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
       cardSecondaryTextColor: 'rgba(0, 0, 0, 0.5)',
-      cardAccentTextColor: '#485665',
+      cardAccentTextColor: '#707C99',
       cardHighlightBgColor: 'rgba(0, 0, 0, 0.1)',
       cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
       cardDividerColor: 'rgba(0, 0, 0, 0.1)',
@@ -57,23 +61,25 @@ export const themes: ThemeConfig[] = [
     id: Theme.Dark,
     values: {
       // Drawer
-      drawerBgcolor: '#000000',
-      drawerAccentColor: '#485665',
+      drawerBgColor: '#111318',
+      drawerAccentColor: '#FCD581',
       drawerPrimaryTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerSecondaryTextColor: 'rgba(255, 255, 255, 0.5)',
-      drawerAccentTextColor: '#485665',
+      drawerAccentTextColor: '#FCD581',
       drawerHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
       drawerHighlightTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
       // Card
-      cardBgcolor: '#ffffff',
-      cardAccentColor: '#485665',
-      cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
-      cardSecondaryTextColor: 'rgba(0, 0, 0, 0.5)',
-      cardAccentTextColor: '#485665',
+      cardBgColor: '#353945',
+      cardDimBgColor: '#22262F',
+      cardBorderColor: '#4C556B',
+      cardAccentColor: '#FCD581',
+      cardPrimaryTextColor: 'rgba(255,255,255, 0.88)',
+      cardSecondaryTextColor: 'rgba(255,255,255, 0.5)',
+      cardAccentTextColor: '#FCD581',
       cardHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
-      cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
-      cardDividerColor: 'rgba(0, 0, 0, 0.1)',
+      cardHighlightTextColor: 'rgba(255,255,255, 0.88)',
+      cardDividerColor: 'rgba(255,255,255, 0.1)',
       // Other
       scrimColor: 'string',
     },
