@@ -58,7 +58,7 @@
 
 <View>
   <ViewContent>
-    {#if $view.activeTabId === $view.tabs[0].id}
+    {#if params.tabId === $view.tabs[0].id}
       <Card tabId={$view.tabs[0].id}>
         <CardTabHeader />
         <CardContent>
@@ -80,7 +80,7 @@
           </Typography>
         </CardContent>
       </Card>
-    {:else if $view.activeTabId === $view.tabs[1].id}
+    {:else if params.tabId === $view.tabs[1].id}
       <Card tabId={$view.tabs[1].id}>
         <CardTabHeader />
         <CardContent>
@@ -96,7 +96,7 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if $view.activeTabId === $view.tabs[2].id}
+    {:else if params.tabId === $view.tabs[2].id}
       <Card tabId={$view.tabs[2].id}>
         <CardTabHeader />
         <CardContent>
@@ -128,7 +128,7 @@
           </Typography>
         </CardContent>
       </Card>
-    {:else if $view.activeTabId === $view.tabs[3].id}
+    {:else if params.tabId === $view.tabs[3].id}
       <Card tabId={$view.tabs[3].id}>
         <CardTabHeader />
         <CardContent />

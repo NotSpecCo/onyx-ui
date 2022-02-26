@@ -3,19 +3,14 @@
   import { navigator } from '../../actions/navigator';
   import { ContextKey } from '../../enums/contextKey';
 
-  type NavConfig = {
-    groupId?: any;
-    initialSelectedId?: string;
-    enableTabSwitching?: boolean;
-  };
-
   export let groupId: string;
-  export let initialSelectedId: string = undefined;
+  export let initialFocusedId: string = undefined;
   export let enableTabSwitching = false;
+  export let updateRoute = false;
 
   setContext(ContextKey.NavGroup, groupId);
 </script>
 
-<div use:navigator={{ groupId, initialSelectedId, enableTabSwitching }}>
+<div use:navigator={{ groupId, initialFocusedId, enableTabSwitching, updateRoute }}>
   <slot />
 </div>

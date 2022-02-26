@@ -1,3 +1,4 @@
+import { replace } from 'svelte-spa-router';
 import { get } from 'svelte/store';
 import {
   activateGroup,
@@ -8,11 +9,13 @@ import {
 } from '../stores/navigator';
 import { switchTab } from '../stores/view';
 import { getIndexWrap } from '../utils/array';
+import { setFocusedId } from '../utils/route';
 
 type Config = {
   groupId: string;
-  initialSelectedId?: string;
+  initialFocusedId?: string;
   enableTabSwitching?: boolean;
+  updateRoute?: boolean;
 };
 
 export function navigator(node: HTMLElement, config: Config) {
@@ -20,13 +23,19 @@ export function navigator(node: HTMLElement, config: Config) {
 
   activateGroup(config.groupId);
 
-  if (config.initialSelectedId) {
-    const item = node.querySelector(`[data-nav-id=${config.initialSelectedId}]`);
-    if (item) {
-      setSelectedId(config.groupId, config.initialSelectedId);
-      item?.dispatchEvent(new CustomEvent('itemfocus'));
+  function setInitial(itemId?: string) {
+    if (itemId) {
+      const item: HTMLElement = node.querySelector(`[data-nav-id="${itemId}"]`);
+      if (item) {
+        setSelectedId(config.groupId, itemId);
+        item?.dispatchEvent(new CustomEvent('itemfocus'));
+        const scroller: HTMLElement = node.querySelector(`[data-nav-scroller]`);
+        scrollIntoView(scroller, item, 'auto');
+      }
     }
   }
+
+  setInitial(config.initialFocusedId);
 
   function handleKeyPress(ev: KeyboardEvent) {
     const groupActive = get(activeGroup)?.id === config.groupId;
@@ -67,9 +76,15 @@ export function navigator(node: HTMLElement, config: Config) {
     if (shortcutItem) {
       scrollIntoView(scroller, shortcutItem, 'auto');
       setSelectedId(config.groupId, shortcutItem.dataset.navId);
+
+      if (config.updateRoute) {
+        replace(setFocusedId(shortcutItem.dataset.navId));
+      }
+
       items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemblur'));
       shortcutItem.dispatchEvent(new CustomEvent('itemfocus'));
       shortcutItem.dispatchEvent(new CustomEvent('itemselect'));
+
       return;
     } else if (shortcutKeys.includes(ev.key)) {
       return;
@@ -113,6 +128,10 @@ export function navigator(node: HTMLElement, config: Config) {
     nextItem?.dispatchEvent(new CustomEvent('itemfocus'));
 
     scrollIntoView(scroller, nextItem, 'smooth');
+
+    if (config.updateRoute) {
+      replace(setFocusedId(nextItem?.dataset.navId));
+    }
   }
 
   function scrollContent(direction: 'up' | 'down', scroller?: HTMLElement): boolean {
