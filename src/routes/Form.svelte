@@ -11,6 +11,7 @@
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
+  import { DataStatus } from '../lib/enums/dataStatus';
   import { registerView, updateView, view } from '../lib/stores/view';
 
   export let params: { tabId: string };
