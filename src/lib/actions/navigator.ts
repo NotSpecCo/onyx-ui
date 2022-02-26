@@ -46,6 +46,7 @@ export function navigator(node: HTMLElement, config: Config) {
     const shortcutKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     if (
       !groupActive ||
+      ev.shiftKey || // Allow Shift+ArrowLeft/Right to trigger soft keys
       ![...dpadKeys, ...shortcutKeys].includes(ev.key) ||
       (!['ArrowUp', 'ArrowDown'].includes(ev.key) && target?.tagName.toLowerCase() === 'input')
     ) {

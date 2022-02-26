@@ -1,46 +1,12 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
   import { location, pop } from 'svelte-spa-router';
+  import { dpad } from '../../actions/dpad';
   import { ViewState } from '../../enums';
-  import { onKeyPress } from '../../hooks';
   import { resetNavigation } from '../../stores/navigator';
   import { appMenu, resetView, updateView, view } from '../../stores/view';
   import Drawer from '../drawer/Drawer.svelte';
   import ViewCards from './ViewCards.svelte';
-
-  onKeyPress(
-    {
-      SoftLeft: () => {
-        if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
-          updateView({ viewing: ViewState.Cards });
-        } else if ($view.viewing === ViewState.Content) {
-          updateView({ viewing: ViewState.AppMenu });
-        } else if ($view.viewing === ViewState.Cards) {
-          updateView({ viewing: ViewState.AppMenu });
-        } else {
-          updateView({ viewing: ViewState.Content });
-        }
-      },
-      SoftRight: () => {
-        updateView({
-          viewing: $view.viewing === ViewState.Drawer ? ViewState.Content : ViewState.Drawer,
-        });
-      },
-      Backspace: () => {
-        if ($view.viewing !== ViewState.Content) {
-          updateView({ viewing: ViewState.Content });
-          return;
-        }
-
-        // If on the main screen, let KaiOS minimize the app
-        if ($location === '/') {
-          return false;
-        }
-        pop();
-      },
-    },
-    { stopPropagation: true }
-  );
 
   let menuHeight: number | null = null;
   let cardsHeight: number | null = null;
@@ -69,7 +35,43 @@
   });
 </script>
 
-<div class="root" class:end={$view.viewing === ViewState.Drawer}>
+<div
+  class="root"
+  class:end={$view.viewing === ViewState.Drawer}
+  use:dpad={{
+    onSoftLeft: () => {
+      if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
+        updateView({ viewing: ViewState.Cards });
+      } else if ($view.viewing === ViewState.Content) {
+        updateView({ viewing: ViewState.AppMenu });
+      } else if ($view.viewing === ViewState.Cards) {
+        updateView({ viewing: ViewState.AppMenu });
+      } else {
+        updateView({ viewing: ViewState.Content });
+      }
+      return true;
+    },
+    onSoftRight: () => {
+      updateView({
+        viewing: $view.viewing === ViewState.Drawer ? ViewState.Content : ViewState.Drawer,
+      });
+      return true;
+    },
+    onBackspace: () => {
+      if ($view.viewing !== ViewState.Content) {
+        updateView({ viewing: ViewState.Content });
+        return true;
+      }
+
+      // If on the main screen, let KaiOS minimize the app
+      if ($location === '/') {
+        return false;
+      }
+      pop();
+      return true;
+    },
+  }}
+>
   <div bind:clientHeight={menuHeight}>
     {#if $view.viewing === ViewState.AppMenu}
       <svelte:component this={$appMenu} />
