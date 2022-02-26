@@ -1,9 +1,11 @@
 import { get, writable } from 'svelte/store';
+import { DataStatus } from '../enums/dataStatus';
 import type { DrawerAction, Tab } from '../models';
 import { getIndexWrap } from '../utils/array';
 
 type ViewConfig = {
   viewing: 'appmenu' | 'tabs' | 'content' | 'drawer';
+  dataStatus: DataStatus;
   tabs: Tab[];
   activeTabId: string | null;
   drawerItems: DrawerAction[];
@@ -11,6 +13,7 @@ type ViewConfig = {
 
 const defaultViewConfig: ViewConfig = {
   viewing: 'content',
+  dataStatus: DataStatus.Init,
   tabs: [],
   activeTabId: null,
   drawerItems: [],
@@ -25,12 +28,6 @@ export function registerAppMenu(menu: any) {
 
 export function registerView(data: Partial<Omit<ViewConfig, 'activeTab'>>) {
   view.set({ ...defaultViewConfig, ...data });
-
-  if (data.activeTabId) {
-    get(view)
-      .tabs.find((a) => a.id === data.activeTabId)
-      ?.onSelect?.();
-  }
 }
 
 export function updateView(data: Partial<ViewConfig>) {

@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { replace } from 'svelte-spa-router';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { registerView, view } from '../lib/stores/view';
+  import { DataStatus } from '../lib/enums/dataStatus';
+  import { registerView, updateView, view } from '../lib/stores/view';
 
   export let params: { tabId: string };
 
@@ -23,6 +25,10 @@
       },
     ],
     activeTabId: params.tabId ?? 'display',
+  });
+
+  onMount(async () => {
+    updateView({ dataStatus: DataStatus.Loaded });
   });
 </script>
 

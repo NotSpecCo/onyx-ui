@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { replace } from 'svelte-spa-router';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
@@ -7,7 +8,8 @@
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { registerView, view } from '../lib/stores/view';
+  import { DataStatus } from '../lib/enums/dataStatus';
+  import { registerView, updateView, view } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
@@ -45,7 +47,19 @@
     ],
   });
 
-  const items = new Array(10).fill(null);
+  function getItems(): Promise<any[]> {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(new Array(10).fill(null));
+      }, 200);
+    });
+  }
+
+  let items = [];
+  onMount(async () => {
+    items = await getItems();
+    updateView({ dataStatus: DataStatus.Loaded });
+  });
 </script>
 
 <View>

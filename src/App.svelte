@@ -15,12 +15,12 @@
 
   const routes = {
     '/home': Home,
-    '/tabs/:tabId?': Tabs,
-    '/typography': Typography,
-    '/lists/:tabId?': Lists,
-    '/drawer/:tabId?': Drawer,
-    '/forms/:tabId?': Form,
-    '/settings/:tabId?': AppSettings,
+    '/tabs/:tabId': Tabs,
+    '/typography/:tabId': Typography,
+    '/lists/:tabId': Lists,
+    '/drawer/:tabId': Drawer,
+    '/forms/:tabId': Form,
+    '/settings/:tabId': AppSettings,
     '*': Redirect,
   };
 </script>

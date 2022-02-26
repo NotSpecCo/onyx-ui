@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardHeader from '../lib/components/card/CardHeader.svelte';
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { registerView } from '../lib/stores/view';
+  import { DataStatus } from '../lib/enums/dataStatus';
+  import { registerView, updateView } from '../lib/stores/view';
 
   registerView({
     drawerItems: [
@@ -25,6 +27,10 @@
         onSelect: () => console.log('home select drawer 3'),
       },
     ],
+  });
+
+  onMount(async () => {
+    updateView({ dataStatus: DataStatus.Loaded });
   });
 </script>
 

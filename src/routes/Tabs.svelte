@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { replace } from 'svelte-spa-router';
+  import { onMount } from 'svelte';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
@@ -7,7 +7,9 @@
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { registerView, view } from '../lib/stores/view';
+  import { DataStatus } from '../lib/enums/dataStatus';
+  import { registerView, updateView, view } from '../lib/stores/view';
+  import { navigate } from '../lib/utils/route';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
   export let params: { tabId: string };
@@ -17,22 +19,22 @@
       {
         id: 'info',
         title: 'Information',
-        onSelect: () => replace(`/tabs/info`),
+        onSelect: () => navigate(`/tabs/info`, { replace: true, persistQuery: true }),
       },
       {
         id: 'list',
         title: 'List Tab',
-        onSelect: () => replace(`/tabs/list`),
+        onSelect: () => navigate(`/tabs/list`, { replace: true, persistQuery: true }),
       },
       {
         id: 'text',
         title: 'Text Tab',
-        onSelect: () => replace(`/tabs/text`),
+        onSelect: () => navigate(`/tabs/text`, { replace: true, persistQuery: true }),
       },
       {
         id: 'empty',
         title: 'Empty Tab',
-        onSelect: () => replace(`/tabs/empty`),
+        onSelect: () => navigate(`/tabs/empty`, { replace: true, persistQuery: true }),
       },
     ],
     activeTabId: params.tabId ?? 'info',
@@ -53,6 +55,10 @@
         onSelect: () => console.log('home select drawer 3'),
       },
     ],
+  });
+
+  onMount(async () => {
+    updateView({ dataStatus: DataStatus.Loaded });
   });
 </script>
 

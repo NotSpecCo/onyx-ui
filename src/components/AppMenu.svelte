@@ -21,13 +21,13 @@
   };
   const menuItems: MenuItem[] = [
     { id: 'home', text: 'Home', route: '/home', icon: MdHome },
-    { id: 'lists', text: 'Lists', route: '/lists', icon: MdList },
-    { id: 'drawer', text: 'Drawer', route: '/drawer', icon: MdExpandLess },
-    { id: 'tabs', text: 'Tabs', route: '/tabs', icon: MdTab },
-    { id: 'typography', text: 'Typography', route: '/typography', icon: MdTextFields },
-    { id: 'buttons', text: 'Buttons', route: '/buttons', icon: MdCrop169 },
-    { id: 'forms', text: 'Forms', route: '/forms', icon: MdTextFormat },
-    { id: 'settings', text: 'Settings', route: '/settings', icon: MdSettings },
+    { id: 'lists', text: 'Lists', route: '/lists/info', icon: MdList },
+    { id: 'drawer', text: 'Drawer', route: '/drawer/info', icon: MdExpandLess },
+    { id: 'tabs', text: 'Tabs', route: '/tabs/info', icon: MdTab },
+    { id: 'typography', text: 'Typography', route: '/typography/info', icon: MdTextFields },
+    { id: 'buttons', text: 'Buttons', route: '/buttons/info', icon: MdCrop169 },
+    { id: 'forms', text: 'Forms', route: '/forms/info', icon: MdTextFormat },
+    { id: 'settings', text: 'Settings', route: '/settings/display', icon: MdSettings },
   ];
 </script>
 

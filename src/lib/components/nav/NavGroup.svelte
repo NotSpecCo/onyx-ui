@@ -2,6 +2,8 @@
   import { setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
   import { ContextKey } from '../../enums/contextKey';
+  import { DataStatus } from '../../enums/dataStatus';
+  import { view } from '../../stores/view';
 
   export let groupId: string;
   export let initialFocusedId: string = undefined;
@@ -11,6 +13,14 @@
   setContext(ContextKey.NavGroup, groupId);
 </script>
 
-<div use:navigator={{ groupId, initialFocusedId, enableTabSwitching, updateRoute }}>
+<div
+  use:navigator={{
+    groupId,
+    initialFocusedId,
+    enableTabSwitching,
+    updateRoute,
+    viewLoaded: $view.dataStatus === DataStatus.Loaded,
+  }}
+>
   <slot />
 </div>

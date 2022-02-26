@@ -1,3 +1,4 @@
+import { tick } from 'svelte';
 import { replace } from 'svelte-spa-router';
 import { get } from 'svelte/store';
 import {
@@ -16,6 +17,7 @@ type Config = {
   initialFocusedId?: string;
   enableTabSwitching?: boolean;
   updateRoute?: boolean;
+  viewLoaded?: boolean;
 };
 
 export function navigator(node: HTMLElement, config: Config) {
@@ -34,8 +36,6 @@ export function navigator(node: HTMLElement, config: Config) {
       }
     }
   }
-
-  setInitial(config.initialFocusedId);
 
   function handleKeyPress(ev: KeyboardEvent) {
     const groupActive = get(activeGroup)?.id === config.groupId;
@@ -171,7 +171,13 @@ export function navigator(node: HTMLElement, config: Config) {
       document.removeEventListener('keydown', handleKeyPress, false);
       deactivateGroup(config.groupId);
     },
-    update(newConfig: Config) {
+    async update(newConfig: Config) {
+      // Set initial focus only after data loaded and rendered
+      if (!config.viewLoaded && newConfig.viewLoaded && newConfig.initialFocusedId) {
+        await tick();
+        setInitial(newConfig.initialFocusedId);
+      }
+
       config = newConfig;
     },
   };
