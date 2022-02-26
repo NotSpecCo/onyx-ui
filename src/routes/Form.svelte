@@ -71,14 +71,14 @@
 
 <View>
   <ViewContent>
-    {#if params.tabId === $view.tabs[0].id}
+    {#if $view.activeTabId === $view.tabs[0].id}
       <Card tabId={$view.tabs[0].id}>
         <CardTabHeader />
         <CardContent>
           <Typography>Info about form components</Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[1].id}
+    {:else if $view.activeTabId === $view.tabs[1].id}
       <Card tabId={$view.tabs[1].id}>
         <CardTabHeader />
         <CardContent>
@@ -110,7 +110,7 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[2].id}
+    {:else if $view.activeTabId === $view.tabs[2].id}
       <Card tabId={$view.tabs[2].id}>
         <CardTabHeader />
         <CardContent>
@@ -167,7 +167,7 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[3].id}
+    {:else if $view.activeTabId === $view.tabs[3].id}
       <Card tabId={$view.tabs[3].id}>
         <CardTabHeader />
         <CardContent>
@@ -209,7 +209,7 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[4].id}
+    {:else if $view.activeTabId === $view.tabs[4].id}
       <Card tabId={$view.tabs[4].id}>
         <CardTabHeader />
         <CardContent>

@@ -10,6 +10,7 @@
   import { push } from 'svelte-spa-router';
   import ListItem from '../lib/components/list/ListItem.svelte';
   import NavGroup from '../lib/components/nav/NavGroup.svelte';
+  import { updateView } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
   type MenuItem = {
@@ -19,7 +20,7 @@
     icon: any | null;
   };
   const menuItems: MenuItem[] = [
-    { id: 'home', text: 'Home', route: '/', icon: MdHome },
+    { id: 'home', text: 'Home', route: '/home', icon: MdHome },
     { id: 'lists', text: 'Lists', route: '/lists', icon: MdList },
     { id: 'drawer', text: 'Drawer', route: '/drawer', icon: MdExpandLess },
     { id: 'tabs', text: 'Tabs', route: '/tabs', icon: MdTab },
@@ -40,7 +41,13 @@
         navi={{
           itemId: item.id,
           shortcutKey: shortcutFromIndex(i),
-          onSelect: () => push(item.route),
+          onSelect: () => {
+            if (location.hash.startsWith(`#${item.route}`)) {
+              updateView({ viewing: 'content' });
+              return;
+            }
+            push(item.route);
+          },
         }}
       />
     {/each}
