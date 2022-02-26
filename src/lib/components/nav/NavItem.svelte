@@ -25,10 +25,7 @@
 </div>
 
 <style>
-  .root {
-  }
-
-  .root.focused {
+  .focused {
     background-color: var(--highlight-bg-color);
     color: var(--highlight-text-color);
   }
