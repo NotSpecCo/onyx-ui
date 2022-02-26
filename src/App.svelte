@@ -1,8 +1,10 @@
 <script lang="ts">
   import kebabcase from 'lodash.kebabcase';
+  import { setContext } from 'svelte';
   import Router from 'svelte-spa-router';
   import AppMenu from './components/AppMenu.svelte';
-  import { TextSize } from './lib/enums';
+  import { ContextKey, TextSize } from './lib/enums';
+  import type { SettingsContext } from './lib/models';
   import { registerAppMenu } from './lib/stores/view';
   import { themes } from './lib/themes';
   import AppSettings from './routes/AppSettings.svelte';
@@ -16,6 +18,7 @@
   import { settings } from './stores/settings';
 
   registerAppMenu(AppMenu);
+  setContext<SettingsContext>(ContextKey.Settings, settings);
 
   // Apply settings
   $: {
