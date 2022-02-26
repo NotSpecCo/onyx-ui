@@ -3,8 +3,3 @@ export enum IconSize {
   Medium = 24,
   Large = 36,
 }
-
-export enum IconColor {
-  Light = '#ffffff',
-  Dark = '#000000',
-}

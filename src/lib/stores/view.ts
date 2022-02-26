@@ -1,10 +1,10 @@
 import { get, writable } from 'svelte/store';
-import { DataStatus } from '../enums/dataStatus';
+import { DataStatus, ViewState } from '../enums';
 import type { Card, DrawerAction } from '../models';
 import { getIndexWrap } from '../utils/array';
 
 type ViewConfig = {
-  viewing: 'appmenu' | 'cards' | 'content' | 'drawer';
+  viewing: ViewState;
   dataStatus: DataStatus;
   cards: Card[];
   activeCardId: string | null;
@@ -12,7 +12,7 @@ type ViewConfig = {
 };
 
 const defaultViewConfig: ViewConfig = {
-  viewing: 'content',
+  viewing: ViewState.Content,
   dataStatus: DataStatus.Init,
   cards: [],
   activeCardId: null,

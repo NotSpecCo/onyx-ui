@@ -2,8 +2,7 @@
   import { getContext } from 'svelte';
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
-  import { ContextKey } from '../../enums/contextKey';
-  import { IconSize } from '../../enums/icon';
+  import { ContextKey, IconSize } from '../../enums';
   import type { CardContext } from '../../models';
   import { view } from '../../stores/view';
   import Icon from '../icon/Icon.svelte';

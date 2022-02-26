@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { ContextKey } from '../../enums/contextKey';
+  import { ContextKey } from '../../enums';
   import type { Navigation } from '../../models';
   import { groupItemMap } from '../../stores/navigator';
 

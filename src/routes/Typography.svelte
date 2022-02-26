@@ -6,7 +6,7 @@
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { DataStatus } from '../lib/enums/dataStatus';
+  import { DataStatus } from '../lib/enums';
   import { registerView, updateView } from '../lib/stores/view';
 
   registerView({});

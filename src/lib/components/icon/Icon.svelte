@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconColor, IconSize } from '../../enums/icon';
+  import { IconColor, IconSize } from '../../enums';
 
   export let size: IconSize | string = IconSize.Medium;
   export let color: IconColor | string = 'var(--primary-text-color)';

@@ -6,7 +6,7 @@
   import CardHeader from '../lib/components/card/CardHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { DataStatus } from '../lib/enums/dataStatus';
+  import { DataStatus } from '../lib/enums';
   import { registerView, updateView, view } from '../lib/stores/view';
 
   export let params: { cardId: string };

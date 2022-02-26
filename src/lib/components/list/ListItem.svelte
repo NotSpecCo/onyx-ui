@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { IconSize } from '../../enums/icon';
+  import { IconSize } from '../../enums';
   import type { Navigation } from '../../models';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';

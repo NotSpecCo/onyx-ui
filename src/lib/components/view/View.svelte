@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
   import { location, pop } from 'svelte-spa-router';
+  import { ViewState } from '../../enums';
   import { onKeyPress } from '../../hooks';
   import { resetNavigation } from '../../stores/navigator';
   import { appMenu, resetView, updateView, view } from '../../stores/view';
@@ -10,22 +11,24 @@
   onKeyPress(
     {
       SoftLeft: () => {
-        if ($view.viewing === 'content' && $view.cards.length > 1) {
-          updateView({ viewing: 'cards' });
-        } else if ($view.viewing === 'content') {
-          updateView({ viewing: 'appmenu' });
-        } else if ($view.viewing === 'cards') {
-          updateView({ viewing: 'appmenu' });
+        if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
+          updateView({ viewing: ViewState.Cards });
+        } else if ($view.viewing === ViewState.Content) {
+          updateView({ viewing: ViewState.AppMenu });
+        } else if ($view.viewing === ViewState.Cards) {
+          updateView({ viewing: ViewState.AppMenu });
         } else {
-          updateView({ viewing: 'content' });
+          updateView({ viewing: ViewState.Content });
         }
       },
       SoftRight: () => {
-        updateView({ viewing: $view.viewing === 'drawer' ? 'content' : 'drawer' });
+        updateView({
+          viewing: $view.viewing === ViewState.Drawer ? ViewState.Content : ViewState.Drawer,
+        });
       },
       Backspace: () => {
-        if ($view.viewing !== 'content') {
-          updateView({ viewing: 'content' });
+        if ($view.viewing !== ViewState.Content) {
+          updateView({ viewing: ViewState.Content });
           return;
         }
 
@@ -46,13 +49,13 @@
   let offset = 0;
   $: {
     switch ($view.viewing) {
-      case 'appmenu':
+      case ViewState.AppMenu:
         offset = menuHeight;
         break;
-      case 'cards':
+      case ViewState.Cards:
         offset = cardsHeight;
         break;
-      case 'drawer':
+      case ViewState.Drawer:
         offset = -drawerHeight;
         break;
       default:
@@ -66,14 +69,14 @@
   });
 </script>
 
-<div class="root" class:end={$view.viewing === 'drawer'}>
+<div class="root" class:end={$view.viewing === ViewState.Drawer}>
   <div bind:clientHeight={menuHeight}>
-    {#if $view.viewing === 'appmenu'}
+    {#if $view.viewing === ViewState.AppMenu}
       <svelte:component this={$appMenu} />
     {/if}
   </div>
   <div bind:clientHeight={cardsHeight}>
-    {#if $view.viewing === 'cards'}
+    {#if $view.viewing === ViewState.Cards}
       <ViewCards />
     {/if}
   </div>
@@ -82,7 +85,7 @@
     <slot name="dashboard" />
   </div>
   <div bind:clientHeight={drawerHeight}>
-    {#if $view.viewing === 'drawer'}
+    {#if $view.viewing === ViewState.Drawer}
       <Drawer />
     {/if}
   </div>

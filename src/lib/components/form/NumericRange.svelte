@@ -2,7 +2,7 @@
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
   import { dpad } from '../../actions/dpad';
-  import { IconSize } from '../../enums/icon';
+  import { IconSize } from '../../enums';
   import Icon from '../icon/Icon.svelte';
 
   export let value: number;

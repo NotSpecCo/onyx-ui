@@ -1,8 +1,7 @@
 <script lang="ts">
   import { setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
-  import { ContextKey } from '../../enums/contextKey';
-  import { DataStatus } from '../../enums/dataStatus';
+  import { ContextKey, DataStatus } from '../../enums';
   import { view } from '../../stores/view';
 
   export let groupId: string;

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { setContext } from 'svelte';
   import { querystring } from 'svelte-spa-router';
-  import { ContextKey } from '../../enums/contextKey';
+  import { ContextKey } from '../../enums';
   import type { CardContext } from '../../models';
   import { getFocusedId } from '../../utils/route';
   import NavGroup from '../nav/NavGroup.svelte';
