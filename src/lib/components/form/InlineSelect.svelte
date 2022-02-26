@@ -4,7 +4,7 @@
   import { dpad } from '../../actions/dpad';
   import { IconSize } from '../../enums';
   import type { SelectOption } from '../../models';
-  import { getIndexWrap } from '../../utils/array';
+  import { getIndex } from '../../utils/array';
   import Icon from '../icon/Icon.svelte';
 
   export let value: string = undefined;
@@ -18,13 +18,13 @@
   use:dpad={{
     onArrowLeft: () => {
       const index = options.findIndex((a) => a.id === value);
-      const newIndex = getIndexWrap(options, index, -1);
+      const newIndex = getIndex(options, index, -1, true);
       onChange(options[newIndex].id);
       return true;
     },
     onArrowRight: () => {
       const index = options.findIndex((a) => a.id === value);
-      const newIndex = getIndexWrap(options, index, 1);
+      const newIndex = getIndex(options, index, 1, true);
       onChange(options[newIndex].id);
       return true;
     },

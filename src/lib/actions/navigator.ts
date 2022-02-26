@@ -9,7 +9,7 @@ import {
   setSelectedId,
 } from '../stores/navigator';
 import { switchCard } from '../stores/view';
-import { getIndexWrap } from '../utils/array';
+import { getIndex } from '../utils/array';
 import { setFocusedId } from '../utils/route';
 
 type Config = {
@@ -118,7 +118,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (ev.key === 'ArrowUp' && currentItemIndex === 0) {
       nextItem = null;
     } else {
-      const idx = getIndexWrap(items, currentItemIndex, ev.key === 'ArrowUp' ? -1 : 1);
+      const idx = getIndex(items, currentItemIndex, ev.key === 'ArrowUp' ? -1 : 1, true);
       nextItem = items[idx];
     }
 

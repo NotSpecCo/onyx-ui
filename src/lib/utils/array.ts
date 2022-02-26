@@ -1,7 +1,15 @@
-export function getIndexWrap(arr: any[], index: number, change: 1 | -1): number {
+export function getIndex(arr: any[], index: number, change: 1 | -1, wrap = false): number {
   let newIndex = index + change;
-  if (newIndex < 0) newIndex = arr.length - 1;
-  else if (newIndex === arr.length) newIndex = 0;
+
+  if (newIndex < 0 && !wrap) {
+    newIndex = 0;
+  } else if (newIndex < 0 && wrap) {
+    newIndex = arr.length - 1;
+  } else if (newIndex === arr.length && !wrap) {
+    newIndex = arr.length - 1;
+  } else if (newIndex === arr.length && wrap) {
+    newIndex = 0;
+  }
 
   return newIndex;
 }
