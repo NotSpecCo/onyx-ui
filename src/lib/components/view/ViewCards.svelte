@@ -39,7 +39,7 @@
     border-radius: var(--radius) var(--radius) 0 0;
   }
   .card-root {
-    background-color: var(--card-dim-bg-color);
+    background-color: var(--card-stack-bg-color);
     color: var(--card-primary-text-color);
 
     border-radius: var(--radius) var(--radius) 0 0;
@@ -66,7 +66,6 @@
     color: var(--card-secondary-text-color);
   }
   .card.focused {
-    background-color: var(--card-highlight-bg-color);
-    color: var(--card-highlight-text-color);
+    background-color: var(--card-bg-color);
   }
 </style>

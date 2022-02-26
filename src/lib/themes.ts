@@ -15,9 +15,9 @@ export type ThemeConfig = {
     drawerDividerColor: string;
     // Card
     cardBgColor: string;
-    cardDimBgColor: string;
     cardBorderColor: string;
     cardAccentColor: string;
+    cardStackBgColor: string;
     cardPrimaryTextColor: string;
     cardSecondaryTextColor: string;
     cardAccentTextColor: string;
@@ -44,7 +44,7 @@ export const themes: ThemeConfig[] = [
       drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
       // Card
       cardBgColor: '#ffffff',
-      cardDimBgColor: '#efefef',
+      cardStackBgColor: '#eaeaea',
       cardBorderColor: '#aaa',
       cardAccentColor: '#707C99',
       cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
@@ -54,7 +54,7 @@ export const themes: ThemeConfig[] = [
       cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
       cardDividerColor: 'rgba(0, 0, 0, 0.1)',
       // Other
-      scrimColor: 'string',
+      scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
   },
   {
@@ -62,26 +62,26 @@ export const themes: ThemeConfig[] = [
     values: {
       // Drawer
       drawerBgColor: '#111318',
-      drawerAccentColor: '#FCD581',
+      drawerAccentColor: '#3282C3',
       drawerPrimaryTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerSecondaryTextColor: 'rgba(255, 255, 255, 0.5)',
-      drawerAccentTextColor: '#FCD581',
+      drawerAccentTextColor: '#3282C3',
       drawerHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
       drawerHighlightTextColor: 'rgba(255, 255, 255, 0.88)',
       drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
       // Card
-      cardBgColor: '#353945',
-      cardDimBgColor: '#22262F',
-      cardBorderColor: '#4C556B',
-      cardAccentColor: '#FCD581',
+      cardBgColor: '#3E4351',
+      cardStackBgColor: '#2C303A',
+      cardBorderColor: '#3D4351',
+      cardAccentColor: '#3282C3',
       cardPrimaryTextColor: 'rgba(255,255,255, 0.88)',
       cardSecondaryTextColor: 'rgba(255,255,255, 0.5)',
-      cardAccentTextColor: '#FCD581',
+      cardAccentTextColor: '#3282C3',
       cardHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
       cardHighlightTextColor: 'rgba(255,255,255, 0.88)',
       cardDividerColor: 'rgba(255,255,255, 0.1)',
       // Other
-      scrimColor: 'string',
+      scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
   },
 ];
