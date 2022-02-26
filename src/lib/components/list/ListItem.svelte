@@ -57,6 +57,7 @@
   }
   .container {
     flex: 1;
+    min-width: 0;
   }
 
   .shortcut {
@@ -66,7 +67,8 @@
   }
 
   .primary,
-  .secondary {
+  .secondary,
+  .accent {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

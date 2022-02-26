@@ -31,8 +31,8 @@
   {/if}
   <div
     class="title"
-    class:pad-left={!hasCards || !hasPrevCard}
-    class:pad-right={!hasCards || !hasNextCard}
+    class:pad-left={!hasPrevCard && hasNextCard}
+    class:pad-right={!hasNextCard && hasPrevCard}
   >
     {title ?? cardTitle}
   </div>
@@ -54,6 +54,9 @@
     flex: 1;
     font-weight: 600;
     text-align: center;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .pad-left {
     margin-left: 18px;

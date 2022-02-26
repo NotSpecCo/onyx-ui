@@ -24,7 +24,7 @@
           data-nav-shortcut={i + 1}
           on:itemselect={() => updateView({ viewing: ViewState.Content, activeCardId: card.id })}
         >
-          <div>{card.title}</div>
+          <div class="title">{card.title}</div>
           {#if shortcutFromIndex(i)}
             <div class="shortcut">{shortcutFromIndex(i)}</div>
           {/if}
@@ -55,6 +55,12 @@
     display: flex;
     justify-content: space-between;
     font-weight: 600;
+  }
+  .title {
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .shortcut {
     color: var(--card-secondary-text-color);
