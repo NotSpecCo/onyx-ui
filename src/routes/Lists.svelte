@@ -16,7 +16,7 @@
 
   registerView({
     cards: [
-      { id: 'info', title: 'Information', onSelect: () => replace(`/lists/info`) },
+      { id: 'info', title: 'Lists', onSelect: () => replace(`/lists/info`) },
       { id: 'single', title: 'Single Line List', onSelect: () => replace(`/lists/single`) },
       { id: 'two', title: 'Two Line List', onSelect: () => replace(`/lists/two`) },
       { id: 'three', title: 'Three Line List', onSelect: () => replace(`/lists/three`) },

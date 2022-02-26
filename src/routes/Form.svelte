@@ -20,7 +20,7 @@
     cards: [
       {
         id: 'info',
-        title: 'Information',
+        title: 'Forms',
         onSelect: () => replace(`/forms/info`),
       },
       {

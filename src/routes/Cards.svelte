@@ -18,7 +18,7 @@
     cards: [
       {
         id: 'info',
-        title: 'Information',
+        title: 'Cards',
         onSelect: () => replace(`/cards/info`),
       },
       {
