@@ -6,14 +6,14 @@
   import { getFocusedId } from '../../utils/route';
   import NavGroup from '../nav/NavGroup.svelte';
 
-  export let tabId: string | null = null;
+  export let cardId: string | null = null;
 
   let focusedId = getFocusedId($querystring);
 
-  setContext<CardContext>(ContextKey.Card, { tabId });
+  setContext<CardContext>(ContextKey.Card, { cardId });
 </script>
 
-<NavGroup groupId="card" enableTabSwitching={true} updateRoute={true} initialFocusedId={focusedId}>
+<NavGroup groupId="card" enableCardSwitching={true} updateRoute={true} initialFocusedId={focusedId}>
   <slot />
 </NavGroup>
 

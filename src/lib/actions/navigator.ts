@@ -8,14 +8,14 @@ import {
   getFocusedItemId,
   setSelectedId,
 } from '../stores/navigator';
-import { switchTab } from '../stores/view';
+import { switchCard } from '../stores/view';
 import { getIndexWrap } from '../utils/array';
 import { setFocusedId } from '../utils/route';
 
 type Config = {
   groupId: string;
   initialFocusedId?: string;
-  enableTabSwitching?: boolean;
+  enableCardSwitching?: boolean;
   updateRoute?: boolean;
   viewLoaded?: boolean;
 };
@@ -52,9 +52,9 @@ export function navigator(node: HTMLElement, config: Config) {
       return;
     }
 
-    // Handle tab switching first
+    // Handle card switching first
     if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
-      if (config.enableTabSwitching) switchTab(ev.key === 'ArrowLeft' ? -1 : 1);
+      if (config.enableCardSwitching) switchCard(ev.key === 'ArrowLeft' ? -1 : 1);
       return;
     }
 

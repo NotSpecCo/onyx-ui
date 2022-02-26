@@ -1,3 +1,3 @@
 export type CardContext = {
-  tabId?: string;
+  cardId?: string;
 };

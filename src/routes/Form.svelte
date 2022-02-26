@@ -3,7 +3,7 @@
   import { replace } from 'svelte-spa-router';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
-  import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
+  import CardHeader from '../lib/components/card/CardHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
   import InputRow from '../lib/components/form/InputRow.svelte';
@@ -14,10 +14,10 @@
   import { DataStatus } from '../lib/enums/dataStatus';
   import { registerView, updateView, view } from '../lib/stores/view';
 
-  export let params: { tabId: string };
+  export let params: { cardId: string };
 
   registerView({
-    tabs: [
+    cards: [
       {
         id: 'info',
         title: 'Information',
@@ -44,7 +44,7 @@
         onSelect: () => replace(`/forms/input`),
       },
     ],
-    activeTabId: params.tabId ?? 'info',
+    activeCardId: params.cardId ?? 'info',
   });
 
   let values = {
@@ -77,16 +77,16 @@
 
 <View>
   <ViewContent>
-    {#if params.tabId === $view.tabs[0].id}
-      <Card tabId={$view.tabs[0].id}>
-        <CardTabHeader />
+    {#if params.cardId === $view.cards[0].id}
+      <Card cardId={$view.cards[0].id}>
+        <CardHeader />
         <CardContent>
           <Typography>Info about form components</Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[1].id}
-      <Card tabId={$view.tabs[1].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[1].id}
+      <Card cardId={$view.cards[1].id}>
+        <CardHeader />
         <CardContent>
           <CheckboxRow
             label="Checkbox 1"
@@ -116,9 +116,9 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[2].id}
-      <Card tabId={$view.tabs[2].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[2].id}
+      <Card cardId={$view.cards[2].id}>
+        <CardHeader />
         <CardContent>
           <InlineSelectRow
             label="Select 1"
@@ -173,9 +173,9 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[3].id}
-      <Card tabId={$view.tabs[3].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[3].id}
+      <Card cardId={$view.cards[3].id}>
+        <CardHeader />
         <CardContent>
           <NumericRangeRow
             label="Range 1"
@@ -215,9 +215,9 @@
           />
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[4].id}
-      <Card tabId={$view.tabs[4].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[4].id}
+      <Card cardId={$view.cards[4].id}>
+        <CardHeader />
         <CardContent>
           <InputRow
             label="Input 1"

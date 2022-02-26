@@ -5,16 +5,16 @@
   import { resetNavigation } from '../../stores/navigator';
   import { appMenu, resetView, updateView, view } from '../../stores/view';
   import Drawer from '../drawer/Drawer.svelte';
-  import ViewTabs from './ViewTabs.svelte';
+  import ViewCards from './ViewCards.svelte';
 
   onKeyPress(
     {
       SoftLeft: () => {
-        if ($view.viewing === 'content' && $view.tabs.length > 1) {
-          updateView({ viewing: 'tabs' });
+        if ($view.viewing === 'content' && $view.cards.length > 1) {
+          updateView({ viewing: 'cards' });
         } else if ($view.viewing === 'content') {
           updateView({ viewing: 'appmenu' });
-        } else if ($view.viewing === 'tabs') {
+        } else if ($view.viewing === 'cards') {
           updateView({ viewing: 'appmenu' });
         } else {
           updateView({ viewing: 'content' });
@@ -40,7 +40,7 @@
   );
 
   let menuHeight: number | null = null;
-  let tabsHeight: number | null = null;
+  let cardsHeight: number | null = null;
   let drawerHeight: number | null = null;
 
   let offset = 0;
@@ -49,8 +49,8 @@
       case 'appmenu':
         offset = menuHeight;
         break;
-      case 'tabs':
-        offset = tabsHeight;
+      case 'cards':
+        offset = cardsHeight;
         break;
       case 'drawer':
         offset = -drawerHeight;
@@ -72,9 +72,9 @@
       <svelte:component this={$appMenu} />
     {/if}
   </div>
-  <div bind:clientHeight={tabsHeight}>
-    {#if $view.viewing === 'tabs'}
-      <ViewTabs />
+  <div bind:clientHeight={cardsHeight}>
+    {#if $view.viewing === 'cards'}
+      <ViewCards />
     {/if}
   </div>
   <div class="content" style={`transform: translateY(${offset}px)`}>

@@ -3,16 +3,16 @@
   import { replace } from 'svelte-spa-router';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
-  import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
+  import CardHeader from '../lib/components/card/CardHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
   import { DataStatus } from '../lib/enums/dataStatus';
   import { registerView, updateView, view } from '../lib/stores/view';
 
-  export let params: { tabId: string };
+  export let params: { cardId: string };
 
   registerView({
-    tabs: [
+    cards: [
       {
         id: 'display',
         title: 'Display',
@@ -24,7 +24,7 @@
         onSelect: () => replace(`/settings/theme`),
       },
     ],
-    activeTabId: params.tabId ?? 'display',
+    activeCardId: params.cardId ?? 'display',
   });
 
   onMount(async () => {
@@ -34,14 +34,14 @@
 
 <View>
   <ViewContent>
-    {#if params.tabId === $view.tabs[0].id}
-      <Card tabId={$view.tabs[0].id}>
-        <CardTabHeader />
+    {#if params.cardId === $view.cards[0].id}
+      <Card cardId={$view.cards[0].id}>
+        <CardHeader />
         <CardContent>display</CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[1].id}
-      <Card tabId={$view.tabs[1].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[1].id}
+      <Card cardId={$view.cards[1].id}>
+        <CardHeader />
         <CardContent>theme</CardContent>
       </Card>
     {/if}

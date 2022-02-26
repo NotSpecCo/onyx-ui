@@ -1,10 +1,10 @@
 <script lang="ts">
+  import MdContentCopy from 'svelte-icons/md/MdContentCopy.svelte';
   import MdCrop169 from 'svelte-icons/md/MdCrop169.svelte';
   import MdExpandLess from 'svelte-icons/md/MdExpandLess.svelte';
   import MdHome from 'svelte-icons/md/MdHome.svelte';
   import MdList from 'svelte-icons/md/MdList.svelte';
   import MdSettings from 'svelte-icons/md/MdSettings.svelte';
-  import MdTab from 'svelte-icons/md/MdTab.svelte';
   import MdTextFields from 'svelte-icons/md/MdTextFields.svelte';
   import MdTextFormat from 'svelte-icons/md/MdTextFormat.svelte';
   import { push } from 'svelte-spa-router';
@@ -23,7 +23,7 @@
     { id: 'home', text: 'Home', route: '/home', icon: MdHome },
     { id: 'lists', text: 'Lists', route: '/lists/info', icon: MdList },
     { id: 'drawer', text: 'Drawer', route: '/drawer/info', icon: MdExpandLess },
-    { id: 'tabs', text: 'Tabs', route: '/tabs/info', icon: MdTab },
+    { id: 'cards', text: 'Cards', route: '/cards/info', icon: MdContentCopy },
     { id: 'typography', text: 'Typography', route: '/typography/info', icon: MdTextFields },
     { id: 'buttons', text: 'Buttons', route: '/buttons/info', icon: MdCrop169 },
     { id: 'forms', text: 'Forms', route: '/forms/info', icon: MdTextFormat },

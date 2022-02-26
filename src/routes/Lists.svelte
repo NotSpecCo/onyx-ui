@@ -3,7 +3,7 @@
   import { replace } from 'svelte-spa-router';
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
-  import CardTabHeader from '../lib/components/card/CardTabHeader.svelte';
+  import CardHeader from '../lib/components/card/CardHeader.svelte';
   import ListItem from '../lib/components/list/ListItem.svelte';
   import Typography from '../lib/components/Typography.svelte';
   import View from '../lib/components/view/View.svelte';
@@ -12,10 +12,10 @@
   import { registerView, updateView, view } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
-  export let params: { tabId: string };
+  export let params: { cardId: string };
 
   registerView({
-    tabs: [
+    cards: [
       { id: 'info', title: 'Information', onSelect: () => replace(`/lists/info`) },
       { id: 'single', title: 'Single Line List', onSelect: () => replace(`/lists/single`) },
       { id: 'two', title: 'Two Line List', onSelect: () => replace(`/lists/two`) },
@@ -27,7 +27,7 @@
       },
       { id: 'images', title: 'List With Images', onSelect: () => replace(`/lists/images`) },
     ],
-    activeTabId: params.tabId ?? 'info',
+    activeCardId: params.cardId ?? 'info',
     drawerItems: [
       {
         id: '1',
@@ -64,16 +64,16 @@
 
 <View>
   <ViewContent>
-    {#if params.tabId === $view.tabs[0].id}
-      <Card tabId={$view.tabs[0].id}>
-        <CardTabHeader />
+    {#if params.cardId === $view.cards[0].id}
+      <Card cardId={$view.cards[0].id}>
+        <CardHeader />
         <CardContent>
           <Typography>List info</Typography>
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[1].id}
-      <Card tabId={$view.tabs[1].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[1].id}
+      <Card cardId={$view.cards[1].id}>
+        <CardHeader />
         <CardContent>
           {#each items as item, i}
             <ListItem
@@ -85,9 +85,9 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[2].id}
-      <Card tabId={$view.tabs[2].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[2].id}
+      <Card cardId={$view.cards[2].id}>
+        <CardHeader />
         <CardContent>
           {#each items as item, i}
             <ListItem
@@ -100,9 +100,9 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[3].id}
-      <Card tabId={$view.tabs[3].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[3].id}
+      <Card cardId={$view.cards[3].id}>
+        <CardHeader />
         <CardContent>
           {#each items as item, i}
             <ListItem
@@ -116,9 +116,9 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[4].id}
-      <Card tabId={$view.tabs[4].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[4].id}
+      <Card cardId={$view.cards[4].id}>
+        <CardHeader />
         <CardContent>
           {#each items as item, i}
             <ListItem
@@ -132,9 +132,9 @@
           {/each}
         </CardContent>
       </Card>
-    {:else if params.tabId === $view.tabs[5].id}
-      <Card tabId={$view.tabs[5].id}>
-        <CardTabHeader />
+    {:else if params.cardId === $view.cards[5].id}
+      <Card cardId={$view.cards[5].id}>
+        <CardHeader />
         <CardContent>
           {#each items as item, i}
             <ListItem

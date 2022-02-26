@@ -7,7 +7,7 @@
 
   export let groupId: string;
   export let initialFocusedId: string = undefined;
-  export let enableTabSwitching = false;
+  export let enableCardSwitching = false;
   export let updateRoute = false;
 
   setContext(ContextKey.NavGroup, groupId);
@@ -17,7 +17,7 @@
   use:navigator={{
     groupId,
     initialFocusedId,
-    enableTabSwitching,
+    enableCardSwitching,
     updateRoute,
     viewLoaded: $view.dataStatus === DataStatus.Loaded,
   }}

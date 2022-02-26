@@ -9,7 +9,7 @@
   import { DataStatus } from '../lib/enums/dataStatus';
   import { registerView, updateView } from '../lib/stores/view';
 
-  export let params: { tabId: string };
+  export let params: { cardId: string };
 
   registerView({
     drawerItems: [
