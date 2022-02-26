@@ -106,6 +106,7 @@
             value={$settings.theme}
             options={[
               { id: Theme.Light, label: 'Light' },
+              { id: Theme.Dim, label: 'Dim' },
               { id: Theme.Dark, label: 'Dark' },
             ]}
             onChange={(val) => handleChange('theme', val)}

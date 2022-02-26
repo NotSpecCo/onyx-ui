@@ -65,6 +65,7 @@
     padding: 5px;
     font-weight: 600;
     color: var(--accent-text-color);
+    text-align: center;
   }
   .scroller {
     overflow-y: auto;
