@@ -9,8 +9,6 @@
   --drawer-divider-color: rgba(255, 255, 255, 0.1);
 
   --card-bg-color: #ffffff;
-  --card-stack-bg-color: #efefef;
-  --card-stack-focus-color: #ffffff;
   --card-border-color: #000000;
   --card-accent-color: #7e94a0;
   --card-primary-text-color: rgba(0, 0, 0, 0.88);
@@ -19,6 +17,11 @@
   --card-highlight-bg-color: rgba(0, 0, 0, 0.1);
   --card-highlight-text-color: rgba(0, 0, 0, 0.88);
   --card-divider-color: rgba(0, 0, 0, 0.1);
+
+  --card-stack-bg-color: #efefef;
+  --card-stack-border-color: #000000;
+  --card-stack-focus-bg-color: #ffffff;
+  --card-stack-focus-text-color: rgba(0, 0, 0, 0.88);
 
   --scrim-color: rgba(0, 0, 0, 0.7);
 

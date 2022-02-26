@@ -17,14 +17,17 @@ export type ThemeConfig = {
     cardBgColor: string;
     cardBorderColor: string;
     cardAccentColor: string;
-    cardStackBgColor: string;
-    cardStackFocusColor: string;
     cardPrimaryTextColor: string;
     cardSecondaryTextColor: string;
     cardAccentTextColor: string;
     cardHighlightBgColor: string;
     cardHighlightTextColor: string;
     cardDividerColor: string;
+    // Card Stack
+    cardStackBgColor: string;
+    cardStackBorderColor: string;
+    cardStackFocusBgColor: string;
+    cardStackFocusTextColor: string;
     // Other
     scrimColor: string;
   };
@@ -45,8 +48,6 @@ export const themes: ThemeConfig[] = [
       drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
       // Card
       cardBgColor: '#ffffff',
-      cardStackBgColor: '#eaeaea',
-      cardStackFocusColor: '#ffffff',
       cardBorderColor: '#aaa',
       cardAccentColor: '#707C99',
       cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
@@ -55,6 +56,11 @@ export const themes: ThemeConfig[] = [
       cardHighlightBgColor: 'rgba(0, 0, 0, 0.1)',
       cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
       cardDividerColor: 'rgba(0, 0, 0, 0.1)',
+      // Card Stack
+      cardStackBgColor: '#eaeaea',
+      cardStackBorderColor: '#aaa',
+      cardStackFocusBgColor: '#ffffff',
+      cardStackFocusTextColor: 'rgba(0,0,0, 0.88)',
       // Other
       scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
@@ -75,14 +81,17 @@ export const themes: ThemeConfig[] = [
       cardBgColor: '#FBF5EF',
       cardBorderColor: '#aaa',
       cardAccentColor: '#E26D12',
-      cardStackBgColor: '#F3E1CE',
-      cardStackFocusColor: '#FBF5EF',
       cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
       cardSecondaryTextColor: 'rgba(0, 0, 0, 0.5)',
       cardAccentTextColor: '#E26D12',
       cardHighlightBgColor: 'rgba(0, 0, 0, 0.1)',
       cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
       cardDividerColor: 'rgba(0, 0, 0, 0.1)',
+      // Card Stack
+      cardStackBgColor: '#F3E1CE',
+      cardStackBorderColor: '#aaa',
+      cardStackFocusBgColor: '#FBF5EF',
+      cardStackFocusTextColor: 'rgba(0,0,0, 0.88)',
       // Other
       scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
@@ -103,14 +112,17 @@ export const themes: ThemeConfig[] = [
       cardBgColor: '#505668',
       cardBorderColor: '#6A728A',
       cardAccentColor: '#86BBD8',
-      cardStackBgColor: '#3E4351',
-      cardStackFocusColor: '#505668',
       cardPrimaryTextColor: 'rgba(255,255,255, 0.88)',
       cardSecondaryTextColor: 'rgba(255,255,255, 0.5)',
       cardAccentTextColor: '#86BBD8',
       cardHighlightBgColor: 'rgba(0, 0, 0, 0.1)',
       cardHighlightTextColor: 'rgba(255,255,255, 0.88)',
       cardDividerColor: 'rgba(255,255,255, 0.1)',
+      // Card Stack
+      cardStackBgColor: '#3E4351',
+      cardStackBorderColor: '#6A728A',
+      cardStackFocusBgColor: '#505668',
+      cardStackFocusTextColor: 'rgba(255,255,255, 0.88)',
       // Other
       scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
@@ -131,14 +143,17 @@ export const themes: ThemeConfig[] = [
       cardBgColor: '#3E4351',
       cardBorderColor: '#3D4351',
       cardAccentColor: '#3282C3',
-      cardStackBgColor: '#2C303A',
-      cardStackFocusColor: '#3E4351',
       cardPrimaryTextColor: 'rgba(255,255,255, 0.88)',
       cardSecondaryTextColor: 'rgba(255,255,255, 0.5)',
       cardAccentTextColor: '#3282C3',
       cardHighlightBgColor: 'rgba(255, 255, 255, 0.1)',
       cardHighlightTextColor: 'rgba(255,255,255, 0.88)',
       cardDividerColor: 'rgba(255,255,255, 0.1)',
+      // Card Stack
+      cardStackBgColor: '#2C303A',
+      cardStackBorderColor: '#3D4351',
+      cardStackFocusBgColor: '#3E4351',
+      cardStackFocusTextColor: 'rgba(255,255,255, 0.88)',
       // Other
       scrimColor: 'rgba(0, 0, 0, 0.7)',
     },
@@ -159,14 +174,17 @@ export const themes: ThemeConfig[] = [
       cardBgColor: '#1f1f1f',
       cardBorderColor: '#525252',
       cardAccentColor: '#CF5C36',
-      cardStackBgColor: '#000',
-      cardStackFocusColor: '#333',
       cardPrimaryTextColor: 'rgba(255,255,255, 0.88)',
       cardSecondaryTextColor: 'rgba(255,255,255, 0.5)',
       cardAccentTextColor: '#CF5C36',
       cardHighlightBgColor: 'rgba(255, 255, 255, 0.2)',
       cardHighlightTextColor: 'rgba(255,255,255, 0.88)',
       cardDividerColor: 'rgba(255,255,255, 0.1)',
+      // Card Stack
+      cardStackBgColor: '#000',
+      cardStackBorderColor: '#525252',
+      cardStackFocusBgColor: '#333',
+      cardStackFocusTextColor: 'rgba(255,255,255, 0.88)',
       // Other
       scrimColor: 'rgba(0, 0, 0, 0.7)',
     },

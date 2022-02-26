@@ -51,7 +51,7 @@
     border-radius: var(--radius) var(--radius) 0 0;
     padding-bottom: 20px;
     margin-bottom: -20px;
-    border: 1px solid var(--card-border-color);
+    border: 1px solid var(--card-stack-border-color);
     overflow: hidden;
   }
   .card {
@@ -72,6 +72,7 @@
     color: var(--card-secondary-text-color);
   }
   .card.focused {
-    background-color: var(--card-stack-focus-color);
+    background-color: var(--card-stack-focus-bg-color);
+    color: var(--card-stack-focus-text-color);
   }
 </style>
