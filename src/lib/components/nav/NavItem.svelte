@@ -1,14 +1,15 @@
 <script lang="ts">
   import { getContext } from 'svelte';
+  import { ContextKey } from '../../enums/contextKey';
   import type { Navigation } from '../../models';
   import { groupItemMap } from '../../stores/navigator';
 
   export let navi: Navigation;
 
-  const groupId = getContext<Symbol>('nav-group');
+  const groupId = getContext<string>(ContextKey.NavGroup);
 
   let focused = false;
-  $: focused = $groupItemMap[groupId as any] === navi.itemId;
+  $: focused = $groupItemMap[groupId] === navi.itemId;
 </script>
 
 <div

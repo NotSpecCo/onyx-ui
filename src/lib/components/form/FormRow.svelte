@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Navigation } from '../../models';
-  import NavItem from '../navigate/NavItem.svelte';
+  import NavItem from '../nav/NavItem.svelte';
 
   export let label: string;
   export let disabled = false;

@@ -1,25 +1,20 @@
 <script lang="ts">
-  import { onDestroy, onMount, setContext } from 'svelte';
-  import { navigator } from '../../actions/navigator';
+  import { setContext } from 'svelte';
+  import { ContextKey } from '../../enums/contextKey';
   import type { CardContext } from '../../models';
-  import { activateGroup, deactivateGroup } from '../../stores/navigator';
+  import NavGroup from '../nav/NavGroup.svelte';
 
   export let tabId: string | null = null;
 
-  const NAV_GROUP = Symbol();
-  setContext('nav-group', NAV_GROUP);
-  setContext<CardContext>('card', { tabId });
-
-  onMount(() => activateGroup(NAV_GROUP));
-  onDestroy(() => deactivateGroup(NAV_GROUP));
+  setContext<CardContext>(ContextKey.Card, { tabId });
 </script>
 
-<div class="root" use:navigator={{ groupId: NAV_GROUP, enableTabSwitching: true }}>
+<NavGroup groupId="card" enableTabSwitching={true}>
   <slot />
-</div>
+</NavGroup>
 
 <style>
-  .root {
+  :global([data-nav-group-id='card']) {
     --bg-color: var(--card-bg-color);
     --accent-color: var(--card-accent-color);
     --primary-text-color: var(--card-primary-text-color);

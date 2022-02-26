@@ -2,7 +2,7 @@
   import { IconSize } from '../../enums/icon';
   import type { Navigation } from '../../models';
   import Icon from '../icon/Icon.svelte';
-  import NaviItem from '../navigate/NavItem.svelte';
+  import NaviItem from '../nav/NavItem.svelte';
 
   export let imageUrl: string = null;
   export let icon: any = null;

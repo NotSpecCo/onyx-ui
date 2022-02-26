@@ -1,7 +1,4 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-
-  const groupId = getContext<Symbol>('nav-group');
 </script>
 
 <div class="root" data-nav-scroller>

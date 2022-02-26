@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onDestroy, onMount, setContext } from 'svelte';
   import MdCrop169 from 'svelte-icons/md/MdCrop169.svelte';
   import MdExpandLess from 'svelte-icons/md/MdExpandLess.svelte';
   import MdHome from 'svelte-icons/md/MdHome.svelte';
@@ -9,16 +8,9 @@
   import MdTextFields from 'svelte-icons/md/MdTextFields.svelte';
   import MdTextFormat from 'svelte-icons/md/MdTextFormat.svelte';
   import { push } from 'svelte-spa-router';
-  import { navigator } from '../lib/actions/navigator';
   import ListItem from '../lib/components/list/ListItem.svelte';
-  import { activateGroup, deactivateGroup } from '../lib/stores/navigator';
+  import NavGroup from '../lib/components/nav/NavGroup.svelte';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
-
-  const NAV_GROUP = Symbol();
-  setContext('nav-group', NAV_GROUP);
-
-  onMount(() => activateGroup(NAV_GROUP));
-  onDestroy(() => deactivateGroup(NAV_GROUP));
 
   type MenuItem = {
     id: string;
@@ -38,7 +30,7 @@
   ];
 </script>
 
-<div class="root" use:navigator={{ groupId: NAV_GROUP }}>
+<NavGroup groupId="app-menu">
   <div class="header">OnyxUI Demo</div>
   <div class="scroller" data-nav-scroller>
     {#each menuItems as item, i}
@@ -53,10 +45,10 @@
       />
     {/each}
   </div>
-</div>
+</NavGroup>
 
 <style>
-  .root {
+  :global([data-nav-group-id='app-menu']) {
     max-height: calc(100vh - 30px);
     display: flex;
     flex-direction: column;

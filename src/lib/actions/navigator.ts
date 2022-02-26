@@ -1,16 +1,24 @@
 import { get } from 'svelte/store';
-import { activeGroup, getFocusedItemId, setSelectedId } from '../stores/navigator';
+import {
+  activateGroup,
+  activeGroup,
+  deactivateGroup,
+  getFocusedItemId,
+  setSelectedId,
+} from '../stores/navigator';
 import { switchTab } from '../stores/view';
 import { getIndexWrap } from '../utils/array';
 
 type Config = {
-  groupId: any;
+  groupId: string;
   initialSelectedId?: string;
   enableTabSwitching?: boolean;
 };
 
 export function navigator(node: HTMLElement, config: Config) {
-  // node.dataset.navGroup = config.groupId;
+  node.dataset.navGroupId = config.groupId;
+
+  activateGroup(config.groupId);
 
   if (config.initialSelectedId) {
     const item = node.querySelector(`[data-nav-id=${config.initialSelectedId}]`);
@@ -34,7 +42,6 @@ export function navigator(node: HTMLElement, config: Config) {
     ) {
       return;
     }
-    // console.log(`Group ${config.groupId} handling key`);
 
     // Handle tab switching first
     if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
@@ -143,6 +150,7 @@ export function navigator(node: HTMLElement, config: Config) {
   return {
     destroy() {
       document.removeEventListener('keydown', handleKeyPress, false);
+      deactivateGroup(config.groupId);
     },
     update(newConfig: Config) {
       config = newConfig;

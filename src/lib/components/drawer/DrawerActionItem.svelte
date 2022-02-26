@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Navigation } from '../../models';
   import Icon from '../icon/Icon.svelte';
-  import NavItem from '../navigate/NavItem.svelte';
+  import NavItem from '../nav/NavItem.svelte';
 
   export let icon: any = null;
   export let primaryText: string = null;

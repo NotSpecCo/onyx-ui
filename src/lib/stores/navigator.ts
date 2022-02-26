@@ -1,14 +1,14 @@
 import { get, writable } from 'svelte/store';
 
 type Group = {
-  id: symbol;
+  id: string;
   focusedItemId: string | null;
 };
 
 export const groups = writable<Group[]>([]);
 export const activeGroup = writable<Group | null>(null);
-export const activeGroupId = writable<symbol | null>(null);
-export const groupItemMap = writable<{ [groupId: symbol]: string | null }>({});
+export const activeGroupId = writable<string | null>(null);
+export const groupItemMap = writable<{ [groupId: string]: string | null }>({});
 
 groups.subscribe((data) => {
   activeGroup.set(data.at(-1) || null);
@@ -21,18 +21,18 @@ groups.subscribe((data) => {
   );
 });
 
-export function getFocusedItemId(groupId: symbol): string | null {
+export function getFocusedItemId(groupId: string): string | null {
   return get(groups).find((a) => a.id === groupId)?.focusedItemId || null;
 }
 
-export function setSelectedId(groupId: symbol, itemId?: string) {
+export function setSelectedId(groupId: string, itemId?: string) {
   const data = get(groups).map((a) =>
     a.id === groupId ? { id: groupId, focusedItemId: itemId || null } : a
   );
   groups.set(data);
 }
 
-export function activateGroup(id: symbol) {
+export function activateGroup(id: string) {
   const other = get(groups).filter((a) => a.id !== id);
   const newGroups = [...other, { id, focusedItemId: null }];
   groups.set(newGroups);
