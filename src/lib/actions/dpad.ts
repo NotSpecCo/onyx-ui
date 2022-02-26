@@ -31,8 +31,9 @@ export function dpad(node: HTMLElement, config: Config) {
     if (
       config.disabled ||
       !dpadKeys.includes(key) ||
-      (!['SoftLeft', 'SoftRight'].includes(ev.key) && target?.tagName.toLowerCase() === 'input') ||
-      (!['SoftLeft', 'SoftRight'].includes(ev.key) &&
+      (!['SoftLeft', 'SoftRight', 'Enter'].includes(key) &&
+        target?.tagName.toLowerCase() === 'input') ||
+      (!['SoftLeft', 'SoftRight', 'Enter'].includes(key) &&
         (target?.attributes as any).role?.value === 'textbox')
     ) {
       return;
