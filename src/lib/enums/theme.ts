@@ -3,4 +3,5 @@ export enum Theme {
   Warm = 'warm',
   Dim = 'dim',
   Dark = 'dark',
+  Darkest = 'darkest',
 }

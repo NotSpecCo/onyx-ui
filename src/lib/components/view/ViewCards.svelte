@@ -72,6 +72,6 @@
     color: var(--card-secondary-text-color);
   }
   .card.focused {
-    background-color: var(--card-bg-color);
+    background-color: var(--card-stack-focus-color);
   }
 </style>

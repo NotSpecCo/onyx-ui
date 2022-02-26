@@ -125,6 +125,7 @@
               { id: Theme.Warm, label: 'Warm' },
               { id: Theme.Dim, label: 'Dim' },
               { id: Theme.Dark, label: 'Dark' },
+              { id: Theme.Darkest, label: 'Darkest' },
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
