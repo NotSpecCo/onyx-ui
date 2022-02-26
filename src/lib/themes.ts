@@ -58,6 +58,33 @@ export const themes: ThemeConfig[] = [
     },
   },
   {
+    id: Theme.Warm,
+    values: {
+      // Drawer
+      drawerBgColor: '#000000',
+      drawerAccentColor: '#EE8434',
+      drawerPrimaryTextColor: 'rgba(255, 255, 255, 0.88)',
+      drawerSecondaryTextColor: 'rgba(255, 255, 255, 0.5)',
+      drawerAccentTextColor: '#EE8434',
+      drawerHighlightBgColor: 'rgba(255, 255, 255, 0.2)',
+      drawerHighlightTextColor: 'rgba(255, 255, 255, 0.88)',
+      drawerDividerColor: 'rgba(255, 255, 255, 0.1)',
+      // Card
+      cardBgColor: '#FBF5EF',
+      cardStackBgColor: '#F3E1CE',
+      cardBorderColor: '#aaa',
+      cardAccentColor: '#E26D12',
+      cardPrimaryTextColor: 'rgba(0, 0, 0, 0.88)',
+      cardSecondaryTextColor: 'rgba(0, 0, 0, 0.5)',
+      cardAccentTextColor: '#E26D12',
+      cardHighlightBgColor: 'rgba(0, 0, 0, 0.1)',
+      cardHighlightTextColor: 'rgba(0, 0, 0, 0.88)',
+      cardDividerColor: 'rgba(0, 0, 0, 0.1)',
+      // Other
+      scrimColor: 'rgba(0, 0, 0, 0.7)',
+    },
+  },
+  {
     id: Theme.Dim,
     values: {
       // Drawer
