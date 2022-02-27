@@ -27,12 +27,12 @@
   .title {
     font-weight: var(--bold-font-weight);
     font-size: 1.2rem;
-    color: var(--accent-text-color);
+    color: var(--accent-color);
     text-transform: uppercase;
     padding-right: 7px;
   }
   .divider {
-    background-color: var(--accent-text-color);
+    background-color: var(--accent-color);
     height: 1px;
     flex: 1;
   }

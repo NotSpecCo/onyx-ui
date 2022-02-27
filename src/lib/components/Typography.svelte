@@ -61,7 +61,7 @@
     color: var(--secondary-text-color);
   }
   .accent {
-    color: var(--accent-text-color);
+    color: var(--accent-color);
   }
 
   .underline {

@@ -34,7 +34,7 @@
     padding: 4px 5px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--divider-color);
+    border-bottom: 1px solid var(--drawer-divider-color);
   }
 
   .icon {
@@ -48,7 +48,7 @@
   .shortcut {
     margin-left: 5px;
     font-weight: var(--bold-font-weight);
-    color: var(--secondary-text-color);
+    color: var(--drawer-secondary-text-color);
   }
 
   .primary,
@@ -59,6 +59,6 @@
   }
   .secondary {
     font-size: 1.2rem;
-    color: var(--secondary-text-color);
+    color: var(--drawer-secondary-text-color);
   }
 </style>

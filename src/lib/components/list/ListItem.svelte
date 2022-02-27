@@ -79,6 +79,6 @@
   }
   .accent {
     font-size: 1.2rem;
-    color: var(--accent-text-color);
+    color: var(--accent-color);
   }
 </style>

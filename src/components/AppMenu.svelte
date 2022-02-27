@@ -64,7 +64,7 @@
   .header {
     padding: 5px;
     font-weight: var(--bold-font-weight);
-    color: var(--accent-text-color);
+    color: var(--accent-color);
     text-align: center;
   }
   .scroller {

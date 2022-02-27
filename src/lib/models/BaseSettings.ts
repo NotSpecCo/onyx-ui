@@ -8,12 +8,16 @@ export type BaseSettings = {
   animations: Animations;
   showHintText: boolean;
   theme: Theme;
-  accentColor: string;
-  cardAccentColor: string;
+  // Card Color
+  cardColorH: number;
+  cardColorS: number;
+  cardColorL: number;
   // Accent Color
   accentColorH: number;
   accentColorS: number;
   accentColorL: number;
-  accentColorA: number;
-  accentColorAFocus: number;
+  // Text Color
+  textColorH: number;
+  textColorS: number;
+  textColorL: number;
 };

@@ -45,13 +45,13 @@
     border-radius: var(--radius) var(--radius) 0 0;
   }
   .card-root {
-    background-color: var(--card-stack-bg-color);
-    color: var(--card-primary-text-color);
+    background-color: var(--card-secondary-color);
+    color: var(--primary-text-color);
 
     border-radius: var(--radius) var(--radius) 0 0;
     padding-bottom: 20px;
     margin-bottom: -20px;
-    border: 1px solid var(--card-stack-border-color);
+    border: 1px solid var(--card-border-color);
     overflow: hidden;
   }
   .card {
@@ -72,7 +72,6 @@
     color: var(--card-secondary-text-color);
   }
   .card.focused {
-    background-color: var(--card-stack-focus-bg-color);
-    color: var(--card-stack-focus-text-color);
+    background-color: var(--focus-color);
   }
 </style>

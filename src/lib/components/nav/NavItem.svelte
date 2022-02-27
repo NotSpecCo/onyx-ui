@@ -26,7 +26,6 @@
 
 <style>
   .focused {
-    background-color: var(--highlight-bg-color);
-    color: var(--highlight-text-color);
+    background-color: var(--focus-color);
   }
 </style>

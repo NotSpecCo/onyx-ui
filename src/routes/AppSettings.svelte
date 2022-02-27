@@ -43,12 +43,19 @@
 
     if (key === 'theme') {
       const theme = themes.find((a) => a.id === $settings.theme) ?? themes[0];
+
       settings.update({
-        accentColorH: theme.accentColor.hue,
-        accentColorS: theme.accentColor.saturation,
-        accentColorL: theme.accentColor.lightness,
-        accentColorA: theme.accentColor.alpha,
-        accentColorAFocus: theme.accentColor.alphaFocus,
+        cardColorH: theme.values.cardColorH,
+        cardColorS: theme.values.cardColorS,
+        cardColorL: theme.values.cardColorL,
+        // Accent Color
+        accentColorH: theme.values.accentColorH,
+        accentColorS: theme.values.accentColorS,
+        accentColorL: theme.values.accentColorL,
+        // Text Color
+        textColorH: theme.values.textColorH,
+        textColorS: theme.values.textColorS,
+        textColorL: theme.values.textColorL,
       });
     }
   }
@@ -129,9 +136,9 @@
             options={[
               { id: Theme.Light, label: 'Light' },
               { id: Theme.Warm, label: 'Warm' },
-              { id: Theme.Dim, label: 'Dim' },
-              { id: Theme.Dark, label: 'Dark' },
-              { id: Theme.Darkest, label: 'Darkest' },
+              // { id: Theme.Dim, label: 'Dim' },
+              // { id: Theme.Dark, label: 'Dark' },
+              // { id: Theme.Darkest, label: 'Darkest' },
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
@@ -160,21 +167,55 @@
             max={100}
             onChange={(val) => handleChange('accentColorL', val)}
           />
+          <ListHeader title="Card Color" />
           <NumericRangeRow
-            label="Alpha"
-            value={$settings.accentColorA}
-            valueLabel="%"
-            min={5}
-            max={100}
-            onChange={(val) => handleChange('accentColorA', val)}
+            label="Hue"
+            value={$settings.cardColorH}
+            valueLabel=""
+            min={0}
+            max={360}
+            onChange={(val) => handleChange('cardColorH', val)}
           />
           <NumericRangeRow
-            label="Alpha (Focus)"
-            value={$settings.accentColorAFocus}
+            label="Saturation"
+            value={$settings.cardColorS}
             valueLabel="%"
-            min={5}
+            min={0}
             max={100}
-            onChange={(val) => handleChange('accentColorAFocus', val)}
+            onChange={(val) => handleChange('cardColorS', val)}
+          />
+          <NumericRangeRow
+            label="Lightness"
+            value={$settings.cardColorL}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('cardColorL', val)}
+          />
+          <ListHeader title="Text Color" />
+          <NumericRangeRow
+            label="Hue"
+            value={$settings.textColorH}
+            valueLabel=""
+            min={0}
+            max={360}
+            onChange={(val) => handleChange('textColorH', val)}
+          />
+          <NumericRangeRow
+            label="Saturation"
+            value={$settings.textColorS}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('textColorS', val)}
+          />
+          <NumericRangeRow
+            label="Lightness"
+            value={$settings.textColorL}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('textColorL', val)}
           />
         </CardContent>
       </Card>
