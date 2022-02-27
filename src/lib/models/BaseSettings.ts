@@ -10,4 +10,10 @@ export type BaseSettings = {
   theme: Theme;
   accentColor: string;
   cardAccentColor: string;
+  // Accent Color
+  accentColorH: number;
+  accentColorS: number;
+  accentColorL: number;
+  accentColorA: number;
+  accentColorAFocus: number;
 };

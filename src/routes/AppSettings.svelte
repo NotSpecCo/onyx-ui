@@ -6,8 +6,8 @@
   import CardHeader from '../lib/components/card/CardHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
-  import InputRow from '../lib/components/form/InputRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
+  import ListHeader from '../lib/components/list/ListHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
   import { Animations, DataStatus, Density, TextSize, TextWeight, Theme } from '../lib/enums';
@@ -39,12 +39,17 @@
   });
 
   function handleChange(key: keyof Settings, val: any) {
-    settings.update(key, val);
+    settings.updateOne(key, val);
 
     if (key === 'theme') {
       const theme = themes.find((a) => a.id === $settings.theme) ?? themes[0];
-      settings.update('accentColor', theme.values.drawerAccentColor);
-      settings.update('cardAccentColor', theme.values.cardAccentColor);
+      settings.update({
+        accentColorH: theme.accentColor.hue,
+        accentColorS: theme.accentColor.saturation,
+        accentColorL: theme.accentColor.lightness,
+        accentColorA: theme.accentColor.alpha,
+        accentColorAFocus: theme.accentColor.alphaFocus,
+      });
     }
   }
 </script>
@@ -117,6 +122,7 @@
       <Card cardId={$view.cards[1].id}>
         <CardHeader />
         <CardContent>
+          <ListHeader title="General" />
           <InlineSelectRow
             label="Theme"
             value={$settings.theme}
@@ -129,17 +135,46 @@
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
-          <InputRow
-            label="Accent Color"
-            value={$settings.accentColor}
-            placeholder="Enter color..."
-            onChange={(val) => handleChange('accentColor', val)}
+          <ListHeader title="Accent Color" />
+          <NumericRangeRow
+            label="Hue"
+            value={$settings.accentColorH}
+            valueLabel=""
+            min={0}
+            max={360}
+            onChange={(val) => handleChange('accentColorH', val)}
           />
-          <InputRow
-            label="Card Accent Color"
-            value={$settings.cardAccentColor}
-            placeholder="Enter color..."
-            onChange={(val) => handleChange('cardAccentColor', val)}
+          <NumericRangeRow
+            label="Saturation"
+            value={$settings.accentColorS}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('accentColorS', val)}
+          />
+          <NumericRangeRow
+            label="Lightness"
+            value={$settings.accentColorL}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('accentColorL', val)}
+          />
+          <NumericRangeRow
+            label="Alpha"
+            value={$settings.accentColorA}
+            valueLabel="%"
+            min={5}
+            max={100}
+            onChange={(val) => handleChange('accentColorA', val)}
+          />
+          <NumericRangeRow
+            label="Alpha (Focus)"
+            value={$settings.accentColorAFocus}
+            valueLabel="%"
+            min={5}
+            max={100}
+            onChange={(val) => handleChange('accentColorAFocus', val)}
           />
         </CardContent>
       </Card>

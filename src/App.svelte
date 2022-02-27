@@ -1,12 +1,11 @@
 <script lang="ts">
-  import kebabcase from 'lodash.kebabcase';
   import { setContext } from 'svelte';
   import Router from 'svelte-spa-router';
   import AppMenu from './components/AppMenu.svelte';
   import { ContextKey, TextSize, TextWeight } from './lib/enums';
   import type { SettingsContext } from './lib/models';
   import { registerAppMenu } from './lib/stores/view';
-  import { themes } from './lib/themes';
+  import { applyTheme } from './lib/themes';
   import AppSettings from './routes/AppSettings.svelte';
   import Cards from './routes/Cards.svelte';
   import Drawer from './routes/Drawer.svelte';
@@ -23,18 +22,7 @@
   // Apply settings
   $: {
     // Theme
-    const theme = themes.find((a) => a.id === $settings.theme) || themes[0];
-    for (const id in theme.values) {
-      document.documentElement.style.setProperty(`--${kebabcase(id)}`, theme.values[id]);
-    }
-
-    document.documentElement.style.setProperty('--drawer-accent-color', $settings.accentColor);
-    document.documentElement.style.setProperty('--drawer-accent-text-color', $settings.accentColor);
-    document.documentElement.style.setProperty('--card-accent-color', $settings.cardAccentColor);
-    document.documentElement.style.setProperty(
-      '--card-accent-text-color',
-      $settings.cardAccentColor
-    );
+    applyTheme($settings);
 
     // Text Size
     const textSize = {

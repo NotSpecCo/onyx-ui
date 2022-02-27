@@ -1,7 +1,16 @@
+import kebabcase from 'lodash.kebabcase';
 import { Theme } from './enums';
+import type { BaseSettings } from './models';
 
 export type ThemeConfig = {
   id: Theme;
+  accentColor: {
+    hue: number;
+    saturation: number;
+    lightness: number;
+    alpha: number;
+    alphaFocus: number;
+  };
   values: {
     [key: string]: string;
     // Drawer
@@ -36,6 +45,13 @@ export type ThemeConfig = {
 export const themes: ThemeConfig[] = [
   {
     id: Theme.Light,
+    accentColor: {
+      hue: 222,
+      saturation: 17,
+      lightness: 52,
+      alpha: 100,
+      alphaFocus: 20,
+    },
     values: {
       // Drawer
       drawerBgColor: '#000000',
@@ -67,6 +83,13 @@ export const themes: ThemeConfig[] = [
   },
   {
     id: Theme.Warm,
+    accentColor: {
+      hue: 26,
+      saturation: 85,
+      lightness: 48,
+      alpha: 100,
+      alphaFocus: 20,
+    },
     values: {
       // Drawer
       drawerBgColor: '#000000',
@@ -98,6 +121,13 @@ export const themes: ThemeConfig[] = [
   },
   {
     id: Theme.Dim,
+    accentColor: {
+      hue: 201,
+      saturation: 51,
+      lightness: 69,
+      alpha: 100,
+      alphaFocus: 20,
+    },
     values: {
       // Drawer
       drawerBgColor: '#353945',
@@ -129,6 +159,13 @@ export const themes: ThemeConfig[] = [
   },
   {
     id: Theme.Dark,
+    accentColor: {
+      hue: 207,
+      saturation: 59,
+      lightness: 48,
+      alpha: 100,
+      alphaFocus: 20,
+    },
     values: {
       // Drawer
       drawerBgColor: '#111318',
@@ -160,6 +197,13 @@ export const themes: ThemeConfig[] = [
   },
   {
     id: Theme.Darkest,
+    accentColor: {
+      hue: 15,
+      saturation: 61,
+      lightness: 51,
+      alpha: 100,
+      alphaFocus: 50,
+    },
     values: {
       // Drawer
       drawerBgColor: '#000000',
@@ -190,3 +234,40 @@ export const themes: ThemeConfig[] = [
     },
   },
 ];
+
+export function applyTheme(settings: BaseSettings) {
+  const baseTheme = themes.find((a) => a.id === settings.theme) || themes[0];
+  const theme: ThemeConfig = JSON.parse(JSON.stringify(baseTheme));
+
+  const accentColor = new HSLA(settings.accentColorH, settings.accentColorS, settings.accentColorL);
+
+  theme.values.drawerAccentColor = accentColor.withAlpha(settings.accentColorA);
+  theme.values.drawerAccentTextColor = accentColor.withAlpha(settings.accentColorA);
+  theme.values.drawerHighlightBgColor = accentColor.withAlpha(settings.accentColorAFocus);
+
+  theme.values.cardAccentColor = accentColor.withAlpha(settings.accentColorA);
+  theme.values.cardAccentTextColor = accentColor.withAlpha(settings.accentColorA);
+  theme.values.cardHighlightBgColor = accentColor.withAlpha(settings.accentColorAFocus);
+
+  theme.values.cardStackFocusBgColor = accentColor.withAlpha(settings.accentColorAFocus);
+
+  for (const id in theme.values) {
+    document.documentElement.style.setProperty(`--${kebabcase(id)}`, theme.values[id]);
+  }
+}
+
+class HSLA {
+  h: number;
+  s: number;
+  l: number;
+
+  constructor(h: number, s: number, l: number) {
+    this.h = h;
+    this.s = s;
+    this.l = l;
+  }
+
+  withAlpha(alpha: number) {
+    return `hsla(${this.h}, ${this.s}%, ${this.l}%, ${alpha}%`;
+  }
+}

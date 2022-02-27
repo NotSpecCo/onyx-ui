@@ -13,6 +13,12 @@ const defaultSettings: Settings = {
   borderRadius: 14,
   animations: Animations.Normal,
   showHintText: true,
+  // Accent Color
+  accentColorH: 222,
+  accentColorS: 17,
+  accentColorL: 52,
+  accentColorA: 100,
+  accentColorAFocus: 20,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);
@@ -29,7 +35,10 @@ function createSettings() {
 
   return {
     subscribe,
-    update: function <T extends keyof Settings>(key: T, value: Settings[T]) {
+    update: function (data: Partial<Settings>) {
+      update((previous) => ({ ...previous, ...data }));
+    },
+    updateOne: function <T extends keyof Settings>(key: T, value: Settings[T]) {
       update((previous) => ({ ...previous, [key]: value }));
     },
   };
