@@ -20,4 +20,8 @@ export type BaseSettings = {
   textColorH: number;
   textColorS: number;
   textColorL: number;
+  // Drawer Color
+  drawerColorH: number;
+  drawerColorS: number;
+  drawerColorL: number;
 };

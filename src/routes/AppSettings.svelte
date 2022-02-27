@@ -48,14 +48,15 @@
         cardColorH: theme.values.cardColorH,
         cardColorS: theme.values.cardColorS,
         cardColorL: theme.values.cardColorL,
-        // Accent Color
         accentColorH: theme.values.accentColorH,
         accentColorS: theme.values.accentColorS,
         accentColorL: theme.values.accentColorL,
-        // Text Color
         textColorH: theme.values.textColorH,
         textColorS: theme.values.textColorS,
         textColorL: theme.values.textColorL,
+        drawerColorH: theme.values.drawerColorH,
+        drawerColorS: theme.values.drawerColorS,
+        drawerColorL: theme.values.drawerColorL,
       });
     }
   }

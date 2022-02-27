@@ -1,31 +1,100 @@
 :root {
-  /* Colors */
-  --text-color-hue: 0;
-  --text-color-saturation: 0;
-  --text-color-lightness: 0;
+  /* User Defined */
 
-  --accent-color-hue: 26;
-  --accent-color-saturation: 85;
-  --accent-color-lightness: 48;
+  --text-color-h: 0;
+  --text-color-s: 0%;
+  --text-color-l: 0%;
 
-  --card-color-hue: 0;
-  --card-color-saturation: 0;
-  --card-color-lightness: 0;
+  --accent-color-h: 232;
+  --accent-color-s: 64%;
+  --accent-color-l: 54%;
 
-  --drawer-color-hue: 0;
-  --drawer-color-saturation: 0;
-  --drawer-color-lightness: 0;
+  --card-color-h: 210;
+  --card-color-s: 13%;
+  --card-color-l: 99%;
 
-  --dim-lightness: 80;
-  --disabled-alpha: 30;
+  --drawer-color-h: 0;
+  --drawer-color-s: 0%;
+  --drawer-color-l: 0%;
 
-  /* Settings */
   --radius: 14px;
   --animation-speed: 300ms;
-
   --regular-font-weight: 400;
   --bold-font-weight: 600;
   --base-font-size: 10px;
+
+  /* Computed */
+
+  --primary-text-a: 88%;
+  --secondary-text-a: 50%;
+  --divider-a: 10%;
+  --focus-a: 20%;
+  --default-a: 100%;
+
+  --app-bg-color: hsla(0, 0%, 0%, 100%);
+  --primary-text-color: hsla(
+    var(--text-color-h),
+    var(--text-color-s),
+    var(--text-color-l),
+    var(--primary-text-a)
+  );
+  --secondary-text-color: hsla(
+    var(--text-color-h),
+    var(--text-color-s),
+    var(--text-color-l),
+    var(--secondary-text-a)
+  );
+  --divider-color: hsla(
+    var(--text-color-h),
+    var(--text-color-s),
+    var(--text-color-l),
+    var(--divider-a)
+  );
+  --accent-color: hsla(
+    var(--accent-color-h),
+    var(--accent-color-s),
+    var(--accent-color-l),
+    var(--default-a)
+  );
+  --focus-color: hsla(
+    var(--accent-color-h),
+    var(--accent-color-s),
+    var(--accent-color-l),
+    var(--focus-a)
+  );
+  --card-primary-color: hsla(
+    var(--card-color-h),
+    var(--card-color-s),
+    var(--card-color-l),
+    var(--default-a)
+  );
+  --card-secondary-color: hsla(
+    var(--card-color-h),
+    var(--card-color-s),
+    calc(var(--card-color-l) - 5%),
+    var(--default-a)
+  );
+  --card-tertiary-color: hsla(
+    var(--card-color-h),
+    var(--card-color-s),
+    calc(var(--card-color-l) - 7%),
+    var(--default-a)
+  );
+  --card-border-color: hsla(
+    var(--card-color-h),
+    var(--card-color-s),
+    calc(var(--card-color-l) + 5%),
+    var(--default-a)
+  );
+  --drawer-bg-color: hsla(
+    var(--drawer-color-h),
+    var(--drawer-color-s),
+    var(--drawer-color-l),
+    var(--default-a)
+  );
+  --drawer-primary-text-color: hsla(var(0), var(0%), var(100%), var(--primary-text-a));
+  --drawer-secondary-text-color: hsla(var(0), var(0%), var(100%), var(--secondary-text-a));
+  --drawer-divider-color: hsla(var(0), var(0%), var(100%), var(--divider-a));
 
   font-size: var(--base-font-size);
 }

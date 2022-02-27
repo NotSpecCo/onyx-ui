@@ -1,11 +1,11 @@
 import { writable } from 'svelte/store';
-import { Animations, Density, TextSize, TextWeight, Theme } from '../lib/enums';
+import { Animations, Density, TextSize, TextWeight } from '../lib/enums';
 import { themes } from '../lib/themes';
 import { getStorageItem, setStorageItem, StorageKey } from '../lib/utils/storage';
 import type { Settings } from '../models';
 
 const defaultSettings: Settings = {
-  theme: Theme.Light,
+  theme: themes[0].id,
   textSize: TextSize.Medium,
   textWeight: TextWeight.Medium,
   displayDensity: Density.Normal,
@@ -24,6 +24,10 @@ const defaultSettings: Settings = {
   textColorH: themes[0].values.textColorH,
   textColorS: themes[0].values.textColorS,
   textColorL: themes[0].values.textColorL,
+  // Drawer Color
+  drawerColorH: themes[0].values.drawerColorH,
+  drawerColorS: themes[0].values.drawerColorS,
+  drawerColorL: themes[0].values.drawerColorL,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);

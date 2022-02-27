@@ -57,9 +57,13 @@
 
 <style>
   :global([data-nav-group-id='app-menu']) {
-    max-height: calc(100vh - 30px);
+    border-radius: var(--radius) var(--radius) 0 0;
+    background-color: var(--card-tertiary-color);
+    height: calc(100vh - 15px);
     display: flex;
     flex-direction: column;
+    padding-bottom: 25px;
+    margin-bottom: -15px;
   }
   .header {
     padding: 5px;
