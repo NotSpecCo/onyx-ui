@@ -25,6 +25,7 @@
   :global([data-nav-group-id='drawer']) {
     max-height: 50vh;
     display: flex;
+    color: var(--drawer-primary-text-color);
   }
   .scroller {
     overflow-y: auto;

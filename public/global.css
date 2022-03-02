@@ -87,9 +87,9 @@
     var(--drawer-color-l),
     var(--default-a)
   );
-  --drawer-primary-text-color: hsla(var(0), var(0%), var(100%), var(--primary-text-a));
-  --drawer-secondary-text-color: hsla(var(0), var(0%), var(100%), var(--secondary-text-a));
-  --drawer-divider-color: hsla(var(0), var(0%), var(100%), var(--divider-a));
+  --drawer-primary-text-color: hsla(0, 0%, 100%, var(--primary-text-a));
+  --drawer-secondary-text-color: hsla(0, 0%, 100%, var(--secondary-text-a));
+  --drawer-divider-color: hsla(0, 0%, 100%, var(--divider-a));
 
   font-size: var(--base-font-size);
 }
