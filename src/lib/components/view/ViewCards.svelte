@@ -53,6 +53,7 @@
     margin-bottom: -20px;
     border: 1px solid var(--card-border-color);
     overflow: hidden;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
   }
   .card {
     padding: 5px 7px;

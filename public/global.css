@@ -80,12 +80,7 @@
     calc(var(--card-color-l) - 7%),
     var(--default-a)
   );
-  --card-border-color: hsla(
-    var(--card-color-h),
-    var(--card-color-s),
-    calc(var(--card-color-l) + 5%),
-    var(--default-a)
-  );
+  --card-border-color: hsla(0, 0%, 100%, 30%);
   --drawer-bg-color: hsla(
     var(--drawer-color-h),
     var(--drawer-color-s),
