@@ -25,7 +25,6 @@
     background-color: var(--card-primary-color);
     color: var(--primary-text-color);
     border-radius: var(--radius) var(--radius) var(--radius) var(--radius);
-    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); */
     border: 1px solid var(--card-border-color);
   }
 </style>

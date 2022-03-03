@@ -23,7 +23,7 @@
 
 <style>
   :global([data-nav-group-id='drawer']) {
-    max-height: 50vh;
+    max-height: 80vh;
     display: flex;
     color: var(--drawer-primary-text-color);
     --focus-color: var(--drawer-focus-color);

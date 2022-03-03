@@ -8,8 +8,8 @@
 
   export let title: string;
   export let disabled = false;
-  export let onSave: () => void;
-  export let onCancel: () => void;
+  export let onEnter: () => void;
+  export let onBackspace: () => void;
 
   const settings = getContext<SettingsContext>(ContextKey.Settings);
 
@@ -43,12 +43,12 @@
       onSoftRight: () => true,
       onBackspace: async () => {
         // TODO: View use:dpad fires before this if we await anything, triggering a nav pop
-        close().then(onCancel);
+        close().then(onBackspace);
         return true;
       },
       onEnter: async () => {
         await close();
-        onSave();
+        onEnter();
         return true;
       },
       priority: 'high',

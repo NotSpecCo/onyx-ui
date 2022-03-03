@@ -42,8 +42,8 @@
 {#if open}
   <Menu
     title={label}
-    onCancel={() => reset()}
-    onSave={() => {
+    onBackspace={() => reset()}
+    onEnter={() => {
       onChange(color);
       reset();
     }}
@@ -87,5 +87,6 @@
     height: 24px;
     margin: 0 5px 5px 5px;
     border-radius: calc(var(--radius) / 2);
+    border: 1px solid var(--divider-color);
   }
 </style>
