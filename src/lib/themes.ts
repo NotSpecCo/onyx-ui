@@ -36,9 +36,9 @@ export const themes: ThemeConfig[] = [
       textColorS: 0,
       textColorL: 0,
 
-      accentColorH: 218,
-      accentColorS: 52,
-      accentColorL: 65,
+      accentColorH: 0,
+      accentColorS: 0,
+      accentColorL: 4,
 
       cardColorH: 210,
       cardColorS: 13,
@@ -52,7 +52,7 @@ export const themes: ThemeConfig[] = [
       drawerTextColorS: 0,
       drawerTextColorL: 100,
 
-      focusColorA: 20,
+      focusColorA: 10,
     },
   },
   {
