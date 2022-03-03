@@ -10,9 +10,6 @@
 
   const settings = getContext<SettingsContext>(ContextKey.Settings);
 
-  let otherCards = [];
-  $: otherCards = $view.cards.filter((a) => a.id !== $view.activeCardId);
-
   const NAV_GROUP_ID = 'cards';
 </script>
 
@@ -21,7 +18,7 @@
     <Typography align="center" type="caption">Press again for app menu</Typography>
   {/if}
   <div data-nav-scroller>
-    {#each otherCards as card, i}
+    {#each $view.cards as card, i}
       <div class="card-root">
         <div
           class="card"
