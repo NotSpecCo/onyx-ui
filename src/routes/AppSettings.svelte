@@ -30,6 +30,11 @@
         title: 'Theme',
         onSelect: () => replace(`/settings/theme`),
       },
+      {
+        id: 'misc',
+        title: 'Misc',
+        onSelect: () => replace(`/settings/misc`),
+      },
     ],
     activeCardId: params.cardId ?? 'display',
   });
@@ -57,6 +62,9 @@
         drawerColorH: theme.values.drawerColorH,
         drawerColorS: theme.values.drawerColorS,
         drawerColorL: theme.values.drawerColorL,
+        drawerTextColorH: theme.values.drawerTextColorH,
+        drawerTextColorS: theme.values.drawerTextColorS,
+        drawerTextColorL: theme.values.drawerTextColorL,
       });
     }
   }
@@ -68,6 +76,7 @@
       <Card cardId={$view.cards[0].id}>
         <CardHeader />
         <CardContent>
+          <ListHeader title="Global" />
           <InlineSelectRow
             label="Text Size"
             value={$settings.textSize}
@@ -111,6 +120,7 @@
             ]}
             onChange={(val) => handleChange('animations', val)}
           />
+          <ListHeader title="Cards" />
           <NumericRangeRow
             label="Border Radius"
             value={$settings.borderRadius}
@@ -118,11 +128,6 @@
             min={0}
             max={32}
             onChange={(val) => handleChange('borderRadius', val)}
-          />
-          <CheckboxRow
-            label="Show Hint Text"
-            checked={$settings.showHintText}
-            onChange={(val) => handleChange('showHintText', val)}
           />
         </CardContent>
       </Card>
@@ -193,7 +198,7 @@
             max={100}
             onChange={(val) => handleChange('cardColorL', val)}
           />
-          <ListHeader title="Text Color" />
+          <ListHeader title="Card Text Color" />
           <NumericRangeRow
             label="Hue"
             value={$settings.textColorH}
@@ -217,6 +222,67 @@
             min={0}
             max={100}
             onChange={(val) => handleChange('textColorL', val)}
+          />
+          <ListHeader title="Drawer Color" />
+          <NumericRangeRow
+            label="Hue"
+            value={$settings.drawerColorH}
+            valueLabel=""
+            min={0}
+            max={360}
+            onChange={(val) => handleChange('drawerColorH', val)}
+          />
+          <NumericRangeRow
+            label="Saturation"
+            value={$settings.drawerColorS}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('drawerColorS', val)}
+          />
+          <NumericRangeRow
+            label="Lightness"
+            value={$settings.drawerColorL}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('drawerColorL', val)}
+          />
+          <ListHeader title="Drawer Text Color" />
+          <NumericRangeRow
+            label="Hue"
+            value={$settings.drawerTextColorH}
+            valueLabel=""
+            min={0}
+            max={360}
+            onChange={(val) => handleChange('drawerTextColorH', val)}
+          />
+          <NumericRangeRow
+            label="Saturation"
+            value={$settings.drawerTextColorS}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('drawerTextColorS', val)}
+          />
+          <NumericRangeRow
+            label="Lightness"
+            value={$settings.drawerTextColorL}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('drawerTextColorL', val)}
+          />
+        </CardContent>
+      </Card>
+    {:else if params.cardId === $view.cards[2].id}
+      <Card cardId={$view.cards[2].id}>
+        <CardHeader />
+        <CardContent>
+          <CheckboxRow
+            label="Show Hint Text"
+            checked={$settings.showHintText}
+            onChange={(val) => handleChange('showHintText', val)}
           />
         </CardContent>
       </Card>

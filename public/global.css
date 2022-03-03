@@ -17,6 +17,10 @@
   --drawer-color-s: 0%;
   --drawer-color-l: 0%;
 
+  --drawer-text-color-h: 0;
+  --drawer-text-color-s: 0%;
+  --drawer-text-color-l: 100%;
+
   --radius: 14px;
   --animation-speed: 300ms;
   --regular-font-weight: 400;
@@ -80,16 +84,31 @@
     calc(var(--card-color-l) - 7%),
     var(--default-a)
   );
-  --card-border-color: hsla(0, 0%, 100%, 30%);
+  --card-border-color: hsla(0, 0%, 100%, 20%);
   --drawer-bg-color: hsla(
     var(--drawer-color-h),
     var(--drawer-color-s),
     var(--drawer-color-l),
     var(--default-a)
   );
-  --drawer-primary-text-color: hsla(0, 0%, 100%, var(--primary-text-a));
-  --drawer-secondary-text-color: hsla(0, 0%, 100%, var(--secondary-text-a));
-  --drawer-divider-color: hsla(0, 0%, 100%, var(--divider-a));
+  --drawer-primary-text-color: hsla(
+    var(--drawer-text-color-h),
+    var(--drawer-text-color-s),
+    var(--drawer-text-color-l),
+    var(--primary-text-a)
+  );
+  --drawer-secondary-text-color: hsla(
+    var(--drawer-text-color-h),
+    var(--drawer-text-color-s),
+    var(--drawer-text-color-l),
+    var(--secondary-text-a)
+  );
+  --drawer-divider-color: hsla(
+    var(--drawer-text-color-h),
+    var(--drawer-text-color-s),
+    var(--drawer-text-color-l),
+    var(--divider-a)
+  );
 
   font-size: var(--base-font-size);
 }

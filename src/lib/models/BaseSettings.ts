@@ -8,15 +8,15 @@ export type BaseSettings = {
   animations: Animations;
   showHintText: boolean;
   theme: Theme;
-  // Card Color
-  cardColorH: number;
-  cardColorS: number;
-  cardColorL: number;
   // Accent Color
   accentColorH: number;
   accentColorS: number;
   accentColorL: number;
-  // Text Color
+  // Card Color
+  cardColorH: number;
+  cardColorS: number;
+  cardColorL: number;
+  // Card Text Color
   textColorH: number;
   textColorS: number;
   textColorL: number;
@@ -24,4 +24,8 @@ export type BaseSettings = {
   drawerColorH: number;
   drawerColorS: number;
   drawerColorL: number;
+  // Drawer Text Color
+  drawerTextColorH: number;
+  drawerTextColorS: number;
+  drawerTextColorL: number;
 };

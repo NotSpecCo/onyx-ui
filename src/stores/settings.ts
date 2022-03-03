@@ -28,6 +28,10 @@ const defaultSettings: Settings = {
   drawerColorH: themes[0].values.drawerColorH,
   drawerColorS: themes[0].values.drawerColorS,
   drawerColorL: themes[0].values.drawerColorL,
+  // Drawer Text Color
+  drawerTextColorH: themes[0].values.drawerTextColorH,
+  drawerTextColorS: themes[0].values.drawerTextColorS,
+  drawerTextColorL: themes[0].values.drawerTextColorL,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);
