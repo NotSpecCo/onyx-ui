@@ -6,8 +6,8 @@
   import CardHeader from '../lib/components/card/CardHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import ColorPickerRow from '../lib/components/form/ColorPickerRow.svelte';
-  import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
+  import SelectRow from '../lib/components/form/SelectRow.svelte';
   import ListHeader from '../lib/components/list/ListHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
@@ -80,7 +80,7 @@
         <CardHeader />
         <CardContent>
           <ListHeader title="Global" />
-          <InlineSelectRow
+          <SelectRow
             label="Text Size"
             value={$settings.textSize}
             options={[
@@ -92,7 +92,7 @@
             ]}
             onChange={(val) => handleChange('textSize', val)}
           />
-          <InlineSelectRow
+          <SelectRow
             label="Text Weight"
             value={$settings.textWeight}
             options={[
@@ -102,7 +102,7 @@
             ]}
             onChange={(val) => handleChange('textWeight', val)}
           />
-          <InlineSelectRow
+          <SelectRow
             label="Display Density"
             value={$settings.displayDensity}
             options={[
@@ -112,7 +112,7 @@
             ]}
             onChange={(val) => handleChange('displayDensity', val)}
           />
-          <InlineSelectRow
+          <SelectRow
             label="Animations"
             value={$settings.animations}
             options={[
@@ -139,7 +139,7 @@
         <CardHeader />
         <CardContent>
           <ListHeader title="General" />
-          <InlineSelectRow
+          <SelectRow
             label="Theme"
             value={$settings.theme}
             options={[
@@ -148,6 +148,7 @@
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
+
           <ColorPickerRow
             label="Accent Color"
             value={{
