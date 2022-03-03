@@ -75,7 +75,7 @@
   --card-secondary-color: hsla(
     var(--card-color-h),
     var(--card-color-s),
-    calc(var(--card-color-l) - 5%),
+    var(--card-color-l),
     var(--default-a)
   );
   --card-tertiary-color: hsla(
