@@ -1,0 +1,121 @@
+<script lang="ts">
+  import { getContext, onMount } from 'svelte';
+  import { dpad } from '../../actions/dpad';
+  import { ContextKey, OpenState } from '../../enums';
+  import type { SettingsContext } from '../../models';
+  import { delay } from '../../utils/delay';
+  import NavGroup from '../nav/NavGroup.svelte';
+
+  export let title: string;
+  export let disabled = false;
+  export let onSave: () => void;
+  export let onCancel: () => void;
+
+  const settings = getContext<SettingsContext>(ContextKey.Settings);
+
+  let state = OpenState.Closed;
+
+  async function open() {
+    state = OpenState.Closed;
+    await delay(0);
+    state = OpenState.Opening;
+    await delay($settings.animations);
+    state = OpenState.Open;
+  }
+  async function close() {
+    state = OpenState.Open;
+    await delay(0);
+    state = OpenState.Closing;
+    await delay($settings.animations);
+    state = OpenState.Closed;
+  }
+
+  onMount(() => open());
+</script>
+
+<div class="root">
+  <div class="scrim" class:open={state >= OpenState.Opening} />
+  <div
+    class="card"
+    class:open={state >= OpenState.Opening}
+    use:dpad={{
+      onSoftLeft: () => true,
+      onSoftRight: () => true,
+      onBackspace: async () => {
+        // TODO: View use:dpad fires before this if we await anything, triggering a nav pop
+        close().then(onCancel);
+        return true;
+      },
+      onEnter: async () => {
+        await close();
+        onSave();
+        return true;
+      },
+      priority: 'high',
+      disabled,
+    }}
+  >
+    <div class="title">{title}</div>
+    <NavGroup groupId="menu">
+      <slot />
+    </NavGroup>
+    {#if $settings.showHintText}
+      <div class="footer">Save</div>
+    {/if}
+  </div>
+</div>
+
+<style>
+  .root {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .scrim {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity var(--animation-speed);
+    opacity: 0;
+  }
+  .scrim.open {
+    opacity: 1;
+  }
+
+  .card {
+    border: 1px solid var(--card-border-color);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
+    background-color: var(--card-primary-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    transition: transform var(--animation-speed);
+    transform: translateY(300px);
+  }
+  .card.open {
+    transform: translateY(0);
+  }
+
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 3px;
+    font-weight: var(--bold-font-weight);
+    text-align: center;
+  }
+  .footer {
+    padding: 5px;
+    text-align: center;
+    font-weight: var(--bold-font-weight);
+  }
+</style>
