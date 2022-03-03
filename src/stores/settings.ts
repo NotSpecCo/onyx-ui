@@ -12,27 +12,26 @@ const defaultSettings: Settings = {
   borderRadius: 14,
   animations: Animations.Normal,
   showHintText: true,
-  // Card Color
-  cardColorH: themes[0].values.cardColorH,
-  cardColorS: themes[0].values.cardColorS,
-  cardColorL: themes[0].values.cardColorL,
-  // Accent Color
+  // Accent
   accentColorH: themes[0].values.accentColorH,
   accentColorS: themes[0].values.accentColorS,
   accentColorL: themes[0].values.accentColorL,
-  // Text Color
+  // Card
+  cardColorH: themes[0].values.cardColorH,
+  cardColorS: themes[0].values.cardColorS,
+  cardColorL: themes[0].values.cardColorL,
   textColorH: themes[0].values.textColorH,
   textColorS: themes[0].values.textColorS,
   textColorL: themes[0].values.textColorL,
-  // Drawer Color
+  focusColorA: themes[0].values.focusColorA,
+  // Drawer
   drawerColorH: themes[0].values.drawerColorH,
   drawerColorS: themes[0].values.drawerColorS,
   drawerColorL: themes[0].values.drawerColorL,
-  // Drawer Text Color
   drawerTextColorH: themes[0].values.drawerTextColorH,
   drawerTextColorS: themes[0].values.drawerTextColorS,
   drawerTextColorL: themes[0].values.drawerTextColorL,
-  focusColorA: themes[0].values.focusColorA,
+  drawerFocusColorA: themes[0].values.drawerFocusColorA,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);

@@ -5,6 +5,7 @@
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardHeader from '../lib/components/card/CardHeader.svelte';
   import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
+  import ColorPickerRow from '../lib/components/form/ColorPickerRow.svelte';
   import InlineSelectRow from '../lib/components/form/InlineSelectRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
   import ListHeader from '../lib/components/list/ListHeader.svelte';
@@ -50,14 +51,15 @@
       const theme = themes.find((a) => a.id === $settings.theme) ?? themes[0];
 
       settings.update({
-        cardColorH: theme.values.cardColorH,
-        cardColorS: theme.values.cardColorS,
-        cardColorL: theme.values.cardColorL,
         accentColorH: theme.values.accentColorH,
         accentColorS: theme.values.accentColorS,
         accentColorL: theme.values.accentColorL,
+        cardColorH: theme.values.cardColorH,
+        cardColorS: theme.values.cardColorS,
+        cardColorL: theme.values.cardColorL,
         textColorH: theme.values.textColorH,
         textColorS: theme.values.textColorS,
+        focusColorA: theme.values.focusColorA,
         textColorL: theme.values.textColorL,
         drawerColorH: theme.values.drawerColorH,
         drawerColorS: theme.values.drawerColorS,
@@ -65,7 +67,7 @@
         drawerTextColorH: theme.values.drawerTextColorH,
         drawerTextColorS: theme.values.drawerTextColorS,
         drawerTextColorL: theme.values.drawerTextColorL,
-        focusColorA: theme.values.focusColorA,
+        drawerFocusColorA: theme.values.drawerFocusColorA,
       });
     }
   }
@@ -149,139 +151,93 @@
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
-          <ListHeader title="Accent Color" />
-          <NumericRangeRow
-            label="Hue"
-            value={$settings.accentColorH}
-            valueLabel=""
-            min={0}
-            max={360}
-            onChange={(val) => handleChange('accentColorH', val)}
+          <ColorPickerRow
+            label="Accent Color"
+            value={{
+              h: $settings.accentColorH,
+              s: $settings.accentColorS,
+              l: $settings.accentColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                accentColorH: val.h,
+                accentColorS: val.s,
+                accentColorL: val.l,
+              })}
+          />
+          <ListHeader title="Cards" />
+          <ColorPickerRow
+            label="Background Color"
+            value={{
+              h: $settings.cardColorH,
+              s: $settings.cardColorS,
+              l: $settings.cardColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                cardColorH: val.h,
+                cardColorS: val.s,
+                cardColorL: val.l,
+              })}
+          />
+          <ColorPickerRow
+            label="Text Color"
+            value={{
+              h: $settings.textColorH,
+              s: $settings.textColorS,
+              l: $settings.textColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                textColorH: val.h,
+                textColorS: val.s,
+                textColorL: val.l,
+              })}
           />
           <NumericRangeRow
-            label="Saturation"
-            value={$settings.accentColorS}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('accentColorS', val)}
-          />
-          <NumericRangeRow
-            label="Lightness"
-            value={$settings.accentColorL}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('accentColorL', val)}
-          />
-          <ListHeader title="Card Color" />
-          <NumericRangeRow
-            label="Hue"
-            value={$settings.cardColorH}
-            valueLabel=""
-            min={0}
-            max={360}
-            onChange={(val) => handleChange('cardColorH', val)}
-          />
-          <NumericRangeRow
-            label="Saturation"
-            value={$settings.cardColorS}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('cardColorS', val)}
-          />
-          <NumericRangeRow
-            label="Lightness"
-            value={$settings.cardColorL}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('cardColorL', val)}
-          />
-          <ListHeader title="Card Text Color" />
-          <NumericRangeRow
-            label="Hue"
-            value={$settings.textColorH}
-            valueLabel=""
-            min={0}
-            max={360}
-            onChange={(val) => handleChange('textColorH', val)}
-          />
-          <NumericRangeRow
-            label="Saturation"
-            value={$settings.textColorS}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('textColorS', val)}
-          />
-          <NumericRangeRow
-            label="Lightness"
-            value={$settings.textColorL}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('textColorL', val)}
-          />
-          <ListHeader title="Focus Color" />
-          <NumericRangeRow
-            label="Alpha"
+            label="Focus Strength"
             value={$settings.focusColorA}
             valueLabel="%"
             min={0}
             max={100}
             onChange={(val) => handleChange('focusColorA', val)}
           />
-          <ListHeader title="Drawer Color" />
-          <NumericRangeRow
-            label="Hue"
-            value={$settings.drawerColorH}
-            valueLabel=""
-            min={0}
-            max={360}
-            onChange={(val) => handleChange('drawerColorH', val)}
+          <ListHeader title="Drawer" />
+          <ColorPickerRow
+            label="Background Color"
+            value={{
+              h: $settings.drawerColorH,
+              s: $settings.drawerColorS,
+              l: $settings.drawerColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                drawerColorH: val.h,
+                drawerColorS: val.s,
+                drawerColorL: val.l,
+              })}
+          />
+          <ColorPickerRow
+            label="Text Color"
+            value={{
+              h: $settings.drawerTextColorH,
+              s: $settings.drawerTextColorS,
+              l: $settings.drawerTextColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                drawerTextColorH: val.h,
+                drawerTextColorS: val.s,
+                drawerTextColorL: val.l,
+              })}
           />
           <NumericRangeRow
-            label="Saturation"
-            value={$settings.drawerColorS}
+            label="Focus Strength"
+            value={$settings.drawerFocusColorA}
             valueLabel="%"
             min={0}
             max={100}
-            onChange={(val) => handleChange('drawerColorS', val)}
-          />
-          <NumericRangeRow
-            label="Lightness"
-            value={$settings.drawerColorL}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('drawerColorL', val)}
-          />
-          <ListHeader title="Drawer Text Color" />
-          <NumericRangeRow
-            label="Hue"
-            value={$settings.drawerTextColorH}
-            valueLabel=""
-            min={0}
-            max={360}
-            onChange={(val) => handleChange('drawerTextColorH', val)}
-          />
-          <NumericRangeRow
-            label="Saturation"
-            value={$settings.drawerTextColorS}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('drawerTextColorS', val)}
-          />
-          <NumericRangeRow
-            label="Lightness"
-            value={$settings.drawerTextColorL}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('drawerTextColorL', val)}
+            onChange={(val) => handleChange('drawerFocusColorA', val)}
           />
         </CardContent>
       </Card>

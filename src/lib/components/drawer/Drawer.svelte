@@ -26,6 +26,7 @@
     max-height: 50vh;
     display: flex;
     color: var(--drawer-primary-text-color);
+    --focus-color: var(--drawer-focus-color);
   }
   .scroller {
     overflow-y: auto;

@@ -80,6 +80,7 @@
     height: 24px;
     width: 24px;
     border-radius: 5px;
+    border: 1px solid var(--divider-color);
   }
 
   .preview {

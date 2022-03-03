@@ -109,6 +109,12 @@
     var(--drawer-text-color-l),
     var(--divider-a)
   );
+  --drawer-focus-color: hsla(
+    var(--accent-color-h),
+    var(--accent-color-s),
+    var(--accent-color-l),
+    var(--drawer-focus-color-a)
+  );
 
   font-size: var(--base-font-size);
 }

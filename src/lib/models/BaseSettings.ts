@@ -12,22 +12,21 @@ export type BaseSettings = {
   accentColorH: number;
   accentColorS: number;
   accentColorL: number;
-  // Card Color
+  // Card
   cardColorH: number;
   cardColorS: number;
   cardColorL: number;
-  // Card Text Color
   textColorH: number;
   textColorS: number;
   textColorL: number;
-  // Drawer Color
+  focusColorA: number;
+  // Drawer
   drawerColorH: number;
   drawerColorS: number;
   drawerColorL: number;
-  // Drawer Text Color
   drawerTextColorH: number;
   drawerTextColorS: number;
   drawerTextColorL: number;
   // Focus Color
-  focusColorA: number;
+  drawerFocusColorA: number;
 };
