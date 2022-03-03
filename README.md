@@ -1,1 +1,3 @@
-# onyx-ui-demo
+# Onyx UI
+
+A Svelte UI component library for KaiOS
