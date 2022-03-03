@@ -23,6 +23,8 @@ export type ThemeConfig = {
     drawerTextColorH: number;
     drawerTextColorS: number;
     drawerTextColorL: number;
+
+    focusColorA: number;
   };
 };
 
@@ -49,6 +51,8 @@ export const themes: ThemeConfig[] = [
       drawerTextColorH: 0,
       drawerTextColorS: 0,
       drawerTextColorL: 100,
+
+      focusColorA: 20,
     },
   },
   {
@@ -73,6 +77,34 @@ export const themes: ThemeConfig[] = [
       drawerTextColorH: 0,
       drawerTextColorS: 0,
       drawerTextColorL: 100,
+
+      focusColorA: 20,
+    },
+  },
+  {
+    id: Theme.Dark,
+    values: {
+      textColorH: 0,
+      textColorS: 0,
+      textColorL: 100,
+
+      accentColorH: 341,
+      accentColorS: 100,
+      accentColorL: 75,
+
+      cardColorH: 0,
+      cardColorS: 0,
+      cardColorL: 8,
+
+      drawerColorH: 0,
+      drawerColorS: 0,
+      drawerColorL: 0,
+
+      drawerTextColorH: 0,
+      drawerTextColorS: 0,
+      drawerTextColorL: 100,
+
+      focusColorA: 90,
     },
   },
 ];
@@ -106,4 +138,6 @@ export function applyTheme(settings: BaseSettings) {
     '--drawer-text-color-l',
     `${settings.drawerTextColorL}%`
   );
+
+  document.documentElement.style.setProperty('--focus-color-a', `${settings.focusColorA}%`);
 }

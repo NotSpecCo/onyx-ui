@@ -28,4 +28,6 @@ export type BaseSettings = {
   drawerTextColorH: number;
   drawerTextColorS: number;
   drawerTextColorL: number;
+  // Focus Color
+  focusColorA: number;
 };

@@ -65,6 +65,7 @@
         drawerTextColorH: theme.values.drawerTextColorH,
         drawerTextColorS: theme.values.drawerTextColorS,
         drawerTextColorL: theme.values.drawerTextColorL,
+        focusColorA: theme.values.focusColorA,
       });
     }
   }
@@ -143,7 +144,7 @@
               { id: Theme.Light, label: 'Light' },
               { id: Theme.Warm, label: 'Warm' },
               // { id: Theme.Dim, label: 'Dim' },
-              // { id: Theme.Dark, label: 'Dark' },
+              { id: Theme.Dark, label: 'Dark' },
               // { id: Theme.Darkest, label: 'Darkest' },
             ]}
             onChange={(val) => handleChange('theme', val)}
@@ -222,6 +223,15 @@
             min={0}
             max={100}
             onChange={(val) => handleChange('textColorL', val)}
+          />
+          <ListHeader title="Focus Color" />
+          <NumericRangeRow
+            label="Alpha"
+            value={$settings.focusColorA}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('focusColorA', val)}
           />
           <ListHeader title="Drawer Color" />
           <NumericRangeRow

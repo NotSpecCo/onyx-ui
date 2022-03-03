@@ -21,6 +21,7 @@
   --drawer-text-color-s: 0%;
   --drawer-text-color-l: 100%;
 
+  --focus-color-a: 20%;
   --radius: 14px;
   --animation-speed: 300ms;
   --regular-font-weight: 400;
@@ -32,7 +33,6 @@
   --primary-text-a: 88%;
   --secondary-text-a: 50%;
   --divider-a: 10%;
-  --focus-a: 20%;
   --default-a: 100%;
 
   --app-bg-color: hsla(0, 0%, 0%, 100%);
@@ -64,7 +64,7 @@
     var(--accent-color-h),
     var(--accent-color-s),
     var(--accent-color-l),
-    var(--focus-a)
+    var(--focus-color-a)
   );
   --card-primary-color: hsla(
     var(--card-color-h),

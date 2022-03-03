@@ -32,6 +32,7 @@ const defaultSettings: Settings = {
   drawerTextColorH: themes[0].values.drawerTextColorH,
   drawerTextColorS: themes[0].values.drawerTextColorS,
   drawerTextColorL: themes[0].values.drawerTextColorL,
+  focusColorA: themes[0].values.focusColorA,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);
