@@ -73,6 +73,8 @@ export function navigator(node: HTMLElement, config: Config) {
       items[currentItemIndex].dispatchEvent(new CustomEvent('itemfocus'));
       items[currentItemIndex].dispatchEvent(new CustomEvent('itemselect'));
       return;
+    } else if (ev.key === 'Enter') {
+      return;
     }
 
     // Handle shortcut keys
