@@ -39,9 +39,9 @@ export const themes: ThemeConfig[] = [
       accentColorL: 4,
 
       // Card
-      cardColorH: 210,
-      cardColorS: 13,
-      cardColorL: 99,
+      cardColorH: 0,
+      cardColorS: 0,
+      cardColorL: 100,
       textColorH: 0,
       textColorS: 0,
       textColorL: 0,
@@ -58,20 +58,20 @@ export const themes: ThemeConfig[] = [
     },
   },
   {
-    id: Theme.Warm,
+    id: Theme.Dark,
     values: {
       // Global
-      accentColorH: 26,
-      accentColorS: 85,
-      accentColorL: 48,
+      accentColorH: 0,
+      accentColorS: 0,
+      accentColorL: 90,
 
       // Card
-      cardColorH: 30,
-      cardColorS: 60,
-      cardColorL: 96,
+      cardColorH: 0,
+      cardColorS: 0,
+      cardColorL: 15,
       textColorH: 0,
       textColorS: 0,
-      textColorL: 0,
+      textColorL: 100,
       focusColorA: 20,
 
       // Drawer
@@ -82,33 +82,6 @@ export const themes: ThemeConfig[] = [
       drawerTextColorS: 0,
       drawerTextColorL: 100,
       drawerFocusColorA: 20,
-    },
-  },
-  {
-    id: Theme.Dark,
-    values: {
-      // Global
-      accentColorH: 341,
-      accentColorS: 100,
-      accentColorL: 75,
-
-      // Card
-      cardColorH: 0,
-      cardColorS: 0,
-      cardColorL: 8,
-      textColorH: 0,
-      textColorS: 0,
-      textColorL: 100,
-      focusColorA: 90,
-
-      // Drawer
-      drawerColorH: 0,
-      drawerColorS: 0,
-      drawerColorL: 0,
-      drawerTextColorH: 0,
-      drawerTextColorS: 0,
-      drawerTextColorL: 100,
-      drawerFocusColorA: 90,
     },
   },
 ];
