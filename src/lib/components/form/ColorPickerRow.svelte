@@ -1,6 +1,7 @@
 <script lang="ts">
   import { v4 as uuidv4 } from 'uuid';
-  import Menu from '../menu/Menu.svelte';
+  import NavGroup from '../nav/NavGroup.svelte';
+  import Modal from '../popups/Modal.svelte';
   import FormRow from './FormRow.svelte';
   import NumericRangeRow from './NumericRangeRow.svelte';
 
@@ -39,16 +40,24 @@
     style={`background-color: hsl(${value.h}, ${value.s}%, ${value.l}%`}
   /></FormRow
 >
-{#if open}
-  <Menu
-    title={label}
-    onBackspace={() => reset()}
-    onEnter={() => {
-      onChange(color);
-      reset();
-    }}
-  >
-    <div class="preview" style={`background-color: hsl(${color.h}, ${color.s}%, ${color.l}%`} />
+
+<Modal
+  {open}
+  title={label}
+  actions={{
+    center: {
+      label: 'Save',
+      actionFn: () => {
+        onChange(color);
+        reset();
+      },
+    },
+    right: { label: 'Cancel', actionFn: () => reset() },
+  }}
+  onClose={() => (open = false)}
+>
+  <div class="preview" style={`background-color: hsl(${color.h}, ${color.s}%, ${color.l}%`} />
+  <NavGroup groupId="colorPicker">
     <NumericRangeRow
       label="Hue"
       value={color.h}
@@ -72,8 +81,8 @@
       max={100}
       onChange={(val) => (color.l = val)}
     />
-  </Menu>
-{/if}
+  </NavGroup>
+</Modal>
 
 <style>
   .swatch {
