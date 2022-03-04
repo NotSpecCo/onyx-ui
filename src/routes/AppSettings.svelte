@@ -11,11 +11,11 @@
   import ListHeader from '../lib/components/list/ListHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
-  import { Animations, DataStatus, Density, TextSize, TextWeight, Theme } from '../lib/enums';
+  import { Animations, DataStatus, Density, TextSize, TextWeight } from '../lib/enums';
   import { registerView, updateView, view } from '../lib/stores/view';
-  import { themes } from '../lib/themes';
   import type { Settings } from '../models';
   import { settings } from '../stores/settings';
+  import { themes } from '../themes';
 
   export let params: { cardId: string };
 
@@ -143,8 +143,9 @@
             label="Theme"
             value={$settings.theme}
             options={[
-              { id: Theme.Light, label: 'Light' },
-              { id: Theme.Dark, label: 'Dark' },
+              { id: 'light', label: 'Light' },
+              { id: 'dim', label: 'Dim' },
+              { id: 'dark', label: 'Dark' },
             ]}
             onChange={(val) => handleChange('theme', val)}
           />
