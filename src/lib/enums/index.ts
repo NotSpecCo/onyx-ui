@@ -7,5 +7,4 @@ export * from './iconSize';
 export * from './openState';
 export * from './textSize';
 export * from './textWeight';
-export * from './theme';
 export * from './viewState';

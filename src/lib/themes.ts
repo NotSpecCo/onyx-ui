@@ -1,37 +1,8 @@
-import { Theme } from './enums';
-import type { BaseSettings } from './models';
-
-export type ThemeConfig = {
-  id: Theme;
-  values: {
-    // Global
-    accentColorH: number;
-    accentColorS: number;
-    accentColorL: number;
-
-    // Card
-    cardColorH: number;
-    cardColorS: number;
-    cardColorL: number;
-    textColorH: number;
-    textColorS: number;
-    textColorL: number;
-    focusColorA: number;
-
-    // Drawer
-    drawerColorH: number;
-    drawerColorS: number;
-    drawerColorL: number;
-    drawerTextColorH: number;
-    drawerTextColorS: number;
-    drawerTextColorL: number;
-    drawerFocusColorA: number;
-  };
-};
+import type { ThemeConfig, ThemeSettings } from './models';
 
 export const themes: ThemeConfig[] = [
   {
-    id: Theme.Light,
+    id: 'light',
     values: {
       // Global
       accentColorH: 0,
@@ -58,7 +29,7 @@ export const themes: ThemeConfig[] = [
     },
   },
   {
-    id: Theme.Dark,
+    id: 'dark',
     values: {
       // Global
       accentColorH: 0,
@@ -86,7 +57,7 @@ export const themes: ThemeConfig[] = [
   },
 ];
 
-export function applyTheme(settings: BaseSettings) {
+export function applyTheme(settings: ThemeSettings) {
   // Global
   document.documentElement.style.setProperty('--accent-color-h', `${settings.accentColorH}`);
   document.documentElement.style.setProperty('--accent-color-s', `${settings.accentColorS}%`);

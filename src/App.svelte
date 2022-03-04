@@ -6,6 +6,7 @@
   import type { SettingsContext } from './lib/models';
   import { registerAppMenu } from './lib/stores/view';
   import { applyTheme } from './lib/themes';
+  import type { Settings } from './models';
   import AppSettings from './routes/AppSettings.svelte';
   import Cards from './routes/Cards.svelte';
   import Drawer from './routes/Drawer.svelte';
@@ -17,7 +18,7 @@
   import { settings } from './stores/settings';
 
   registerAppMenu(AppMenu);
-  setContext<SettingsContext>(ContextKey.Settings, settings);
+  setContext<SettingsContext<Settings>>(ContextKey.Settings, settings);
 
   // Apply settings
   $: {

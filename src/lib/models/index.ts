@@ -5,3 +5,5 @@ export * from './DrawerAction';
 export * from './Navigation';
 export * from './SelectOption';
 export * from './SettingsContext';
+export * from './ThemeConfig';
+export * from './ThemeSettings';
