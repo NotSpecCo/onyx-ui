@@ -4,10 +4,10 @@
   import Card from '../lib/components/card/Card.svelte';
   import CardContent from '../lib/components/card/CardContent.svelte';
   import CardHeader from '../lib/components/card/CardHeader.svelte';
-  import CheckboxRow from '../lib/components/form/CheckboxRow.svelte';
   import ColorPickerRow from '../lib/components/form/ColorPickerRow.svelte';
   import NumericRangeRow from '../lib/components/form/NumericRangeRow.svelte';
   import SelectRow from '../lib/components/form/SelectRow.svelte';
+  import ToggleRow from '../lib/components/form/ToggleRow.svelte';
   import ListHeader from '../lib/components/list/ListHeader.svelte';
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
@@ -117,9 +117,9 @@
             onChange={(val) => handleChange('animations', val)}
           />
           <ListHeader title="Shortcut Keys" />
-          <CheckboxRow
+          <ToggleRow
             label="Enable"
-            checked={$settings.enableShortcutKeys}
+            value={$settings.enableShortcutKeys}
             onChange={(val) => handleChange('enableShortcutKeys', val)}
           />
           <SelectRow
@@ -226,9 +226,9 @@
       <Card cardId={$view.cards[2].id}>
         <CardHeader />
         <CardContent>
-          <CheckboxRow
+          <ToggleRow
             label="Show Hint Text"
-            checked={$settings.showHelpText}
+            value={$settings.showHelpText}
             onChange={(val) => handleChange('showHelpText', val)}
           />
         </CardContent>
