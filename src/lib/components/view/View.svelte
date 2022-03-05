@@ -2,9 +2,11 @@
   import { onDestroy } from 'svelte';
   import { location, pop } from 'svelte-spa-router';
   import { dpad } from '../../actions/dpad';
-  import { ViewState } from '../../enums';
+  import { OpenState, ViewState } from '../../enums';
+  import { menu } from '../../stores/menu';
   import { resetNavigation } from '../../stores/navigator';
   import { appMenu, resetView, updateView, view } from '../../stores/view';
+  import ContextMenu from '../contextMenu/ContextMenu.svelte';
   import ViewCards from './ViewCards.svelte';
 
   let menuHeight: number | null = null;
@@ -27,6 +29,7 @@
   onDestroy(() => {
     resetView();
     resetNavigation();
+    menu.reset();
   });
 </script>
 
@@ -74,6 +77,9 @@
     <slot />
     <slot name="dashboard" />
   </div>
+  {#if $menu.state > OpenState.Destroyed}
+    <ContextMenu />
+  {/if}
 </div>
 
 <style>

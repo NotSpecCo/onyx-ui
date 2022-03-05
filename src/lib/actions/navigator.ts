@@ -38,27 +38,27 @@ export function navigator(node: HTMLElement, config: Config) {
   }
 
   function handleKeyPress(ev: KeyboardEvent) {
+    const key = parseKey(ev);
     const groupActive = get(activeGroup)?.id === config.groupId;
 
     // Check if valid key
     const target = ev.target as HTMLElement | null;
-    const dpadKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter'];
+    const dpadKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'SoftRight'];
     const shortcutKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     if (
       !groupActive ||
-      ev.shiftKey || // Allow Shift+ArrowLeft/Right to trigger soft keys
-      ![...dpadKeys, ...shortcutKeys].includes(ev.key) ||
-      (!['ArrowUp', 'ArrowDown', 'Enter'].includes(ev.key) &&
+      ![...dpadKeys, ...shortcutKeys].includes(key) ||
+      (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&
         target?.tagName.toLowerCase() === 'input') ||
-      (!['ArrowUp', 'ArrowDown', 'Enter'].includes(ev.key) &&
+      (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&
         (target?.attributes as any).role?.value === 'textbox')
     ) {
       return;
     }
 
     // Handle card switching first
-    if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
-      if (config.enableCardSwitching) switchCard(ev.key === 'ArrowLeft' ? -1 : 1);
+    if (key === 'ArrowLeft' || key === 'ArrowRight') {
+      if (config.enableCardSwitching) switchCard(key === 'ArrowLeft' ? -1 : 1);
       return;
     }
 
@@ -69,16 +69,20 @@ export function navigator(node: HTMLElement, config: Config) {
     const currentItemIndex = items.findIndex((a) => a.dataset.navId === focusedItemId);
 
     // Handle Enter key
-    if (items[currentItemIndex] && ev.key === 'Enter') {
-      items[currentItemIndex].dispatchEvent(new CustomEvent('itemfocus'));
-      items[currentItemIndex].dispatchEvent(new CustomEvent('itemselect'));
+    if (key === 'Enter') {
+      items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemfocus'));
+      items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemselect'));
       return;
-    } else if (ev.key === 'Enter') {
+    }
+
+    // Handle SoftRight key
+    if (key === 'SoftRight') {
+      items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemmenu'));
       return;
     }
 
     // Handle shortcut keys
-    const shortcutItem = items.find((a) => a.dataset.navShortcut === ev.key);
+    const shortcutItem = items.find((a) => a.dataset.navShortcut === key);
     if (shortcutItem) {
       scrollIntoView(scroller, shortcutItem, 'auto');
       setSelectedId(config.groupId, shortcutItem.dataset.navId);
@@ -92,7 +96,7 @@ export function navigator(node: HTMLElement, config: Config) {
       shortcutItem.dispatchEvent(new CustomEvent('itemselect'));
 
       return;
-    } else if (shortcutKeys.includes(ev.key)) {
+    } else if (shortcutKeys.includes(key)) {
       return;
     }
 
@@ -100,7 +104,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (
       scroller &&
       (items.length === 0 || currentItemIndex === 0) &&
-      ev.key === 'ArrowUp' &&
+      key === 'ArrowUp' &&
       scroller.scrollTop > 0
     ) {
       scrollContent('up', scroller);
@@ -111,7 +115,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (
       scroller &&
       currentItemIndex === items.length - 1 &&
-      ev.key === 'ArrowDown' &&
+      key === 'ArrowDown' &&
       scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight
     ) {
       scrollContent('down', scroller);
@@ -120,10 +124,10 @@ export function navigator(node: HTMLElement, config: Config) {
 
     // Find next item and scroll to it
     let nextItem = null;
-    if (ev.key === 'ArrowUp' && currentItemIndex === 0) {
+    if (key === 'ArrowUp' && currentItemIndex === 0) {
       nextItem = null;
     } else {
-      const idx = getIndex(items, currentItemIndex, ev.key === 'ArrowUp' ? -1 : 1, true);
+      const idx = getIndex(items, currentItemIndex, key === 'ArrowUp' ? -1 : 1, true);
       nextItem = items[idx];
     }
 
@@ -166,6 +170,17 @@ export function navigator(node: HTMLElement, config: Config) {
     });
 
     return true;
+  }
+
+  function parseKey(ev: KeyboardEvent): string {
+    // Simulate soft keys for testing purposes
+    if (ev.shiftKey && ev.key === 'ArrowLeft') {
+      return 'SoftLeft';
+    }
+    if (ev.shiftKey && ev.key === 'ArrowRight') {
+      return 'SoftRight';
+    }
+    return ev.key;
   }
 
   document.addEventListener('keydown', handleKeyPress, false);

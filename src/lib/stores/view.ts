@@ -3,6 +3,8 @@ import { DataStatus, ViewState } from '../enums';
 import type { Card } from '../models';
 import { getIndex } from '../utils/array';
 
+// View
+
 type ViewConfig = {
   viewing: ViewState;
   dataStatus: DataStatus;
@@ -20,11 +22,6 @@ const defaultViewConfig: ViewConfig = {
 };
 
 export const view = writable<ViewConfig>(defaultViewConfig);
-export const appMenu = writable<any>(null);
-
-export function registerAppMenu(menu: any) {
-  appMenu.set(menu);
-}
 
 export function registerView(data: Partial<ViewConfig>) {
   view.set({ ...defaultViewConfig, ...data });
@@ -43,6 +40,16 @@ export function updateView(data: Partial<ViewConfig>) {
 export function resetView() {
   view.set(defaultViewConfig);
 }
+
+// App Menu
+
+export const appMenu = writable<any>(null);
+
+export function registerAppMenu(menu: any) {
+  appMenu.set(menu);
+}
+
+// Cards
 
 export function switchCard(value: 1 | -1) {
   const v = get(view);

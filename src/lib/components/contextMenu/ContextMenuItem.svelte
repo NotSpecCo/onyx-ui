@@ -1,19 +1,18 @@
 <script lang="ts">
   import { IconSize } from '../../enums';
-  import type { ContextMenu, Navigation } from '../../models';
+  import type { Navigation } from '../../models';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
-  export let imageUrl: string = null;
   export let icon: any = null;
-  export let primaryText: string = null;
-  export let secondaryText: string = null;
-  export let accentText: string = null;
+  export let imageUrl: string = null;
+  export let text: string;
+  export let workingText: string = null;
+  export let working = false;
   export let navi: Navigation;
-  export let contextMenu: ContextMenu = null;
 </script>
 
-<NaviItem {navi} {contextMenu}>
+<NaviItem {navi}>
   <div class="root">
     {#if icon}
       <div class="icon">
@@ -24,12 +23,10 @@
       <img class="image" src={imageUrl} alt="" />
     {/if}
     <div class="container">
-      <div class="primary">{primaryText}</div>
-      {#if secondaryText}
-        <div class="secondary">{secondaryText}</div>
-      {/if}
-      {#if accentText}
-        <div class="accent">{accentText}</div>
+      {#if working}
+        <div class="primary">{workingText || `${text}...`}</div>
+      {:else}
+        <div class="primary">{working ? workingText : text}</div>
       {/if}
     </div>
     {#if navi.shortcutKey}
@@ -67,19 +64,9 @@
     color: var(--secondary-text-color);
   }
 
-  .primary,
-  .secondary,
-  .accent {
+  .primary {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  .secondary {
-    font-size: 1.2rem;
-    color: var(--secondary-text-color);
-  }
-  .accent {
-    font-size: 1.2rem;
-    color: var(--accent-color);
   }
 </style>
