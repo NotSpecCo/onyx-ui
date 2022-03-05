@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { ContextKey, IconSize } from '../../enums';
+  import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
+  import { ContextKey, IconColor, IconSize } from '../../enums';
   import type { ContextMenu, Navigation, SettingsContext } from '../../models';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
@@ -40,6 +41,11 @@
     </div>
     {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
+    {/if}
+    {#if $settings.contextMenuIndicators && contextMenu}
+      <div class="menu-icon">
+        <Icon size={IconSize.Small} color={IconColor.Secondary}><MdMoreVert /></Icon>
+      </div>
     {/if}
   </div>
 </NaviItem>
@@ -92,5 +98,9 @@
   .accent {
     font-size: 1.2rem;
     color: var(--accent-color);
+  }
+
+  .menu-icon {
+    margin-right: -7px;
   }
 </style>

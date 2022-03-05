@@ -12,9 +12,12 @@ const defaultSettings: Settings = {
   borderRadius: 14,
   animations: Animations.Normal,
   showHelpText: true,
+  // Shortcuts
   enableShortcutKeys: true,
   shortcutKeyLocation: 'right',
   shortcutKeyColor: 'secondary',
+  // Context Menus
+  contextMenuIndicators: true,
   // Accent
   accentColorH: themes[0].values.accentColorH,
   accentColorS: themes[0].values.accentColorS,

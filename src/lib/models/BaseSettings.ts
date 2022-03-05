@@ -12,6 +12,8 @@ export type BaseSettings = ThemeSettings & {
   enableShortcutKeys: boolean;
   shortcutKeyLocation: 'left' | 'right' | 'hidden';
   shortcutKeyColor: 'primary' | 'secondary' | 'accent';
+  // Context Menus
+  contextMenuIndicators: boolean;
 
   showHelpText: boolean;
 };
