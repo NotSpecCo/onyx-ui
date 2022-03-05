@@ -90,7 +90,7 @@
   .card {
     border: 1px solid var(--card-border-color);
     box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
-    background-color: var(--card-primary-color);
+    background-color: var(--card-color);
     position: absolute;
     bottom: 0;
     left: 0;

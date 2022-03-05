@@ -1,14 +1,16 @@
 export type ThemeSettings = {
-  // Accent Color
-  accentColorH: number;
-  accentColorS: number;
-  accentColorL: number;
   // Card
   cardColorH: number;
   cardColorS: number;
   cardColorL: number;
+  // Accent Color
+  accentColorH: number;
+  accentColorS: number;
+  accentColorL: number;
+  // Text
   textColorH: number;
   textColorS: number;
   textColorL: number;
+
   focusColorA: number;
 };

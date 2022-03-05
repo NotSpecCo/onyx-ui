@@ -1,19 +1,20 @@
 :root {
   /* User Defined */
 
-  --text-color-h: 0;
-  --text-color-s: 0%;
-  --text-color-l: 0%;
+  --card-color-h: 210;
+  --card-color-s: 13%;
+  --card-color-l: 99%;
 
   --accent-color-h: 232;
   --accent-color-s: 64%;
   --accent-color-l: 54%;
 
-  --card-color-h: 210;
-  --card-color-s: 13%;
-  --card-color-l: 99%;
+  --text-color-h: 0;
+  --text-color-s: 0%;
+  --text-color-l: 0%;
 
   --focus-color-a: 20%;
+
   --radius: 14px;
   --animation-speed: 300ms;
   --regular-font-weight: 400;
@@ -28,7 +29,7 @@
   --default-a: 100%;
 
   --app-bg-color: hsla(0, 0%, 0%, 100%);
-  --primary-text-color: hsla(
+  --text-color: hsla(
     var(--text-color-h),
     var(--text-color-s),
     var(--text-color-l),
@@ -58,22 +59,10 @@
     var(--accent-color-l),
     var(--focus-color-a)
   );
-  --card-primary-color: hsla(
+  --card-color: hsla(
     var(--card-color-h),
     var(--card-color-s),
     var(--card-color-l),
-    var(--default-a)
-  );
-  --card-secondary-color: hsla(
-    var(--card-color-h),
-    var(--card-color-s),
-    var(--card-color-l),
-    var(--default-a)
-  );
-  --card-tertiary-color: hsla(
-    var(--card-color-h),
-    var(--card-color-s),
-    calc(var(--card-color-l) - 7%),
     var(--default-a)
   );
   --card-border-color: hsla(0, 0%, 100%, 20%);
@@ -90,7 +79,7 @@ body {
   background: var(--app-bg-color);
   font-family: 'Open Sans', sans-serif;
   font-weight: var(--regular-font-weight);
-  color: var(--primary-text-color);
+  color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;

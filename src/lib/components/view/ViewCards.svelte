@@ -42,8 +42,8 @@
     border-radius: var(--radius) var(--radius) 0 0;
   }
   .card-root {
-    background-color: var(--card-secondary-color);
-    color: var(--primary-text-color);
+    background-color: var(--card-color);
+    color: var(--text-color);
 
     border-radius: var(--radius) var(--radius) 0 0;
     padding-bottom: 20px;
@@ -67,7 +67,7 @@
     text-overflow: ellipsis;
   }
   .shortcut {
-    color: var(--card-secondary-text-color);
+    color: var(--secondary-text-color);
   }
   .card.focused {
     background-color: var(--focus-color);

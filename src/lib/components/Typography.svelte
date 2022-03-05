@@ -55,7 +55,7 @@
   }
 
   .primary {
-    color: var(--primary-text-color);
+    color: var(--text-color);
   }
   .secondary {
     color: var(--secondary-text-color);

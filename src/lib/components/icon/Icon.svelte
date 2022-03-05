@@ -2,7 +2,7 @@
   import { IconColor, IconSize } from '../../enums';
 
   export let size: IconSize | string = IconSize.Medium;
-  export let color: IconColor | string = 'var(--primary-text-color)';
+  export let color: IconColor | string = 'var(--text-color)';
   export let disabled = false;
 </script>
 

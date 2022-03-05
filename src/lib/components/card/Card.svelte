@@ -22,8 +22,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: var(--card-primary-color);
-    color: var(--primary-text-color);
+    background-color: var(--card-color);
+    color: var(--text-color);
     border-radius: var(--radius) var(--radius) var(--radius) var(--radius);
     border: 1px solid var(--card-border-color);
   }

@@ -47,8 +47,8 @@
   function handleChange(key: keyof Settings, val: any) {
     settings.updateOne(key, val);
 
-    if (key === 'theme') {
-      const theme = themes.find((a) => a.id === $settings.theme) ?? themes[0];
+    if (key === 'themeId') {
+      const theme = themes.find((a) => a.id === $settings.themeId) ?? themes[0];
 
       settings.update({
         accentColorH: theme.values.accentColorH,
@@ -134,13 +134,13 @@
           <ListHeader title="General" />
           <SelectRow
             label="Theme"
-            value={$settings.theme}
+            value={$settings.themeId}
             options={[
               { id: 'light', label: 'Light' },
               { id: 'dim', label: 'Dim' },
               { id: 'dark', label: 'Dark' },
             ]}
-            onChange={(val) => handleChange('theme', val)}
+            onChange={(val) => handleChange('themeId', val)}
           />
 
           <ColorPickerRow

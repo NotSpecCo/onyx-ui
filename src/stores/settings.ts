@@ -5,7 +5,7 @@ import { getStorageItem, setStorageItem, StorageKey } from '../lib/utils/storage
 import type { Settings } from '../models';
 
 const defaultSettings: Settings = {
-  theme: themes[0].id,
+  themeId: themes[0].id,
   textSize: TextSize.Medium,
   textWeight: TextWeight.Medium,
   displayDensity: Density.Normal,
@@ -20,6 +20,7 @@ const defaultSettings: Settings = {
   cardColorH: themes[0].values.cardColorH,
   cardColorS: themes[0].values.cardColorS,
   cardColorL: themes[0].values.cardColorL,
+  //Text
   textColorH: themes[0].values.textColorH,
   textColorS: themes[0].values.textColorS,
   textColorL: themes[0].values.textColorL,
@@ -29,7 +30,7 @@ const defaultSettings: Settings = {
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);
 
 function createSettings() {
-  const { subscribe, update, set } = writable<Settings>({
+  const { subscribe, update } = writable<Settings>({
     ...defaultSettings,
     ...storedSettings,
   });
