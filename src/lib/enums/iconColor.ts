@@ -1,4 +1,6 @@
 export enum IconColor {
-  Light = '#ffffff',
-  Dark = '#000000',
+  Primary,
+  Secondary,
+  Tertiary,
+  Accent,
 }
