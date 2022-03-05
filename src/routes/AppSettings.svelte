@@ -27,9 +27,9 @@
         onSelect: () => replace(`/settings/display`),
       },
       {
-        id: 'theme',
-        title: 'Theme',
-        onSelect: () => replace(`/settings/theme`),
+        id: 'features',
+        title: 'Features',
+        onSelect: () => replace(`/settings/features`),
       },
       {
         id: 'misc',
@@ -49,7 +49,6 @@
 
     if (key === 'themeId') {
       const theme = themes.find((a) => a.id === $settings.themeId) ?? themes[0];
-
       settings.update({
         accentColorH: theme.values.accentColorH,
         accentColorS: theme.values.accentColorS,
@@ -73,7 +72,95 @@
       <Card cardId={$view.cards[0].id}>
         <CardHeader />
         <CardContent>
-          <ListHeader title="Global" />
+          <ListHeader title="General" />
+          <SelectRow
+            label="Theme"
+            value={$settings.themeId}
+            options={[
+              { id: 'light', label: 'Light' },
+              { id: 'dim', label: 'Dim' },
+              { id: 'dark', label: 'Dark' },
+            ]}
+            onChange={(val) => handleChange('themeId', val)}
+          />
+          <ColorPickerRow
+            label="Accent Color"
+            value={{
+              h: $settings.accentColorH,
+              s: $settings.accentColorS,
+              l: $settings.accentColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                accentColorH: val.h,
+                accentColorS: val.s,
+                accentColorL: val.l,
+              })}
+          />
+          <SelectRow
+            label="Display Density"
+            value={$settings.displayDensity}
+            options={[
+              { id: Density.Compact, label: 'Compact' },
+              { id: Density.Normal, label: 'Normal' },
+              { id: Density.Spacious, label: 'Spacious' },
+            ]}
+            onChange={(val) => handleChange('displayDensity', val)}
+          />
+          <ListHeader title="Cards" />
+          <ColorPickerRow
+            label="Background Color"
+            value={{
+              h: $settings.cardColorH,
+              s: $settings.cardColorS,
+              l: $settings.cardColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                cardColorH: val.h,
+                cardColorS: val.s,
+                cardColorL: val.l,
+              })}
+          />
+          <NumericRangeRow
+            label="Border Radius"
+            value={$settings.borderRadius}
+            valueLabel="px"
+            min={0}
+            max={32}
+            onChange={(val) => handleChange('borderRadius', val)}
+          />
+          <NumericRangeRow
+            label="Focus Strength"
+            value={$settings.focusColorA}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('focusColorA', val)}
+          />
+          <NumericRangeRow
+            label="Divider Strength"
+            value={$settings.dividerColorA}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('dividerColorA', val)}
+          />
+          <ListHeader title="Text" />
+          <ColorPickerRow
+            label="Text Color"
+            value={{
+              h: $settings.textColorH,
+              s: $settings.textColorS,
+              l: $settings.textColorL,
+            }}
+            onChange={(val) =>
+              settings.update({
+                textColorH: val.h,
+                textColorS: val.s,
+                textColorL: val.l,
+              })}
+          />
           <SelectRow
             label="Text Size"
             value={$settings.textSize}
@@ -96,18 +183,15 @@
             ]}
             onChange={(val) => handleChange('textWeight', val)}
           />
+        </CardContent>
+      </Card>
+    {:else if params.cardId === $view.cards[1].id}
+      <Card cardId={$view.cards[1].id}>
+        <CardHeader />
+        <CardContent>
+          <ListHeader title="General" />
           <SelectRow
-            label="Display Density"
-            value={$settings.displayDensity}
-            options={[
-              { id: Density.Compact, label: 'Compact' },
-              { id: Density.Normal, label: 'Normal' },
-              { id: Density.Spacious, label: 'Spacious' },
-            ]}
-            onChange={(val) => handleChange('displayDensity', val)}
-          />
-          <SelectRow
-            label="Animations"
+            label="Animation Speed"
             value={$settings.animations}
             options={[
               { id: Animations.Instant, label: 'Instant' },
@@ -143,92 +227,6 @@
             ]}
             onChange={(val) => handleChange('shortcutKeyColor', val)}
           />
-          <ListHeader title="Cards" />
-          <NumericRangeRow
-            label="Border Radius"
-            value={$settings.borderRadius}
-            valueLabel="px"
-            min={0}
-            max={32}
-            onChange={(val) => handleChange('borderRadius', val)}
-          />
-        </CardContent>
-      </Card>
-    {:else if params.cardId === $view.cards[1].id}
-      <Card cardId={$view.cards[1].id}>
-        <CardHeader />
-        <CardContent>
-          <ListHeader title="General" />
-          <SelectRow
-            label="Theme"
-            value={$settings.themeId}
-            options={[
-              { id: 'light', label: 'Light' },
-              { id: 'dim', label: 'Dim' },
-              { id: 'dark', label: 'Dark' },
-            ]}
-            onChange={(val) => handleChange('themeId', val)}
-          />
-
-          <ColorPickerRow
-            label="Accent Color"
-            value={{
-              h: $settings.accentColorH,
-              s: $settings.accentColorS,
-              l: $settings.accentColorL,
-            }}
-            onChange={(val) =>
-              settings.update({
-                accentColorH: val.h,
-                accentColorS: val.s,
-                accentColorL: val.l,
-              })}
-          />
-          <ListHeader title="Cards" />
-          <ColorPickerRow
-            label="Background Color"
-            value={{
-              h: $settings.cardColorH,
-              s: $settings.cardColorS,
-              l: $settings.cardColorL,
-            }}
-            onChange={(val) =>
-              settings.update({
-                cardColorH: val.h,
-                cardColorS: val.s,
-                cardColorL: val.l,
-              })}
-          />
-          <ColorPickerRow
-            label="Text Color"
-            value={{
-              h: $settings.textColorH,
-              s: $settings.textColorS,
-              l: $settings.textColorL,
-            }}
-            onChange={(val) =>
-              settings.update({
-                textColorH: val.h,
-                textColorS: val.s,
-                textColorL: val.l,
-              })}
-          />
-          <NumericRangeRow
-            label="Focus Strength"
-            value={$settings.focusColorA}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('focusColorA', val)}
-          />
-          <NumericRangeRow
-            label="Divider Strength"
-            value={$settings.dividerColorA}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('dividerColorA', val)}
-          />
         </CardContent>
       </Card>
     {:else if params.cardId === $view.cards[2].id}
@@ -236,7 +234,7 @@
         <CardHeader />
         <CardContent>
           <ToggleRow
-            label="Show Hint Text"
+            label="Show Help Text"
             value={$settings.showHelpText}
             onChange={(val) => handleChange('showHelpText', val)}
           />
