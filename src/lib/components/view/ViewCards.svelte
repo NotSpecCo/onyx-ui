@@ -14,7 +14,7 @@
 </script>
 
 <NavGroup groupId={NAV_GROUP_ID}>
-  {#if $settings.showHintText}
+  {#if $settings.showHelpText}
     <Typography align="center" type="caption">Press again for app menu</Typography>
   {/if}
   <div data-nav-scroller>
@@ -27,8 +27,11 @@
           data-nav-shortcut={i + 1}
           on:itemselect={() => updateView({ viewing: ViewState.Content, activeCardId: card.id })}
         >
+          {#if $settings.shortcutKeyLocation === 'left' && shortcutFromIndex(i)}
+            <div class="shortcut">{shortcutFromIndex(i)}</div>
+          {/if}
           <div class="title">{card.title}</div>
-          {#if shortcutFromIndex(i)}
+          {#if $settings.shortcutKeyLocation === 'right' && shortcutFromIndex(i)}
             <div class="shortcut">{shortcutFromIndex(i)}</div>
           {/if}
         </div>
@@ -57,7 +60,6 @@
     padding-bottom: 20px;
     margin-bottom: -15px;
     display: flex;
-    justify-content: space-between;
     font-weight: var(--bold-font-weight);
   }
   .title {
@@ -65,9 +67,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: 1;
   }
   .shortcut {
-    color: var(--secondary-text-color);
+    color: var(--shortcut-color);
+  }
+  .shortcut:first-child {
+    margin-right: 5px;
+  }
+  .shortcut:last-child {
+    margin-left: 5px;
   }
   .card.focused {
     background-color: var(--focus-color);

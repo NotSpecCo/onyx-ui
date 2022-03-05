@@ -7,6 +7,11 @@ export type BaseSettings = ThemeSettings & {
   displayDensity: Density;
   borderRadius: number;
   animations: Animations;
-  showHintText: boolean;
   themeId: string;
+  // Shortcuts
+  enableShortcutKeys: boolean;
+  shortcutKeyLocation: 'left' | 'right' | 'hidden';
+  shortcutKeyColor: 'primary' | 'secondary' | 'accent';
+
+  showHelpText: boolean;
 };

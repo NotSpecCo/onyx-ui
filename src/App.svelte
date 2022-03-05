@@ -9,10 +9,10 @@
   import type { Settings } from './models';
   import AppSettings from './routes/AppSettings.svelte';
   import Cards from './routes/Cards.svelte';
+  import ContextMenus from './routes/ContextMenus.svelte';
   import Form from './routes/Form.svelte';
   import Home from './routes/Home.svelte';
   import Lists from './routes/Lists.svelte';
-  import Modals from './routes/Modals.svelte';
   import Redirect from './routes/Redirect.svelte';
   import Typography from './routes/Typography.svelte';
   import { settings } from './stores/settings';
@@ -24,6 +24,14 @@
   $: {
     // Theme
     applyTheme($settings);
+
+    if ($settings.shortcutKeyColor === 'accent') {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--accent-color)`);
+    } else if ($settings.shortcutKeyColor === 'secondary') {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--secondary-text-color)`);
+    } else {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--primary-text-color)`);
+    }
 
     // Text Size
     const textSize = {
@@ -67,7 +75,7 @@
     '/cards/:cardId': Cards,
     '/typography/:cardId': Typography,
     '/lists/:cardId': Lists,
-    '/modals/:cardId': Modals,
+    '/contextMenus/:cardId': ContextMenus,
     '/forms/:cardId': Form,
     '/settings/:cardId': AppSettings,
     '*': Redirect,

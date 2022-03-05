@@ -59,7 +59,7 @@
     <NavGroup groupId="menu">
       <slot />
     </NavGroup>
-    {#if $settings.showHintText}
+    {#if $settings.showHelpText}
       <div class="footer">Save</div>
     {/if}
   </div>

@@ -116,6 +116,32 @@
             ]}
             onChange={(val) => handleChange('animations', val)}
           />
+          <ListHeader title="Shortcut Keys" />
+          <CheckboxRow
+            label="Enable"
+            checked={$settings.enableShortcutKeys}
+            onChange={(val) => handleChange('enableShortcutKeys', val)}
+          />
+          <SelectRow
+            label="Position"
+            value={$settings.shortcutKeyLocation}
+            options={[
+              { id: 'left', label: 'Left' },
+              { id: 'right', label: 'Right' },
+              { id: 'hidden', label: 'Hidden' },
+            ]}
+            onChange={(val) => handleChange('shortcutKeyLocation', val)}
+          />
+          <SelectRow
+            label="Color"
+            value={$settings.shortcutKeyColor}
+            options={[
+              { id: 'primary', label: 'Primary' },
+              { id: 'secondary', label: 'Secondary' },
+              { id: 'accent', label: 'Accent' },
+            ]}
+            onChange={(val) => handleChange('shortcutKeyColor', val)}
+          />
           <ListHeader title="Cards" />
           <NumericRangeRow
             label="Border Radius"
@@ -202,8 +228,8 @@
         <CardContent>
           <CheckboxRow
             label="Show Hint Text"
-            checked={$settings.showHintText}
-            onChange={(val) => handleChange('showHintText', val)}
+            checked={$settings.showHelpText}
+            onChange={(val) => handleChange('showHelpText', val)}
           />
         </CardContent>
       </Card>

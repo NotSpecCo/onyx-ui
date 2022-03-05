@@ -66,6 +66,7 @@
     var(--default-a)
   );
   --card-border-color: hsla(0, 0%, 100%, 20%);
+  --shortcut-color: var(--secondary-text-color);
 
   font-size: var(--base-font-size);
 }

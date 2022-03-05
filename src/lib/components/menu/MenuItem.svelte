@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { IconSize } from '../../enums';
-  import type { Navigation } from '../../models';
+  import { getContext } from 'svelte';
+  import { ContextKey, IconSize } from '../../enums';
+  import type { Navigation, SettingsContext } from '../../models';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
@@ -8,10 +9,15 @@
   export let primaryText: string = null;
   export let secondaryText: string = null;
   export let navi: Navigation;
+
+  const settings = getContext<SettingsContext>(ContextKey.Settings);
 </script>
 
 <NaviItem {navi}>
   <div class="root">
+    {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
+      <div class="shortcut">{navi.shortcutKey}</div>
+    {/if}
     {#if icon}
       <div class="icon">
         <Icon size={IconSize.Small}><svelte:component this={icon} /></Icon>
@@ -23,7 +29,7 @@
         <div class="secondary">{secondaryText}</div>
       {/if}
     </div>
-    {#if navi.shortcutKey}
+    {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
   </div>
@@ -47,9 +53,14 @@
   }
 
   .shortcut {
-    margin-left: 5px;
     font-weight: var(--bold-font-weight);
-    color: var(--secondary-text-color);
+    color: var(--shortcut-color);
+  }
+  .shortcut:first-child {
+    margin-right: 5px;
+  }
+  .shortcut:last-child {
+    margin-left: 5px;
   }
 
   .primary,

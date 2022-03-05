@@ -16,6 +16,7 @@ type Config = {
   groupId: string;
   initialFocusedId?: string;
   enableCardSwitching?: boolean;
+  enableShortcuts?: boolean;
   updateRoute?: boolean;
   viewLoaded?: boolean;
 };
@@ -48,6 +49,7 @@ export function navigator(node: HTMLElement, config: Config) {
     if (
       !groupActive ||
       ![...dpadKeys, ...shortcutKeys].includes(key) ||
+      (shortcutKeys.includes(key) && !config.enableShortcuts) ||
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&
         target?.tagName.toLowerCase() === 'input') ||
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&

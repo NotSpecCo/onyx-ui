@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
+  import { getContext, setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
   import { ContextKey, DataStatus } from '../../enums';
+  import type { SettingsContext } from '../../models';
   import { view } from '../../stores/view';
 
   export let groupId: string;
@@ -10,6 +11,8 @@
   export let updateRoute = false;
 
   setContext(ContextKey.NavGroup, groupId);
+
+  const settings = getContext<SettingsContext>(ContextKey.Settings);
 </script>
 
 <div
@@ -17,6 +20,7 @@
     groupId,
     initialFocusedId,
     enableCardSwitching,
+    enableShortcuts: $settings.enableShortcutKeys,
     updateRoute,
     viewLoaded: $view.dataStatus === DataStatus.Loaded,
   }}

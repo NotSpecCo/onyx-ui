@@ -11,7 +11,10 @@ const defaultSettings: Settings = {
   displayDensity: Density.Normal,
   borderRadius: 14,
   animations: Animations.Normal,
-  showHintText: true,
+  showHelpText: true,
+  enableShortcutKeys: true,
+  shortcutKeyLocation: 'right',
+  shortcutKeyColor: 'secondary',
   // Accent
   accentColorH: themes[0].values.accentColorH,
   accentColorS: themes[0].values.accentColorS,
