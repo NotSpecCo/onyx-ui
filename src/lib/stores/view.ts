@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store';
 import { DataStatus, ViewState } from '../enums';
-import type { Card, DrawerAction } from '../models';
+import type { Card } from '../models';
 import { getIndex } from '../utils/array';
 
 type ViewConfig = {
@@ -9,7 +9,6 @@ type ViewConfig = {
   cards: Card[];
   activeCardId: string | null;
   wrapCards: boolean;
-  drawerItems: DrawerAction[];
 };
 
 const defaultViewConfig: ViewConfig = {
@@ -18,7 +17,6 @@ const defaultViewConfig: ViewConfig = {
   cards: [],
   activeCardId: null,
   wrapCards: false,
-  drawerItems: [],
 };
 
 export const view = writable<ViewConfig>(defaultViewConfig);

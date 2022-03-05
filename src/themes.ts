@@ -20,15 +20,6 @@ export const themes: ThemeConfig<Theme>[] = [
       textColorS: 0,
       textColorL: 100,
       focusColorA: 20,
-
-      // Drawer
-      drawerColorH: 0,
-      drawerColorS: 0,
-      drawerColorL: 0,
-      drawerTextColorH: 0,
-      drawerTextColorS: 0,
-      drawerTextColorL: 100,
-      drawerFocusColorA: 20,
     },
   },
 ];

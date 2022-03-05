@@ -23,7 +23,7 @@
   const menuItems: MenuItem[] = [
     { id: 'home', text: 'Home', route: '/home', icon: MdHome },
     { id: 'lists', text: 'Lists', route: '/lists/info', icon: MdList },
-    { id: 'drawer', text: 'Drawer', route: '/drawer/info', icon: MdExpandLess },
+    { id: 'modal', text: 'Modals', route: '/modals/info', icon: MdExpandLess },
     { id: 'cards', text: 'Cards', route: '/cards/info', icon: MdContentCopy },
     { id: 'typography', text: 'Typography', route: '/typography/info', icon: MdTextFields },
     { id: 'buttons', text: 'Buttons', route: '/buttons/info', icon: MdCrop169 },

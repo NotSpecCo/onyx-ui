@@ -17,15 +17,6 @@ export const themes: ThemeConfig[] = [
       textColorS: 0,
       textColorL: 0,
       focusColorA: 10,
-
-      // Drawer
-      drawerColorH: 0,
-      drawerColorS: 0,
-      drawerColorL: 0,
-      drawerTextColorH: 0,
-      drawerTextColorS: 0,
-      drawerTextColorL: 100,
-      drawerFocusColorA: 10,
     },
   },
   {
@@ -44,15 +35,6 @@ export const themes: ThemeConfig[] = [
       textColorS: 0,
       textColorL: 100,
       focusColorA: 20,
-
-      // Drawer
-      drawerColorH: 0,
-      drawerColorS: 0,
-      drawerColorL: 0,
-      drawerTextColorH: 0,
-      drawerTextColorS: 0,
-      drawerTextColorL: 100,
-      drawerFocusColorA: 20,
     },
   },
 ];
@@ -71,25 +53,4 @@ export function applyTheme(settings: ThemeSettings) {
   document.documentElement.style.setProperty('--text-color-s', `${settings.textColorS}%`);
   document.documentElement.style.setProperty('--text-color-l', `${settings.textColorL}%`);
   document.documentElement.style.setProperty('--focus-color-a', `${settings.focusColorA}%`);
-
-  // Drawer
-  document.documentElement.style.setProperty('--drawer-color-h', `${settings.drawerColorH}`);
-  document.documentElement.style.setProperty('--drawer-color-s', `${settings.drawerColorS}%`);
-  document.documentElement.style.setProperty('--drawer-color-l', `${settings.drawerColorL}%`);
-  document.documentElement.style.setProperty(
-    '--drawer-text-color-h',
-    `${settings.drawerTextColorH}`
-  );
-  document.documentElement.style.setProperty(
-    '--drawer-text-color-s',
-    `${settings.drawerTextColorS}%`
-  );
-  document.documentElement.style.setProperty(
-    '--drawer-text-color-l',
-    `${settings.drawerTextColorL}%`
-  );
-  document.documentElement.style.setProperty(
-    '--drawer-focus-color-a',
-    `${settings.drawerFocusColorA}%`
-  );
 }

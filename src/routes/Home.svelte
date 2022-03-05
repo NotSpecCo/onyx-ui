@@ -9,25 +9,7 @@
   import { DataStatus } from '../lib/enums';
   import { registerView, updateView } from '../lib/stores/view';
 
-  registerView({
-    drawerItems: [
-      {
-        id: '1',
-        primaryText: 'Drawer action 1',
-        onSelect: () => console.log('home select drawer 1'),
-      },
-      {
-        id: '2',
-        primaryText: 'Drawer action 2',
-        onSelect: () => console.log('home select drawer 2'),
-      },
-      {
-        id: '3',
-        primaryText: 'Drawer action 3',
-        onSelect: () => console.log('home select drawer 3'),
-      },
-    ],
-  });
+  registerView({});
 
   onMount(async () => {
     updateView({ dataStatus: DataStatus.Loaded });

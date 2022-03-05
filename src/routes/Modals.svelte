@@ -11,25 +11,7 @@
 
   export let params: { cardId: string };
 
-  registerView({
-    drawerItems: [
-      {
-        id: '1',
-        primaryText: 'Drawer action 1',
-        onSelect: () => console.log('home select drawer 1'),
-      },
-      {
-        id: '2',
-        primaryText: 'Drawer action 2',
-        onSelect: () => console.log('home select drawer 2'),
-      },
-      {
-        id: '3',
-        primaryText: 'Drawer action 3',
-        onSelect: () => console.log('home select drawer 3'),
-      },
-    ],
-  });
+  registerView({});
 
   onMount(async () => {
     updateView({ dataStatus: DataStatus.Loaded });
@@ -39,7 +21,7 @@
 <View>
   <ViewContent>
     <Card>
-      <CardHeader title="Drawer" />
+      <CardHeader title="Modals" />
       <CardContent>
         <Typography>
           The appbar lives at the bottom of every screen. You can press{' '}

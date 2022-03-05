@@ -28,23 +28,6 @@
       { id: 'images', title: 'List With Images', onSelect: () => replace(`/lists/images`) },
     ],
     activeCardId: params.cardId ?? 'info',
-    drawerItems: [
-      {
-        id: '1',
-        primaryText: 'Drawer action 1',
-        onSelect: () => console.log('home select drawer 1'),
-      },
-      {
-        id: '2',
-        primaryText: 'Drawer action 2',
-        onSelect: () => console.log('home select drawer 2'),
-      },
-      {
-        id: '3',
-        primaryText: 'Drawer action 3',
-        onSelect: () => console.log('home select drawer 3'),
-      },
-    ],
   });
 
   let items = new Array(10).fill(null);

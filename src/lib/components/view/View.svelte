@@ -5,12 +5,10 @@
   import { ViewState } from '../../enums';
   import { resetNavigation } from '../../stores/navigator';
   import { appMenu, resetView, updateView, view } from '../../stores/view';
-  import Drawer from '../drawer/Drawer.svelte';
   import ViewCards from './ViewCards.svelte';
 
   let menuHeight: number | null = null;
   let cardsHeight: number | null = null;
-  let drawerHeight: number | null = null;
 
   let offset = 0;
   $: {
@@ -20,9 +18,6 @@
         break;
       case ViewState.Cards:
         offset = cardsHeight;
-        break;
-      case ViewState.Drawer:
-        offset = -drawerHeight;
         break;
       default:
         offset = 0;
@@ -37,7 +32,6 @@
 
 <div
   class="root"
-  class:end={$view.viewing === ViewState.Drawer}
   use:dpad={{
     onSoftLeft: () => {
       if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
@@ -49,12 +43,6 @@
       } else {
         updateView({ viewing: ViewState.Content });
       }
-      return true;
-    },
-    onSoftRight: () => {
-      updateView({
-        viewing: $view.viewing === ViewState.Drawer ? ViewState.Content : ViewState.Drawer,
-      });
       return true;
     },
     onBackspace: () => {
@@ -86,11 +74,6 @@
     <slot />
     <slot name="dashboard" />
   </div>
-  <div bind:clientHeight={drawerHeight}>
-    {#if $view.viewing === ViewState.Drawer}
-      <Drawer />
-    {/if}
-  </div>
 </div>
 
 <style>
@@ -101,9 +84,7 @@
     flex-direction: column;
     overflow: hidden;
   }
-  .end {
-    justify-content: flex-end;
-  }
+
   .content {
     position: absolute;
     top: 0;

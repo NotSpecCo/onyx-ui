@@ -61,13 +61,6 @@
         textColorS: theme.values.textColorS,
         focusColorA: theme.values.focusColorA,
         textColorL: theme.values.textColorL,
-        drawerColorH: theme.values.drawerColorH,
-        drawerColorS: theme.values.drawerColorS,
-        drawerColorL: theme.values.drawerColorL,
-        drawerTextColorH: theme.values.drawerTextColorH,
-        drawerTextColorS: theme.values.drawerTextColorS,
-        drawerTextColorL: theme.values.drawerTextColorL,
-        drawerFocusColorA: theme.values.drawerFocusColorA,
       });
     }
   }
@@ -200,43 +193,6 @@
             min={0}
             max={100}
             onChange={(val) => handleChange('focusColorA', val)}
-          />
-          <ListHeader title="Drawer" />
-          <ColorPickerRow
-            label="Background Color"
-            value={{
-              h: $settings.drawerColorH,
-              s: $settings.drawerColorS,
-              l: $settings.drawerColorL,
-            }}
-            onChange={(val) =>
-              settings.update({
-                drawerColorH: val.h,
-                drawerColorS: val.s,
-                drawerColorL: val.l,
-              })}
-          />
-          <ColorPickerRow
-            label="Text Color"
-            value={{
-              h: $settings.drawerTextColorH,
-              s: $settings.drawerTextColorS,
-              l: $settings.drawerTextColorL,
-            }}
-            onChange={(val) =>
-              settings.update({
-                drawerTextColorH: val.h,
-                drawerTextColorS: val.s,
-                drawerTextColorL: val.l,
-              })}
-          />
-          <NumericRangeRow
-            label="Focus Strength"
-            value={$settings.drawerFocusColorA}
-            valueLabel="%"
-            min={0}
-            max={100}
-            onChange={(val) => handleChange('drawerFocusColorA', val)}
           />
         </CardContent>
       </Card>

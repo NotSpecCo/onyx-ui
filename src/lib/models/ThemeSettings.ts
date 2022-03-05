@@ -11,13 +11,4 @@ export type ThemeSettings = {
   textColorS: number;
   textColorL: number;
   focusColorA: number;
-  // Drawer
-  drawerColorH: number;
-  drawerColorS: number;
-  drawerColorL: number;
-  drawerTextColorH: number;
-  drawerTextColorS: number;
-  drawerTextColorL: number;
-  // Focus Color
-  drawerFocusColorA: number;
 };
