@@ -59,8 +59,9 @@
         cardColorL: theme.values.cardColorL,
         textColorH: theme.values.textColorH,
         textColorS: theme.values.textColorS,
-        focusColorA: theme.values.focusColorA,
         textColorL: theme.values.textColorL,
+        focusColorA: theme.values.focusColorA,
+        dividerColorA: theme.values.dividerColorA,
       });
     }
   }
@@ -219,6 +220,14 @@
             min={0}
             max={100}
             onChange={(val) => handleChange('focusColorA', val)}
+          />
+          <NumericRangeRow
+            label="Divider Strength"
+            value={$settings.dividerColorA}
+            valueLabel="%"
+            min={0}
+            max={100}
+            onChange={(val) => handleChange('dividerColorA', val)}
           />
         </CardContent>
       </Card>

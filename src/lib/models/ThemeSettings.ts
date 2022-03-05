@@ -13,4 +13,5 @@ export type ThemeSettings = {
   textColorL: number;
 
   focusColorA: number;
+  dividerColorA: number;
 };

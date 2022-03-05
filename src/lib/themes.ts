@@ -17,6 +17,7 @@ export const themes: ThemeConfig[] = [
       textColorL: 0,
 
       focusColorA: 10,
+      dividerColorA: 10,
     },
   },
   {
@@ -35,6 +36,7 @@ export const themes: ThemeConfig[] = [
       textColorL: 100,
 
       focusColorA: 20,
+      dividerColorA: 10,
     },
   },
 ];
@@ -53,4 +55,5 @@ export function applyTheme(settings: ThemeSettings) {
   document.documentElement.style.setProperty('--text-color-l', `${settings.textColorL}%`);
 
   document.documentElement.style.setProperty('--focus-color-a', `${settings.focusColorA}%`);
+  document.documentElement.style.setProperty('--divider-color-a', `${settings.dividerColorA}%`);
 }

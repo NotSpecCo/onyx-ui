@@ -16,21 +16,19 @@ const defaultSettings: Settings = {
   enableShortcutKeys: true,
   shortcutKeyLocation: 'right',
   shortcutKeyColor: 'secondary',
-  // Context Menus
   contextMenuIndicators: true,
-  // Accent
+  // Theme
   accentColorH: themes[0].values.accentColorH,
   accentColorS: themes[0].values.accentColorS,
   accentColorL: themes[0].values.accentColorL,
-  // Card
   cardColorH: themes[0].values.cardColorH,
   cardColorS: themes[0].values.cardColorS,
   cardColorL: themes[0].values.cardColorL,
-  //Text
   textColorH: themes[0].values.textColorH,
   textColorS: themes[0].values.textColorS,
   textColorL: themes[0].values.textColorL,
   focusColorA: themes[0].values.focusColorA,
+  dividerColorA: themes[0].values.dividerColorA,
 };
 
 const storedSettings = getStorageItem<Settings>(StorageKey.Settings);

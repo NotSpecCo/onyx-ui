@@ -19,6 +19,7 @@ export const themes: ThemeConfig[] = [
       textColorL: 100,
 
       focusColorA: 20,
+      dividerColorA: 10,
     },
   },
 ];

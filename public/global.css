@@ -14,6 +14,7 @@
   --text-color-l: 0%;
 
   --focus-color-a: 20%;
+  --divider-color-a: 10%;
 
   --radius: 14px;
   --animation-speed: 300ms;
@@ -23,10 +24,9 @@
 
   /* Computed */
 
+  --default-a: 100%;
   --primary-text-a: 88%;
   --secondary-text-a: 50%;
-  --divider-a: 10%;
-  --default-a: 100%;
 
   --app-bg-color: hsla(0, 0%, 0%, 100%);
   --text-color: hsla(
@@ -45,7 +45,7 @@
     var(--text-color-h),
     var(--text-color-s),
     var(--text-color-l),
-    var(--divider-a)
+    var(--divider-color-a)
   );
   --accent-color: hsla(
     var(--accent-color-h),
