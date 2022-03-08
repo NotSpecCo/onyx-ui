@@ -1,68 +1,58 @@
 import { get, writable } from 'svelte/store';
-import { DataStatus, ViewState } from '../enums';
-import type { Card } from '../models';
-import { getIndex } from '../utils/array';
+import { OpenState } from '../enums';
+import type { ContextMenu } from '../models';
+import { delay } from '../utils/delay';
 
-// View
+type MenuConfig = ContextMenu & {
+  state: OpenState;
+  animationSpeed: number;
+};
+
+const defaultMenuConfig: MenuConfig = {
+  title: 'Context Menu',
+  items: [],
+  state: OpenState.Destroyed,
+  animationSpeed: 500,
+};
 
 type ViewConfig = {
-  viewing: ViewState;
-  dataStatus: DataStatus;
-  cards: Card[];
-  activeCardId: string | null;
-  wrapCards: boolean;
+  menuState: OpenState;
+  stackState: OpenState;
+};
+const defaultConfig: ViewConfig = {
+  menuState: OpenState.Closed,
+  stackState: OpenState.Closed,
 };
 
-const defaultViewConfig: ViewConfig = {
-  viewing: ViewState.Content,
-  dataStatus: DataStatus.Init,
-  cards: [],
-  activeCardId: null,
-  wrapCards: false,
-};
+function createView() {
+  const view = writable<ViewConfig>(defaultConfig);
+  const menu = writable<MenuConfig>(defaultMenuConfig);
 
-export const view = writable<ViewConfig>(defaultViewConfig);
-
-export function registerView(data: Partial<ViewConfig>) {
-  view.set({ ...defaultViewConfig, ...data });
-}
-
-export function updateView(data: Partial<ViewConfig>) {
-  view.update((val) => ({ ...val, ...data }));
-
-  if (data.activeCardId) {
-    get(view)
-      .cards.find((a) => a.id === data.activeCardId)
-      ?.onSelect?.();
-  }
-}
-
-export function resetView() {
-  view.set(defaultViewConfig);
-}
-
-// App Menu
-
-export const appMenu = writable<any>(null);
-
-export function registerAppMenu(menu: any) {
-  appMenu.set(menu);
-}
-
-// Cards
-
-export function switchCard(value: 1 | -1) {
-  const v = get(view);
-
-  if (v.cards.length < 2) {
-    return;
+  async function open(config: Omit<MenuConfig, 'state'>) {
+    if (get(menu).state >= OpenState.Opening) {
+      return;
+    }
+    menu.set({ ...config, state: OpenState.Closed });
+    await delay(0);
+    menu.update((val) => ({ ...val, state: OpenState.Opening }));
+    await delay(config.animationSpeed);
+    menu.update((val) => ({ ...val, state: OpenState.Open }));
   }
 
-  const current = v.cards.findIndex((a) => a.id === get(view).activeCardId);
-  const next = getIndex(v.cards, current, value, v.wrapCards);
+  async function close() {
+    if (get(menu).state !== OpenState.Open) {
+      return;
+    }
+    menu.update((val) => ({ ...val, state: OpenState.Open }));
+    await delay(0);
+    menu.update((val) => ({ ...val, state: OpenState.Closing }));
+    await delay(get(menu).animationSpeed);
+    menu.set(defaultMenuConfig);
+  }
 
-  const newCards = v.cards.map((a) => ({ ...a, active: false }));
-  newCards[next >= 0 ? next : 0].active = true;
-
-  updateView({ activeCardId: v.cards[next].id });
+  return {
+    subscribe: view.subscribe,
+  };
 }
+
+export const view = createView();

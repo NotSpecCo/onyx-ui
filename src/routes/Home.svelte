@@ -7,7 +7,18 @@
   import View from '../lib/components/view/View.svelte';
   import ViewContent from '../lib/components/view/ViewContent.svelte';
   import { DataStatus } from '../lib/enums';
-  import { registerView, updateView } from '../lib/stores/view';
+  import { cards, registerView, updateView } from '../lib/stores/view';
+
+  cards.set({
+    baseRoute: '/home/',
+    activeCardId: 'home',
+    items: [
+      {
+        id: 'home',
+        title: 'Card 1',
+      },
+    ],
+  });
 
   registerView({});
 
@@ -18,7 +29,7 @@
 
 <View>
   <ViewContent>
-    <Card>
+    <Card cardId="home">
       <CardHeader title="Home" />
       <CardContent>
         <Typography>Hello.</Typography>

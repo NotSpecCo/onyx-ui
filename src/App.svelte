@@ -1,23 +1,21 @@
 <script lang="ts">
   import { setContext } from 'svelte';
-  import Router from 'svelte-spa-router';
-  import AppMenu from './components/AppMenu.svelte';
-  import { ContextKey, TextSize, TextWeight } from './lib/enums';
+  import { AnimationState, ContextKey, TextSize, TextWeight, ViewId } from './lib/enums';
   import type { SettingsContext } from './lib/models';
-  import { registerAppMenu } from './lib/stores/view';
+  import { app } from './lib/stores/app';
   import { applyTheme } from './lib/themes';
+  import { createUniqueId } from './lib/utils/createUniqueId';
   import type { Settings } from './models';
-  import AppSettings from './routes/AppSettings.svelte';
-  import Cards from './routes/Cards.svelte';
-  import ContextMenus from './routes/ContextMenus.svelte';
-  import Form from './routes/Form.svelte';
-  import Home from './routes/Home.svelte';
-  import Lists from './routes/Lists.svelte';
-  import Redirect from './routes/Redirect.svelte';
-  import Typography from './routes/Typography.svelte';
   import { settings } from './stores/settings';
+  import Home from './views/Home.svelte';
+  import View1 from './views/View1.svelte';
 
-  registerAppMenu(AppMenu);
+  // console.log('app render', location.hash.slice(2), {
+  //   historyId: Symbol(location.hash.slice(2) || ViewId.Home),
+  //   ...window.history.state,
+  // });
+
+  // registerAppMenu(AppMenu);
   setContext<SettingsContext<Settings>>(ContextKey.Settings, settings);
 
   // Apply settings
@@ -70,16 +68,34 @@
     document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
   }
 
-  const routes = {
-    '/home': Home,
-    '/cards/:cardId': Cards,
-    '/typography/:cardId': Typography,
-    '/lists/:cardId': Lists,
-    '/contextMenus/:cardId': ContextMenus,
-    '/forms/:cardId': Form,
-    '/settings/:cardId': AppSettings,
-    '*': Redirect,
-  };
+  app.init(
+    [
+      { id: ViewId.Home, title: 'Home', component: Home },
+      { id: ViewId.View1, title: 'View 1', component: View1 },
+    ],
+    location.hash.slice(2) || ViewId.Home,
+    {
+      historyId: createUniqueId(),
+      ...window.history.state,
+    }
+  );
+
+  let history = $app.history.filter((a) => a.animState > AnimationState.Destroyed);
+  $: history = $app.history.filter((a) => a.animState > AnimationState.Destroyed);
 </script>
 
-<Router {routes} />
+<div class="root">
+  {#each history as item}
+    <svelte:component this={item.view.component} />
+  {/each}
+</div>
+
+<style>
+  .root {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+  }
+</style>

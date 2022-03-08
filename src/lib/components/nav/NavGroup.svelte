@@ -9,13 +9,14 @@
   export let initialFocusedId: string = undefined;
   export let enableCardSwitching = false;
   export let updateRoute = false;
+  export let style = '';
 
   setContext(ContextKey.NavGroup, groupId);
-
   const settings = getContext<SettingsContext>(ContextKey.Settings);
 </script>
 
 <div
+  {style}
   use:navigator={{
     groupId,
     initialFocusedId,

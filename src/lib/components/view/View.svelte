@@ -1,82 +1,58 @@
 <script lang="ts">
-  import { onDestroy } from 'svelte';
-  import { location, pop } from 'svelte-spa-router';
+  import { onDestroy, setContext } from 'svelte';
+  import { location } from 'svelte-spa-router';
   import { dpad } from '../../actions/dpad';
-  import { OpenState, ViewState } from '../../enums';
+  import { AnimationState, ContextKey, OpenState, ViewId } from '../../enums';
+  import type { ViewContext } from '../../models';
+  import { app } from '../../stores/app';
   import { menu } from '../../stores/menu';
   import { resetNavigation } from '../../stores/navigator';
-  import { appMenu, resetView, updateView, view } from '../../stores/view';
+  import { createUniqueId } from '../../utils/createUniqueId';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
-  import ViewCards from './ViewCards.svelte';
 
-  let menuHeight: number | null = null;
-  let cardsHeight: number | null = null;
+  console.log('history state', window.history.state);
 
-  let offset = 0;
-  $: {
-    switch ($view.viewing) {
-      case ViewState.AppMenu:
-        offset = menuHeight;
-        break;
-      case ViewState.Cards:
-        offset = cardsHeight;
-        break;
-      default:
-        offset = 0;
-    }
-  }
+  const historyId = app.getCurrentHistoryItem().id;
+  let animState = $app.history.find((a) => a.id === historyId)?.animState;
+  $: animState = $app.history.find((a) => a.id === historyId)?.animState;
+  // console.log('animState', historyId, animState);
+
+  // console.log('history item', item);
+
+  setContext<ViewContext>(ContextKey.View, { viewId: '???' });
 
   onDestroy(() => {
-    resetView();
     resetNavigation();
     menu.reset();
   });
 </script>
 
+<!-- svelte-ignore missing-declaration -->
 <div
   class="root"
+  class:up={animState === AnimationState.Up}
+  class:down={animState === AnimationState.Down}
+  class:left={animState === AnimationState.Left}
+  class:right={animState === AnimationState.Right}
   use:dpad={{
-    onSoftLeft: () => {
-      if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
-        updateView({ viewing: ViewState.Cards });
-      } else if ($view.viewing === ViewState.Content) {
-        updateView({ viewing: ViewState.AppMenu });
-      } else if ($view.viewing === ViewState.Cards) {
-        updateView({ viewing: ViewState.AppMenu });
-      } else {
-        updateView({ viewing: ViewState.Content });
-      }
+    // onSoftLeft: () => {
+    //   return true;
+    // },
+    onSoftRight: () => {
+      app.navigateTo(ViewId.View1, { historyId: createUniqueId() });
       return true;
     },
     onBackspace: () => {
-      if ($view.viewing !== ViewState.Content) {
-        updateView({ viewing: ViewState.Content });
-        return true;
-      }
-
-      // If on the main screen, let KaiOS minimize the app
-      if ($location === '/') {
+      // If on the app menu, let KaiOS minimize the app
+      if ($location === '/app-menu') {
         return false;
       }
-      pop();
+      app.navigateBack();
       return true;
     },
   }}
 >
-  <div bind:clientHeight={menuHeight}>
-    {#if $view.viewing === ViewState.AppMenu}
-      <svelte:component this={$appMenu} />
-    {/if}
-  </div>
-  <div bind:clientHeight={cardsHeight}>
-    {#if $view.viewing === ViewState.Cards}
-      <ViewCards />
-    {/if}
-  </div>
-  <div class="content" style={`transform: translateY(${offset}px)`}>
-    <slot />
-    <slot name="dashboard" />
-  </div>
+  <slot />
   {#if $menu.state > OpenState.Destroyed}
     <ContextMenu />
   {/if}
@@ -84,27 +60,27 @@
 
 <style>
   .root {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .content {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
-    height: 100vh;
-    transition: transform var(--animation-speed);
-    transform: translateY(0px);
-    z-index: 9;
+    bottom: 0;
+    right: 0;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
-    border-radius: var(--radius) var(--radius) 0 0;
+    transition: transform 2000ms;
+    transform: translateY(0px);
+  }
+  .root.up {
+    transform: translateY(-100vh);
+  }
+  .root.down {
+    transform: translateY(100vh);
+  }
+  .root.left {
+    transform: translateX(-100vw);
+  }
+  .root.right {
+    transform: translateX(100vw);
   }
 </style>

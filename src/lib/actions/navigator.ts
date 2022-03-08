@@ -1,5 +1,4 @@
 import { tick } from 'svelte';
-import { replace } from 'svelte-spa-router';
 import { get } from 'svelte/store';
 import {
   activateGroup,
@@ -8,9 +7,7 @@ import {
   getFocusedItemId,
   setSelectedId,
 } from '../stores/navigator';
-import { switchCard } from '../stores/view';
 import { getIndex } from '../utils/array';
-import { setFocusedId } from '../utils/route';
 
 type Config = {
   groupId: string;
@@ -59,10 +56,19 @@ export function navigator(node: HTMLElement, config: Config) {
     }
 
     // Handle card switching first
-    if (key === 'ArrowLeft' || key === 'ArrowRight') {
-      if (config.enableCardSwitching) switchCard(key === 'ArrowLeft' ? -1 : 1);
-      return;
-    }
+    // if (key === 'ArrowRight') {
+    //   if (config.enableCardSwitching) cards.next();
+    //   return;
+    // }
+    // if (key === 'ArrowLeft') {
+    //   if (config.enableCardSwitching) cards.previous();
+    //   return;
+    // }
+
+    // if (key === 'ArrowLeft' || key === 'ArrowRight') {
+    //   if (config.enableCardSwitching) switchCard(key === 'ArrowLeft' ? -1 : 1);
+    //   return;
+    // }
 
     const scroller: HTMLElement = node.querySelector(`[data-nav-scroller]`);
 
@@ -90,7 +96,8 @@ export function navigator(node: HTMLElement, config: Config) {
       setSelectedId(config.groupId, shortcutItem.dataset.navId);
 
       if (config.updateRoute) {
-        replace(setFocusedId(shortcutItem.dataset.navId));
+        // TODO: store new id
+        // replace(setFocusedId(shortcutItem.dataset.navId));
       }
 
       items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemblur'));
@@ -140,7 +147,8 @@ export function navigator(node: HTMLElement, config: Config) {
     scrollIntoView(scroller, nextItem, 'smooth');
 
     if (config.updateRoute) {
-      replace(setFocusedId(nextItem?.dataset.navId));
+      // TODO: Store new id
+      // replace(setFocusedId(nextItem?.dataset.navId));
     }
   }
 
