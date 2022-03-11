@@ -2,6 +2,7 @@ export * from './BaseSettings';
 export * from './Card';
 export * from './CardContext';
 export * from './ContextMenu';
+export * from './History';
 export * from './HistoryItem';
 export * from './HistoryState';
 export * from './Navigation';

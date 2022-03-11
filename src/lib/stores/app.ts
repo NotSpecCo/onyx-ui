@@ -73,7 +73,7 @@ function createApp() {
       ...val,
       history,
     }));
-    await delay(350);
+    await delay(0);
 
     // End
     history[leaving].animState = AnimationState.Destroyed;
@@ -114,7 +114,7 @@ function createApp() {
       ...val,
       history,
     }));
-    await delay(350);
+    await delay(0);
 
     // End
     history[leaving].animState = AnimationState.Destroyed;

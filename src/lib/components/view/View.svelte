@@ -7,15 +7,20 @@
   import { app } from '../../stores/app';
   import { menu } from '../../stores/menu';
   import { resetNavigation } from '../../stores/navigator';
+  import { slideIn, slideOut } from '../../transitions';
   import { createUniqueId } from '../../utils/createUniqueId';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
+  // import {slide, fly} from 'svelte/transition'
 
   const historyItem = app.getActiveHistoryItem();
 
-  let animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
-  $: animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
+  let animState = 0;
+  // let animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
+  // $: animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
 
   setContext<ViewContext>(ContextKey.View, { viewId: '???' });
+  //out:slideOut={{ duration: 5000, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
+  let goingBack = false;
 
   onDestroy(() => {
     resetNavigation();
@@ -29,6 +34,8 @@
   class:down={animState === AnimationState.Down}
   class:left={animState === AnimationState.Left}
   class:right={animState === AnimationState.Right}
+  in:slideIn={{ duration: 350, from: 'down', to: 'center', zIndex: 7 }}
+  out:slideOut={{ duration: 350, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
   use:dpad={{
     // onSoftLeft: () => {
     //   return true;
@@ -42,6 +49,7 @@
       if ($location === '/app-menu') {
         return false;
       }
+      goingBack = true;
       app.navigateBack();
       return true;
     },
@@ -63,10 +71,10 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    transition: transform 350ms;
-    transform: translateY(0px);
+    /* transition: transform 350ms;
+    transform: translateY(0px); */
   }
-  .root.up {
+  /* .root.up {
     transform: translateY(-100vh);
   }
   .root.down {
@@ -77,5 +85,5 @@
   }
   .root.right {
     transform: translateX(100vw);
-  }
+  } */
 </style>
