@@ -12,10 +12,10 @@
 
   console.log('history state', window.history.state);
 
-  const historyId = app.getCurrentHistoryItem().id;
-  let animState = $app.history.find((a) => a.id === historyId)?.animState;
-  $: animState = $app.history.find((a) => a.id === historyId)?.animState;
-  // console.log('animState', historyId, animState);
+  const historyItem = app.getActiveHistoryItem();
+  let animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
+  $: animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
+  console.log('animState', historyItem.view.id, animState);
 
   // console.log('history item', item);
 
@@ -27,7 +27,6 @@
   });
 </script>
 
-<!-- svelte-ignore missing-declaration -->
 <div
   class="root"
   class:up={animState === AnimationState.Up}

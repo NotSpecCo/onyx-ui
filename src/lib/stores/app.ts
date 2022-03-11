@@ -27,6 +27,7 @@ function createApp() {
           id: state.historyId,
           view,
           animState: AnimationState.Center,
+          isActive: true,
           state,
         },
       ],
@@ -50,11 +51,13 @@ function createApp() {
       id: state.historyId,
       view,
       animState: AnimationState.Down,
+      isActive: true,
       state,
     });
 
     // Init
     history[leaving].animState = AnimationState.Center;
+    history[leaving].isActive = false;
     history[entering].animState = AnimationState.Down;
     app.update((val) => ({
       ...val,
@@ -95,7 +98,9 @@ function createApp() {
 
     // Init
     history[leaving].animState = AnimationState.Center;
+    history[leaving].isActive = false;
     history[entering].animState = AnimationState.Center;
+    history[entering].isActive = true;
     app.update((val) => ({
       ...val,
       history,
@@ -128,8 +133,9 @@ function createApp() {
     return view || null;
   }
 
-  function getCurrentHistoryItem() {
-    return get(app).history.at(-1);
+  function getActiveHistoryItem() {
+    return get(app).history.find((a) => a.isActive);
+    // return get(app).history.at(-1);
   }
 
   function navigating(): boolean {
@@ -143,7 +149,7 @@ function createApp() {
     navigateTo,
     navigateBack,
     getViewById,
-    getCurrentHistoryItem,
+    getActiveHistoryItem,
   };
 }
 
