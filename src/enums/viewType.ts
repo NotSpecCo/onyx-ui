@@ -1,4 +1,4 @@
-export enum ViewId {
+export enum ViewType {
   Home = 'home',
   View1 = 'view1',
 }

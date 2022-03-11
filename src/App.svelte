@@ -1,6 +1,7 @@
 <script lang="ts">
   import { setContext } from 'svelte';
-  import { AnimationState, ContextKey, TextSize, TextWeight, ViewId } from './lib/enums';
+  import { ViewType } from './enums';
+  import { AnimationState, ContextKey, TextSize, TextWeight } from './lib/enums';
   import type { SettingsContext } from './lib/models';
   import { app } from './lib/stores/app';
   import { applyTheme } from './lib/themes';
@@ -14,6 +15,17 @@
   //   historyId: Symbol(location.hash.slice(2) || ViewId.Home),
   //   ...window.history.state,
   // });
+
+  function getComponent(viewId: string): any {
+    switch (viewId) {
+      case ViewType.Home:
+        return Home;
+        break;
+      case ViewType.View1:
+        return View1;
+        break;
+    }
+  }
 
   // registerAppMenu(AppMenu);
   setContext<SettingsContext<Settings>>(ContextKey.Settings, settings);
@@ -70,10 +82,10 @@
 
   app.init(
     [
-      { id: ViewId.Home, title: 'Home', component: Home },
-      { id: ViewId.View1, title: 'View 1', component: View1 },
+      { id: ViewType.Home, title: 'Home', component: Home },
+      { id: ViewType.View1, title: 'View 1', component: View1 },
     ],
-    location.hash.slice(2) || ViewId.Home,
+    location.hash.slice(2) || ViewType.Home,
     {
       historyId: createUniqueId(),
       ...window.history.state,
@@ -86,7 +98,8 @@
 
 <div class="root">
   {#each history as item (item.view.id)}
-    <svelte:component this={item.view.component} />
+    <svelte:component this={getComponent(item.view.id)} />
+    <!-- <svelte:component this={item.view.component} /> -->
   {/each}
 </div>
 

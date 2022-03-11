@@ -2,7 +2,7 @@
   import { onDestroy, setContext } from 'svelte';
   import { location } from 'svelte-spa-router';
   import { dpad } from '../../actions/dpad';
-  import { AnimationState, ContextKey, OpenState, ViewId } from '../../enums';
+  import { AnimationState, ContextKey, OpenState } from '../../enums';
   import type { ViewContext } from '../../models';
   import { app } from '../../stores/app';
   import { menu } from '../../stores/menu';
@@ -34,7 +34,7 @@
     //   return true;
     // },
     onSoftRight: () => {
-      app.navigateTo(ViewId.View1, { historyId: createUniqueId() });
+      app.navigateTo('view1', { historyId: createUniqueId() });
       return true;
     },
     onBackspace: () => {
@@ -63,7 +63,7 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    transition: transform 500ms;
+    transition: transform 350ms;
     transform: translateY(0px);
   }
   .root.up {

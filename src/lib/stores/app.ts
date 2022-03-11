@@ -43,6 +43,7 @@ function createApp() {
     const view = get(app).views.find((a) => a.id === viewId);
     if (!view) return;
     console.log('goto', view, state);
+    window.history.pushState(state, '', `#/${view.id}`);
 
     const history = get(app).history;
     const leaving = history.length - 1;
@@ -72,7 +73,7 @@ function createApp() {
       ...val,
       history,
     }));
-    await delay(2000);
+    await delay(350);
 
     // End
     history[leaving].animState = AnimationState.Destroyed;
@@ -81,9 +82,6 @@ function createApp() {
       ...val,
       history,
     }));
-
-    // replace(`/${view.id}`);
-    window.history.pushState(state, '', `#/${view.id}`);
   }
 
   async function navigateBack() {
@@ -92,6 +90,8 @@ function createApp() {
 
     const history = get(app).history;
     if (history.length < 2) return;
+
+    window.history.back();
 
     const leaving = history.length - 1;
     const entering = leaving - 1;
@@ -114,7 +114,7 @@ function createApp() {
       ...val,
       history,
     }));
-    await delay(500);
+    await delay(350);
 
     // End
     history[leaving].animState = AnimationState.Destroyed;
@@ -123,9 +123,6 @@ function createApp() {
       ...val,
       history: history.filter((a, i) => i !== leaving),
     }));
-
-    // replace(`/${view.id}`);
-    window.history.back();
   }
 
   function getViewById(id: string): View | null {
