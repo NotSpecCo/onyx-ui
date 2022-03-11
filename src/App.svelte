@@ -7,6 +7,7 @@
   import { applyTheme } from './lib/themes';
   import type { Settings } from './models';
   import { settings } from './stores/settings';
+  import AppMenu from './views/AppMenu.svelte';
   import AppSettings from './views/AppSettings.svelte';
   import Home from './views/Home.svelte';
   import View1 from './views/View1.svelte';
@@ -26,6 +27,9 @@
         break;
       case ViewType.Settings:
         return AppSettings;
+        break;
+      case ViewType.AppMenu:
+        return AppMenu;
         break;
     }
   }
@@ -85,11 +89,12 @@
 
   stack.init(
     [
+      { id: ViewType.AppMenu, name: 'OnyxUI Demo' },
       { id: ViewType.Home, name: 'Home' },
       { id: ViewType.Settings, name: 'Settings' },
       { id: ViewType.View1, name: 'View 1' },
     ],
-    location.hash.slice(2) || ViewType.Home,
+    location.hash.slice(2) || ViewType.AppMenu,
     window.history.state
   );
 </script>

@@ -11,6 +11,8 @@
   const { instance } = getContext<ViewContext>(ContextKey.View);
   const GROUP_ID = `${instance.id}_card`;
 
+  const header: string | undefined = headerText || instance.title || instance.type.name;
+
   setContext(ContextKey.NavGroup, GROUP_ID);
 </script>
 
@@ -22,8 +24,8 @@
     updateRoute: true,
   }}
 >
-  {#if headerText}
-    <div class="header">{headerText}</div>
+  {#if header}
+    <div class="header">{header}</div>
   {/if}
   <div class="content" data-nav-scroller>
     <slot />

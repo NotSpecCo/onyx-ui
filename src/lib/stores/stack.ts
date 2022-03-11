@@ -6,11 +6,13 @@ type StackConfig = {
   types: ViewType[];
   history: ViewInstance[];
   activeInstance?: ViewInstance;
+  navDirection: 'back' | 'forward';
 };
 
 const defaultConfig: StackConfig = {
   types: [],
   history: [],
+  navDirection: 'forward',
 };
 
 function createStack() {
@@ -30,6 +32,7 @@ function createStack() {
       types,
       history: [instance],
       activeInstance: instance,
+      navDirection: 'forward',
     });
 
     window.history.replaceState(instance, '', `#/${instance.type.id}`);
@@ -51,14 +54,9 @@ function createStack() {
     const history = get(stack).history;
     history.push(instance);
 
-    stack.update((a) => ({
-      ...a,
-      history,
-    }));
-
     window.history.pushState(instance, '', `#/${instance.type.id}`);
 
-    stack.update((a) => ({ ...a, activeInstance: instance }));
+    stack.update((a) => ({ ...a, history, activeInstance: instance, navDirection: 'forward' }));
   }
 
   function updateTitle(id: string, title: string) {
@@ -83,13 +81,17 @@ function createStack() {
     window.history.replaceState(history[index], '', `#/${history[index].type.id}`);
   }
 
-  function back() {
+  async function back() {
     const history = get(stack).history;
     if (history.length === 1) return;
 
-    stack.update((a) => ({ ...a, history: history.slice(0, -1) }));
     window.history.back();
-    stack.update((a) => ({ ...a, activeInstance: history.at(-2) }));
+    stack.update((a) => ({
+      ...a,
+      history: history.slice(0, -1),
+      activeInstance: history.at(-2),
+      navDirection: 'back',
+    }));
   }
 
   return {

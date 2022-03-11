@@ -1,18 +1,17 @@
 <script lang="ts">
   import { onDestroy, setContext } from 'svelte';
-  import { location } from 'svelte-spa-router';
+  import { ViewType } from '../../../enums';
   import { dpad } from '../../actions/dpad';
   import { ContextKey, OpenState } from '../../enums';
   import type { ViewContext, ViewInstance } from '../../models';
   import { menu } from '../../stores/menu';
   import { stack } from '../../stores/stack';
-  import { slideIn, slideOut } from '../../transitions';
+  import { slide } from '../../transitions';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
 
   export let instance: ViewInstance;
 
   setContext<ViewContext>(ContextKey.View, { instance });
-  let goingBack = false;
 
   onDestroy(() => {
     menu.reset();
@@ -21,22 +20,25 @@
 
 <div
   class="root"
-  in:slideIn={{ duration: 1000, from: 'down', to: 'center', zIndex: 7 }}
-  out:slideOut={{ duration: 1000, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
+  in:slide={$stack.navDirection === 'back'
+    ? { duration: 1000, from: 'center', to: 'center', zIndex: 20, id: instance.type.id }
+    : { duration: 1000, from: 'down', to: 'center', zIndex: 20, id: instance.type.id }}
+  out:slide={$stack.navDirection === 'back'
+    ? { duration: 1000, from: 'center', to: 'down', zIndex: 30, id: instance.type.id }
+    : { duration: 1000, from: 'center', to: 'center', zIndex: 10, id: instance.type.id }}
   use:dpad={{
-    // onSoftLeft: () => {
-    //   return true;
-    // },
+    onSoftLeft: () => {
+      stack.push(ViewType.AppMenu);
+      return true;
+    },
     onSoftRight: () => {
-      stack.push('settings');
       return true;
     },
     onBackspace: () => {
       // If on the app menu, let KaiOS minimize the app
-      if ($location === '/app-menu') {
-        return false;
-      }
-      goingBack = true;
+      // if ($location === '/app-menu') {
+      //   return false;
+      // }
       stack.back();
       return true;
     },
@@ -58,5 +60,6 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
+    transform: translateY(0);
   }
 </style>
