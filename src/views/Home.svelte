@@ -7,11 +7,6 @@
   import View from '../lib/components/view/View.svelte';
   import { delay } from '../lib/utils/delay';
 
-  // console.log('home using id', app.getCurrentHistoryItem().id);
-
-  // const item = app.getCurrentHistoryItem();
-  // console.log('home history item', item);
-
   let items = new Array(10).fill(null);
 </script>
 

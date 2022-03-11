@@ -10,14 +10,10 @@
   import { createUniqueId } from '../../utils/createUniqueId';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
 
-  console.log('history state', window.history.state);
-
   const historyItem = app.getActiveHistoryItem();
+
   let animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
   $: animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
-  console.log('animState', historyItem.view.id, animState);
-
-  // console.log('history item', item);
 
   setContext<ViewContext>(ContextKey.View, { viewId: '???' });
 
@@ -67,7 +63,7 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    transition: transform 2000ms;
+    transition: transform 500ms;
     transform: translateY(0px);
   }
   .root.up {

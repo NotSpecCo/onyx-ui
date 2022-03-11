@@ -97,10 +97,10 @@ function createApp() {
     const entering = leaving - 1;
 
     // Init
-    history[leaving].animState = AnimationState.Center;
     history[leaving].isActive = false;
-    history[entering].animState = AnimationState.Center;
     history[entering].isActive = true;
+    history[leaving].animState = AnimationState.Center;
+    history[entering].animState = AnimationState.Center;
     app.update((val) => ({
       ...val,
       history,
@@ -114,7 +114,7 @@ function createApp() {
       ...val,
       history,
     }));
-    await delay(2000);
+    await delay(500);
 
     // End
     history[leaving].animState = AnimationState.Destroyed;
@@ -134,6 +134,8 @@ function createApp() {
   }
 
   function getActiveHistoryItem() {
+    // console.log('history', get(app).history);
+    console.log('isActive', get(app).history.find((a) => a.isActive).view.id);
     return get(app).history.find((a) => a.isActive);
     // return get(app).history.at(-1);
   }

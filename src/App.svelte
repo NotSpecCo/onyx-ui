@@ -85,7 +85,7 @@
 </script>
 
 <div class="root">
-  {#each history as item}
+  {#each history as item (item.view.id)}
     <svelte:component this={item.view.component} />
   {/each}
 </div>
