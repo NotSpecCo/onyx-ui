@@ -2,46 +2,33 @@
   import { onDestroy, setContext } from 'svelte';
   import { location } from 'svelte-spa-router';
   import { dpad } from '../../actions/dpad';
-  import { AnimationState, ContextKey, OpenState } from '../../enums';
-  import type { ViewContext } from '../../models';
-  import { app } from '../../stores/app';
+  import { ContextKey, OpenState } from '../../enums';
+  import type { ViewContext, ViewInstance } from '../../models';
   import { menu } from '../../stores/menu';
-  import { resetNavigation } from '../../stores/navigator';
+  import { stack } from '../../stores/stack';
   import { slideIn, slideOut } from '../../transitions';
-  import { createUniqueId } from '../../utils/createUniqueId';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
-  // import {slide, fly} from 'svelte/transition'
 
-  const historyItem = app.getActiveHistoryItem();
+  export let instance: ViewInstance;
 
-  let animState = 0;
-  // let animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
-  // $: animState = $app.history.find((a) => a.id === historyItem.id)?.animState;
-
-  setContext<ViewContext>(ContextKey.View, { viewId: '???' });
-  //out:slideOut={{ duration: 5000, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
+  setContext<ViewContext>(ContextKey.View, { instance });
   let goingBack = false;
 
   onDestroy(() => {
-    resetNavigation();
     menu.reset();
   });
 </script>
 
 <div
   class="root"
-  class:up={animState === AnimationState.Up}
-  class:down={animState === AnimationState.Down}
-  class:left={animState === AnimationState.Left}
-  class:right={animState === AnimationState.Right}
-  in:slideIn={{ duration: 350, from: 'down', to: 'center', zIndex: 7 }}
-  out:slideOut={{ duration: 350, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
+  in:slideIn={{ duration: 1000, from: 'down', to: 'center', zIndex: 7 }}
+  out:slideOut={{ duration: 1000, from: 'center', to: 'down', zIndex: goingBack ? 9 : 5 }}
   use:dpad={{
     // onSoftLeft: () => {
     //   return true;
     // },
     onSoftRight: () => {
-      app.navigateTo('view1', { historyId: createUniqueId() });
+      stack.push('settings');
       return true;
     },
     onBackspace: () => {
@@ -50,7 +37,7 @@
         return false;
       }
       goingBack = true;
-      app.navigateBack();
+      stack.back();
       return true;
     },
   }}
@@ -71,19 +58,5 @@
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    /* transition: transform 350ms;
-    transform: translateY(0px); */
   }
-  /* .root.up {
-    transform: translateY(-100vh);
-  }
-  .root.down {
-    transform: translateY(100vh);
-  }
-  .root.left {
-    transform: translateX(-100vw);
-  }
-  .root.right {
-    transform: translateX(100vw);
-  } */
 </style>

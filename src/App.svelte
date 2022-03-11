@@ -1,13 +1,13 @@
 <script lang="ts">
   import { setContext } from 'svelte';
   import { ViewType } from './enums';
-  import { AnimationState, ContextKey, TextSize, TextWeight } from './lib/enums';
+  import { ContextKey, TextSize, TextWeight } from './lib/enums';
   import type { SettingsContext } from './lib/models';
-  import { app } from './lib/stores/app';
+  import { stack } from './lib/stores/stack';
   import { applyTheme } from './lib/themes';
-  import { createUniqueId } from './lib/utils/createUniqueId';
   import type { Settings } from './models';
   import { settings } from './stores/settings';
+  import AppSettings from './views/AppSettings.svelte';
   import Home from './views/Home.svelte';
   import View1 from './views/View1.svelte';
 
@@ -23,6 +23,9 @@
         break;
       case ViewType.View1:
         return View1;
+        break;
+      case ViewType.Settings:
+        return AppSettings;
         break;
     }
   }
@@ -80,27 +83,22 @@
     document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
   }
 
-  app.init(
+  stack.init(
     [
-      { id: ViewType.Home, title: 'Home', component: Home },
-      { id: ViewType.View1, title: 'View 1', component: View1 },
+      { id: ViewType.Home, name: 'Home' },
+      { id: ViewType.Settings, name: 'Settings' },
+      { id: ViewType.View1, name: 'View 1' },
     ],
     location.hash.slice(2) || ViewType.Home,
-    {
-      historyId: createUniqueId(),
-      ...window.history.state,
-    }
+    window.history.state
   );
-
-  let history = $app.history.filter((a) => a.animState > AnimationState.Destroyed);
-  $: history = $app.history.filter((a) => a.animState > AnimationState.Destroyed);
 </script>
 
 <div class="root">
-  {#each history as item (item.view.id)}
-    <svelte:component this={getComponent(item.view.id)} />
-    <!-- <svelte:component this={item.view.component} /> -->
-  {/each}
+  <svelte:component
+    this={getComponent($stack.activeInstance?.type.id)}
+    instance={$stack.activeInstance}
+  />
 </div>
 
 <style>

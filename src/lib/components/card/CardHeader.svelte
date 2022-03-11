@@ -1,18 +1,16 @@
 <script lang="ts">
   import { getContext } from 'svelte';
   import { ContextKey } from '../../enums';
-  import type { CardContext } from '../../models';
+  import type { ViewContext } from '../../models';
 
   export let title: string = undefined;
 
-  const context = getContext<CardContext>(ContextKey.Card);
-
-  let hasCards = false;
+  const { instance } = getContext<ViewContext>(ContextKey.View);
 </script>
 
 <div class="root">
   <div class="title">
-    {title}
+    {instance.title || title}
   </div>
 </div>
 

@@ -1,3 +1,5 @@
+import type { ViewInstance } from './ViewInstance';
+
 export type ViewContext = {
-  viewId: string;
+  instance: ViewInstance;
 };

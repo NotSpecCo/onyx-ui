@@ -1,6 +1,5 @@
 export * from './BaseSettings';
 export * from './Card';
-export * from './CardContext';
 export * from './ContextMenu';
 export * from './History';
 export * from './HistoryItem';
@@ -10,5 +9,6 @@ export * from './SelectOption';
 export * from './SettingsContext';
 export * from './ThemeConfig';
 export * from './ThemeSettings';
-export * from './View';
 export * from './ViewContext';
+export * from './ViewInstance';
+export * from './ViewType';

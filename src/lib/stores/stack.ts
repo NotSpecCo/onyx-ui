@@ -1,54 +1,104 @@
 import { get, writable } from 'svelte/store';
-import { OpenState } from '../enums';
-import type { ContextMenu } from '../models';
-import { delay } from '../utils/delay';
+import type { ViewInstance, ViewType } from '../models';
+import { createUniqueId } from '../utils/createUniqueId';
 
-type StackConfig = ContextMenu & {
-  state: OpenState;
-  animationSpeed: number;
+type StackConfig = {
+  types: ViewType[];
+  history: ViewInstance[];
+  activeInstance?: ViewInstance;
 };
 
 const defaultConfig: StackConfig = {
-  title: 'Context Menu',
-  items: [],
-  state: OpenState.Destroyed,
-  animationSpeed: 500,
+  types: [],
+  history: [],
 };
 
 function createStack() {
   const stack = writable<StackConfig>(defaultConfig);
 
-  async function open(config: Omit<StackConfig, 'state'>) {
-    if (get(stack).state >= OpenState.Opening) {
-      return;
-    }
-    stack.set({ ...config, state: OpenState.Closed });
-    await delay(0);
-    stack.update((val) => ({ ...val, state: OpenState.Opening }));
-    await delay(config.animationSpeed);
-    stack.update((val) => ({ ...val, state: OpenState.Open }));
+  function init(types: ViewType[], initialViewId: string, initialViewState: any) {
+    const type = types.find((a) => a.id === initialViewId);
+    const instance = {
+      id: createUniqueId(),
+      type,
+      state: {
+        ...initialViewState,
+      },
+    };
+
+    stack.set({
+      types,
+      history: [instance],
+      activeInstance: instance,
+    });
+
+    window.history.replaceState(instance, '', `#/${instance.type.id}`);
   }
 
-  async function close() {
-    if (get(stack).state !== OpenState.Open) {
-      return;
-    }
-    stack.update((val) => ({ ...val, state: OpenState.Open }));
-    await delay(0);
-    stack.update((val) => ({ ...val, state: OpenState.Closing }));
-    await delay(get(stack).animationSpeed);
-    stack.set(defaultConfig);
+  async function push(viewTypeId: string, title?: string, state: any = {}) {
+    const type = get(stack).types.find((a) => a.id === viewTypeId);
+    if (!type) return;
+
+    const instance: ViewInstance = {
+      id: createUniqueId(),
+      type,
+      title,
+      state: {
+        ...state,
+      },
+    };
+
+    const history = get(stack).history;
+    history.push(instance);
+
+    stack.update((a) => ({
+      ...a,
+      history,
+    }));
+
+    window.history.pushState(instance, '', `#/${instance.type.id}`);
+
+    stack.update((a) => ({ ...a, activeInstance: instance }));
   }
 
-  async function reset() {
-    stack.set(defaultConfig);
+  function updateTitle(id: string, title: string) {
+    const history = get(stack).history;
+    const index = history.findIndex((a) => a.id === id);
+    if (index === -1) return;
+
+    history[index].title = title;
+
+    stack.update((a) => ({ ...a, history }));
+    window.history.replaceState(history[index], '', `#/${history[index].type.id}`);
+  }
+
+  function updateState(id: string, state: any) {
+    const history = get(stack).history;
+    const index = history.findIndex((a) => a.id === id);
+    if (index === -1) return;
+
+    history[index].state = state;
+
+    stack.update((a) => ({ ...a, history }));
+    window.history.replaceState(history[index], '', `#/${history[index].type.id}`);
+  }
+
+  function back() {
+    const history = get(stack).history;
+    if (history.length === 1) return;
+
+    stack.update((a) => ({ ...a, history: history.slice(0, -1) }));
+    window.history.back();
+    stack.update((a) => ({ ...a, activeInstance: history.at(-2) }));
   }
 
   return {
     subscribe: stack.subscribe,
-    open,
-    close,
-    reset,
+    init,
+    push,
+    updateTitle,
+    updateState,
+    back,
   };
 }
 
