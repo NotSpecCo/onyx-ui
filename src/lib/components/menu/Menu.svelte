@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { getContext, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { keys } from '../../actions/keys';
-  import { ContextKey, OpenState } from '../../enums';
-  import type { SettingsContext } from '../../models';
+  import { OpenState } from '../../enums';
+  import { app } from '../../stores/app';
   import { delay } from '../../utils/delay';
   import NavGroup from '../nav/NavGroup.svelte';
 
@@ -11,22 +11,20 @@
   export let onEnter: () => void;
   export let onBackspace: () => void;
 
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
-
   let state = OpenState.Closed;
 
   async function open() {
     state = OpenState.Closed;
     await delay(0);
     state = OpenState.Opening;
-    await delay($settings.animations);
+    await delay($app.settings.animations);
     state = OpenState.Open;
   }
   async function close() {
     state = OpenState.Open;
     await delay(0);
     state = OpenState.Closing;
-    await delay($settings.animations);
+    await delay($app.settings.animations);
     state = OpenState.Closed;
   }
 
@@ -59,7 +57,7 @@
     <NavGroup groupId="menu">
       <slot />
     </NavGroup>
-    {#if $settings.showHelpText}
+    {#if $app.settings.showHelpText}
       <div class="footer">Save</div>
     {/if}
   </div>

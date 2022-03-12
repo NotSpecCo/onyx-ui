@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import { ContextKey, IconSize } from '../../enums';
-  import type { Navigation, SettingsContext } from '../../models';
+  import { IconSize } from '../../enums';
+  import type { Navigation } from '../../models';
+  import { app } from '../../stores/app';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
@@ -9,13 +9,11 @@
   export let primaryText: string = null;
   export let secondaryText: string = null;
   export let navi: Navigation;
-
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
 </script>
 
 <NaviItem {navi}>
   <div class="root">
-    {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
+    {#if $app.settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
     {#if icon}
@@ -29,7 +27,7 @@
         <div class="secondary">{secondaryText}</div>
       {/if}
     </div>
-    {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
+    {#if $app.settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
   </div>

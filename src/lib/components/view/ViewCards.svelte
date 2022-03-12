@@ -1,20 +1,17 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
-  import { ContextKey, ViewState } from '../../enums';
-  import type { SettingsContext } from '../../models';
+  import { ViewState } from '../../enums';
+  import { app } from '../../stores/app';
   import { groupItemMap } from '../../stores/navigator';
   import { updateView, view } from '../../stores/view';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
 
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
-
   const NAV_GROUP_ID = 'cards';
 </script>
 
 <NavGroup groupId={NAV_GROUP_ID}>
-  {#if $settings.showHelpText}
+  {#if $app.settings.showHelpText}
     <Typography align="center" type="caption">Press again for app menu</Typography>
   {/if}
   <div data-nav-scroller>
@@ -27,11 +24,11 @@
           data-nav-shortcut={i + 1}
           on:itemselect={() => updateView({ viewing: ViewState.Content, activeCardId: card.id })}
         >
-          {#if $settings.shortcutKeyLocation === 'left' && shortcutFromIndex(i)}
+          {#if $app.settings.shortcutKeyLocation === 'left' && shortcutFromIndex(i)}
             <div class="shortcut">{shortcutFromIndex(i)}</div>
           {/if}
           <div class="title">{card.title}</div>
-          {#if $settings.shortcutKeyLocation === 'right' && shortcutFromIndex(i)}
+          {#if $app.settings.shortcutKeyLocation === 'right' && shortcutFromIndex(i)}
             <div class="shortcut">{shortcutFromIndex(i)}</div>
           {/if}
         </div>

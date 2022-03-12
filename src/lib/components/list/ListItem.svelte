@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
   import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
-  import { ContextKey, IconColor, IconSize } from '../../enums';
-  import type { ContextMenu, Navigation, SettingsContext } from '../../models';
+  import { IconColor, IconSize } from '../../enums';
+  import type { ContextMenu, Navigation } from '../../models';
+  import { app } from '../../stores/app';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
@@ -13,13 +13,11 @@
   export let accentText: string = null;
   export let navi: Navigation;
   export let contextMenu: ContextMenu = null;
-
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
 </script>
 
 <NaviItem {navi} {contextMenu}>
   <div class="root">
-    {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
+    {#if $app.settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
     {#if icon}
@@ -39,10 +37,10 @@
         <div class="accent">{accentText}</div>
       {/if}
     </div>
-    {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
+    {#if $app.settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
-    {#if $settings.contextMenuIndicators && contextMenu}
+    {#if $app.settings.contextMenuIndicators && contextMenu}
       <div class="menu-icon">
         <Icon size={IconSize.Small} color={IconColor.Secondary}><MdMoreVert /></Icon>
       </div>

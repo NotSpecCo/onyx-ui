@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getContext } from 'svelte';
   import { ContextKey, MenuOpenState } from '../../enums';
-  import type { ContextMenu, Navigation, SettingsContext } from '../../models';
+  import type { ContextMenu, Navigation } from '../../models';
   import { app } from '../../stores/app';
   import { groupItemMap } from '../../stores/navigator';
 
@@ -9,7 +9,6 @@
   export let contextMenu: ContextMenu = null;
 
   const groupId = getContext<string>(ContextKey.NavGroup);
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
 
   let focused = false;
   $: focused = $groupItemMap[groupId] === navi.itemId;

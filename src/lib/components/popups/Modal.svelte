@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
   import { keys } from '../../actions/keys';
-  import { ContextKey, OpenState } from '../../enums';
-  import type { SettingsContext } from '../../models';
+  import { OpenState } from '../../enums';
+  import { app } from '../../stores/app';
   import { delay } from '../../utils/delay';
 
   type Actions = {
@@ -25,8 +24,6 @@
   export let actions: Actions = {};
   export let onClose: () => void = undefined;
 
-  const settings = getContext<SettingsContext>(ContextKey.Settings);
-
   $: {
     if (open) {
       openModal();
@@ -44,7 +41,7 @@
     state = OpenState.Closing;
     await delay(0);
     state = OpenState.Opening;
-    await delay($settings.animations);
+    await delay($app.settings.animations);
     state = OpenState.Open;
   }
   async function closeModal() {
@@ -54,7 +51,7 @@
     state = OpenState.Opening;
     await delay(0);
     state = OpenState.Closing;
-    await delay($settings.animations);
+    await delay($app.settings.animations);
     state = OpenState.Closed;
     onClose();
   }
