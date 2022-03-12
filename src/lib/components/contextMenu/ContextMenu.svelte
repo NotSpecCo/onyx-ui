@@ -106,7 +106,8 @@
   .title {
     white-space: nowrap;
     overflow: hidden;
-    padding: 5px 3px;
+    text-overflow: ellipsis;
+    padding: 5px;
     font-weight: var(--bold-font-weight);
     text-align: center;
   }
