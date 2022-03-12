@@ -185,11 +185,11 @@ export function navigator(node: HTMLElement, config: Config) {
     return ev.key;
   }
 
-  document.addEventListener('keydown', handleKeyPress, false);
+  document.addEventListener('keyup', handleKeyPress, false);
 
   return {
     destroy() {
-      document.removeEventListener('keydown', handleKeyPress, false);
+      document.removeEventListener('keyup', handleKeyPress, false);
       deactivateGroup(config.groupId);
     },
     async update(newConfig: Config) {
