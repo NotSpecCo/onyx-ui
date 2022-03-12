@@ -103,7 +103,7 @@ export function dpad(node: HTMLElement, config: Config) {
     timer = setTimeout(() => {
       handled = true;
       handleKeyPress(ev, key, true);
-    }, 1000);
+    }, 500);
   }
   function handleKeyUp(ev: KeyboardEvent) {
     const { key, valid } = validateEvent(ev);

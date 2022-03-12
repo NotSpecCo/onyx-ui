@@ -1,0 +1,171 @@
+<script lang="ts">
+  import { setContext } from 'svelte';
+  import { location, pop } from 'svelte-spa-router';
+  import type { Readable } from 'svelte/store';
+  import { settings } from '../../../stores/settings';
+  import { dpad } from '../../actions/dpad';
+  import { ContextKey, MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
+  import type { BaseSettings, SettingsContext } from '../../models';
+  import { appMenu } from '../../stores/appMenu';
+  import { updateView, view } from '../../stores/view';
+  import { applyTheme } from '../../themes';
+
+  export let baseSettings: Readable<BaseSettings>;
+
+  setContext<SettingsContext<BaseSettings>>(ContextKey.Settings, baseSettings);
+
+  appMenu.init({ animationSpeed: $baseSettings.animations });
+
+  // Apply settings
+  $: {
+    // Theme
+    applyTheme($settings);
+
+    if ($settings.shortcutKeyColor === 'accent') {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--accent-color)`);
+    } else if ($settings.shortcutKeyColor === 'secondary') {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--secondary-text-color)`);
+    } else {
+      document.documentElement.style.setProperty('--shortcut-color', `var(--primary-text-color)`);
+    }
+
+    // Text Size
+    const textSize = {
+      [TextSize.Smallest]: 8,
+      [TextSize.Small]: 9,
+      [TextSize.Medium]: 10,
+      [TextSize.Large]: 11,
+      [TextSize.Largest]: 12,
+    };
+    document.documentElement.style.setProperty(
+      '--base-font-size',
+      `${textSize[$settings.textSize]}px`
+    );
+
+    const weight = {
+      [TextWeight.Light]: { regular: 300, bold: 400 },
+      [TextWeight.Medium]: { regular: 400, bold: 600 },
+      [TextWeight.Heavy]: { regular: 600, bold: 700 },
+    };
+    document.documentElement.style.setProperty(
+      '--regular-font-weight',
+      `${weight[$settings.textWeight].regular}`
+    );
+    document.documentElement.style.setProperty(
+      '--bold-font-weight',
+      `${weight[$settings.textWeight].bold}`
+    );
+
+    // Display Density
+    document.body.dataset.density = $settings.displayDensity;
+
+    // Border Radius
+    document.documentElement.style.setProperty('--radius', `${$settings.borderRadius}px`);
+
+    // Animations
+    document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
+  }
+</script>
+
+<div
+  class="root"
+  use:dpad={{
+    onSoftLeft: () => {
+      if ($appMenu.state === MenuOpenState.Destroyed) {
+        appMenu.open();
+      } else if ($appMenu.state === MenuOpenState.Open) {
+        appMenu.close();
+      }
+      return true;
+    },
+    onSoftLeftLong: () => {
+      if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
+        updateView({ viewing: ViewState.Cards });
+      } else {
+        updateView({ viewing: ViewState.Content });
+      }
+      return true;
+    },
+    onBackspace: () => {
+      if ($appMenu.state === MenuOpenState.Open) {
+        appMenu.close();
+        return true;
+      }
+
+      if ($view.viewing === ViewState.Cards) {
+        updateView({ viewing: ViewState.Content });
+        return true;
+      }
+
+      // If on the main screen, let KaiOS minimize the app
+      if ($location === '/') {
+        console.log('exit app');
+
+        return false;
+      }
+      pop();
+      return true;
+    },
+  }}
+>
+  <div class="view">
+    <slot />
+  </div>
+  <div class="dashboard">
+    <slot name="dashboard" />
+  </div>
+  {#if $appMenu.state !== MenuOpenState.Destroyed}
+    <div class="menu-container">
+      <div class="scrim" class:open={$appMenu.state === MenuOpenState.Open} />
+      <div class="menu" class:open={$appMenu.state === MenuOpenState.Open}>
+        <slot name="app-menu" />
+      </div>
+    </div>
+  {/if}
+</div>
+
+<style>
+  .root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .view {
+    flex: 1;
+  }
+
+  .menu-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .scrim {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity var(--animation-speed);
+    opacity: 0;
+  }
+  .scrim.open {
+    opacity: 1;
+  }
+
+  .menu {
+    transform: translateY(100%);
+    transition: transform var(--animation-speed);
+    max-height: 80vh;
+  }
+
+  .menu.open {
+    transform: translateY(0%);
+  }
+</style>

@@ -11,6 +11,7 @@
   import ListItem from '../lib/components/list/ListItem.svelte';
   import NavGroup from '../lib/components/nav/NavGroup.svelte';
   import { ViewState } from '../lib/enums';
+  import { appMenu } from '../lib/stores/appMenu';
   import { updateView } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
@@ -43,6 +44,7 @@
           itemId: item.id,
           shortcutKey: shortcutFromIndex(i),
           onSelect: () => {
+            appMenu.close();
             if (location.hash.startsWith(`#${item.route}`)) {
               updateView({ viewing: ViewState.Content });
               return;
@@ -60,11 +62,9 @@
     border-radius: var(--radius) var(--radius) 0 0;
     background-color: var(--card-color);
     color: var(--text-color);
-    height: calc(100vh - 15px);
     display: flex;
     flex-direction: column;
-    padding-bottom: 25px;
-    margin-bottom: -15px;
+    height: 100%;
   }
   .header {
     padding: 5px;
