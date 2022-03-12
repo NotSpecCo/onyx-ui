@@ -8,10 +8,10 @@ type Config = {
   onEnter?: () => Promise<boolean> | boolean;
   onEnterLong?: () => Promise<boolean> | boolean;
   onSoftLeft?: () => Promise<boolean> | boolean;
-  onSoftRight?: () => Promise<boolean> | boolean;
-  onBackspace?: () => Promise<boolean> | boolean;
   onSoftLeftLong?: () => Promise<boolean> | boolean;
+  onSoftRight?: () => Promise<boolean> | boolean;
   onSoftRightLong?: () => Promise<boolean> | boolean;
+  onBackspace?: () => Promise<boolean> | boolean;
   onBackspaceLong?: () => Promise<boolean> | boolean;
 };
 
