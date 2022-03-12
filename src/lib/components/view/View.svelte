@@ -1,10 +1,8 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
-  import { OpenState, ViewState } from '../../enums';
-  import { menu } from '../../stores/menu';
+  import { app } from '../../stores/app';
   import { resetNavigation } from '../../stores/navigator';
-  import { resetView, view } from '../../stores/view';
-  import ContextMenu from '../contextMenu/ContextMenu.svelte';
+  import { resetView } from '../../stores/view';
   import ViewCards from './ViewCards.svelte';
 
   let cardsHeight: number | null = null;
@@ -12,22 +10,17 @@
   onDestroy(() => {
     resetView();
     resetNavigation();
-    menu.reset();
+    app.resetContextMenu();
   });
 </script>
 
 <div class="root">
   <div bind:clientHeight={cardsHeight}>
-    {#if $view.viewing === ViewState.Cards}
-      <ViewCards />
-    {/if}
+    <ViewCards />
   </div>
   <div class="content" style={`transform: translateY(${cardsHeight || 0}px)`}>
     <slot />
   </div>
-  {#if $menu.state > OpenState.Destroyed}
-    <ContextMenu />
-  {/if}
 </div>
 
 <style>

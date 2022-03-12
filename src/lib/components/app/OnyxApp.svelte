@@ -6,15 +6,16 @@
   import { keys } from '../../actions/keys';
   import { ContextKey, MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
   import type { BaseSettings, SettingsContext } from '../../models';
-  import { appMenu } from '../../stores/appMenu';
+  import { app } from '../../stores/app';
   import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
+  import ContextMenu from '../contextMenu/ContextMenu.svelte';
 
   export let baseSettings: Readable<BaseSettings>;
 
-  setContext<SettingsContext<BaseSettings>>(ContextKey.Settings, baseSettings);
+  $: app.setSettings($baseSettings);
 
-  appMenu.init({ animationSpeed: $baseSettings.animations });
+  setContext<SettingsContext<BaseSettings>>(ContextKey.Settings, baseSettings);
 
   // Apply settings
   $: {
@@ -71,10 +72,10 @@
   class="root"
   use:keys={{
     onSoftLeft: () => {
-      if ($appMenu.state === MenuOpenState.Destroyed) {
-        appMenu.open();
-      } else if ($appMenu.state === MenuOpenState.Open) {
-        appMenu.close();
+      if ($app.appMenu.state === MenuOpenState.Destroyed) {
+        app.openAppMenu();
+      } else if ($app.appMenu.state === MenuOpenState.Open) {
+        app.closeAppMenu();
       }
       return true;
     },
@@ -87,8 +88,12 @@
       return true;
     },
     onBackspace: () => {
-      if ($appMenu.state === MenuOpenState.Open) {
-        appMenu.close();
+      if ($app.appMenu.state === MenuOpenState.Open) {
+        app.closeAppMenu();
+        return true;
+      }
+      if ($app.contextMenu.state === MenuOpenState.Open) {
+        app.closeContextMenu();
         return true;
       }
 
@@ -103,6 +108,7 @@
 
         return false;
       }
+
       pop();
       return true;
     },
@@ -114,13 +120,16 @@
   <div class="dashboard">
     <slot name="dashboard" />
   </div>
-  {#if $appMenu.state !== MenuOpenState.Destroyed}
+  {#if $app.appMenu.state !== MenuOpenState.Destroyed}
     <div class="menu-container">
-      <div class="scrim" class:open={$appMenu.state === MenuOpenState.Open} />
-      <div class="menu" class:open={$appMenu.state === MenuOpenState.Open}>
+      <div class="scrim" class:open={$app.appMenu.state === MenuOpenState.Open} />
+      <div class="menu" class:open={$app.appMenu.state === MenuOpenState.Open}>
         <slot name="app-menu" />
       </div>
     </div>
+  {/if}
+  {#if $app.contextMenu.state !== MenuOpenState.Destroyed}
+    <ContextMenu />
   {/if}
 </div>
 

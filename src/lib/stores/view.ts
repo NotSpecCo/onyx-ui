@@ -41,14 +41,6 @@ export function resetView() {
   view.set(defaultViewConfig);
 }
 
-// App Menu
-
-export const appMenu = writable<any>(null);
-
-export function registerAppMenu(menu: any) {
-  appMenu.set(menu);
-}
-
 // Cards
 
 export function switchCard(value: 1 | -1) {

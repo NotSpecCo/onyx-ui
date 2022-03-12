@@ -1,7 +1,7 @@
 <script lang="ts">
   import { keys } from '../../actions/keys';
-  import { OpenState } from '../../enums';
-  import { menu } from '../../stores/menu';
+  import { MenuOpenState } from '../../enums';
+  import { app } from '../../stores/app';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
@@ -11,29 +11,29 @@
 </script>
 
 <div class="root">
-  <div class="scrim" class:open={$menu.state >= OpenState.Opening} />
+  <div class="scrim" class:open={$app.contextMenu.state === MenuOpenState.Open} />
   <div
     class="card"
-    class:open={$menu.state >= OpenState.Opening}
+    class:open={$app.contextMenu.state === MenuOpenState.Open}
     use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => {
-        menu.close();
+        app.closeContextMenu();
         return true;
       },
       onBackspace: () => {
-        menu.close();
+        app.closeContextMenu();
         return true;
       },
       priority: 'high',
     }}
   >
-    <div class="title">{$menu.title}</div>
-    {#if $menu.body}
-      <Typography>{$menu.body}</Typography>
+    <div class="title">{$app.contextMenu.title}</div>
+    {#if $app.contextMenu.body}
+      <Typography>{$app.contextMenu.body}</Typography>
     {/if}
     <NavGroup groupId="contextMenu">
-      {#each $menu.items as item, i}
+      {#each $app.contextMenu.items as item, i}
         <ContextMenuItem
           icon={item.icon}
           imageUrl={item.imageUrl}

@@ -11,7 +11,7 @@
   import ListItem from '../lib/components/list/ListItem.svelte';
   import NavGroup from '../lib/components/nav/NavGroup.svelte';
   import { ViewState } from '../lib/enums';
-  import { appMenu } from '../lib/stores/appMenu';
+  import { app } from '../lib/stores/app';
   import { updateView } from '../lib/stores/view';
   import { shortcutFromIndex } from '../lib/utils/shortcutFromIndex';
 
@@ -44,7 +44,7 @@
           itemId: item.id,
           shortcutKey: shortcutFromIndex(i),
           onSelect: () => {
-            appMenu.close();
+            app.closeAppMenu();
             if (location.hash.startsWith(`#${item.route}`)) {
               updateView({ viewing: ViewState.Content });
               return;

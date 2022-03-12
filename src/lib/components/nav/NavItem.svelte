@@ -1,8 +1,8 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { ContextKey } from '../../enums';
+  import { ContextKey, MenuOpenState } from '../../enums';
   import type { ContextMenu, Navigation, SettingsContext } from '../../models';
-  import { menu } from '../../stores/menu';
+  import { app } from '../../stores/app';
   import { groupItemMap } from '../../stores/navigator';
 
   export let navi: Navigation;
@@ -30,11 +30,11 @@
       contextMenu.onMenu();
       return;
     }
-    menu.open({
+    app.openContextMenu({
       title: contextMenu.title,
       body: contextMenu.body,
-      animationSpeed: $settings.animations,
       items: contextMenu.items,
+      state: MenuOpenState.Closed,
     });
   }}
 >
