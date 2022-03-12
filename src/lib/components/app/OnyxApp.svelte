@@ -3,7 +3,7 @@
   import { location, pop } from 'svelte-spa-router';
   import type { Readable } from 'svelte/store';
   import { settings } from '../../../stores/settings';
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { ContextKey, MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
   import type { BaseSettings, SettingsContext } from '../../models';
   import { appMenu } from '../../stores/appMenu';
@@ -69,7 +69,7 @@
 
 <div
   class="root"
-  use:dpad={{
+  use:keys={{
     onSoftLeft: () => {
       if ($appMenu.state === MenuOpenState.Destroyed) {
         appMenu.open();

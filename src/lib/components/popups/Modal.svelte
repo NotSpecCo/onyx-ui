@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { ContextKey, OpenState } from '../../enums';
   import type { SettingsContext } from '../../models';
   import { delay } from '../../utils/delay';
@@ -66,7 +66,7 @@
     <div
       class="card"
       class:open={state >= OpenState.Opening}
-      use:dpad={{
+      use:keys={{
         onSoftLeft: () => {
           actions.left?.actionFn?.();
           closeModal();

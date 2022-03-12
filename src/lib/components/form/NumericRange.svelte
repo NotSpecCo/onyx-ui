@@ -1,7 +1,7 @@
 <script lang="ts">
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { IconSize } from '../../enums';
   import Icon from '../icon/Icon.svelte';
 
@@ -15,7 +15,7 @@
 
 <div
   class="root"
-  use:dpad={{
+  use:keys={{
     onArrowLeft: () => {
       const num = value - 1;
       if (num >= min) {

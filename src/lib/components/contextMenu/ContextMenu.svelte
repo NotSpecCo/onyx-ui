@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { OpenState } from '../../enums';
   import { menu } from '../../stores/menu';
   import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
@@ -15,7 +15,7 @@
   <div
     class="card"
     class:open={$menu.state >= OpenState.Opening}
-    use:dpad={{
+    use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => {
         menu.close();

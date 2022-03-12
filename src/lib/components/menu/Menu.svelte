@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext, onMount } from 'svelte';
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { ContextKey, OpenState } from '../../enums';
   import type { SettingsContext } from '../../models';
   import { delay } from '../../utils/delay';
@@ -38,11 +38,11 @@
   <div
     class="card"
     class:open={state >= OpenState.Opening}
-    use:dpad={{
+    use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => true,
       onBackspace: async () => {
-        // TODO: View use:dpad fires before this if we await anything, triggering a nav pop
+        // TODO: View use:keys fires before this if we await anything, triggering a nav pop
         close().then(onBackspace);
         return true;
       },

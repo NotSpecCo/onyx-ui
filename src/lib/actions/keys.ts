@@ -1,10 +1,15 @@
 type Config = {
   disabled?: boolean;
+  longPressAction?: 'action' | 'repeat';
   priority?: 'high' | 'default';
   onArrowUp?: () => Promise<boolean> | boolean;
+  onArrowUpLong?: () => Promise<boolean> | boolean;
   onArrowDown?: () => Promise<boolean> | boolean;
+  onArrowDownLong?: () => Promise<boolean> | boolean;
   onArrowLeft?: () => Promise<boolean> | boolean;
+  onArrowLeftLong?: () => Promise<boolean> | boolean;
   onArrowRight?: () => Promise<boolean> | boolean;
+  onArrowRightLong?: () => Promise<boolean> | boolean;
   onEnter?: () => Promise<boolean> | boolean;
   onEnterLong?: () => Promise<boolean> | boolean;
   onSoftLeft?: () => Promise<boolean> | boolean;
@@ -15,35 +20,10 @@ type Config = {
   onBackspaceLong?: () => Promise<boolean> | boolean;
 };
 
-export function dpad(node: HTMLElement, config: Config) {
+export function keys(node: HTMLElement, config: Config) {
   async function handleKeyPress(ev: KeyboardEvent, key: string, longPress = false) {
-    let handled = false;
-
-    if (key === 'ArrowUp' && config.onArrowUp) {
-      handled = await config.onArrowUp();
-    } else if (key === 'ArrowDown' && config.onArrowDown) {
-      handled = await config.onArrowDown();
-    } else if (key === 'ArrowLeft' && config.onArrowLeft) {
-      handled = await config.onArrowLeft();
-    } else if (key === 'ArrowRight' && config.onArrowRight) {
-      handled = await config.onArrowRight();
-    } else if (key === 'Enter' && !longPress && config.onEnter) {
-      handled = await config.onEnter();
-    } else if (key === 'Enter' && longPress && config.onEnterLong) {
-      handled = await config.onEnterLong();
-    } else if (key === 'SoftLeft' && !longPress && config.onSoftLeft) {
-      handled = await config.onSoftLeft();
-    } else if (key === 'SoftRight' && !longPress && config.onSoftRight) {
-      handled = await config.onSoftRight();
-    } else if (key === 'Backspace' && !longPress && config.onBackspace) {
-      handled = await config.onBackspace();
-    } else if (key === 'SoftLeft' && longPress && config.onSoftLeftLong) {
-      handled = await config.onSoftLeftLong();
-    } else if (key === 'SoftRight' && longPress && config.onSoftRightLong) {
-      handled = await config.onSoftRightLong();
-    } else if (key === 'Backspace' && longPress && config.onBackspaceLong) {
-      handled = await config.onBackspaceLong();
-    }
+    const handler = config[`on${key}${longPress ? 'Long' : ''}`];
+    const handled = await handler?.();
 
     if (handled) {
       ev.stopPropagation();

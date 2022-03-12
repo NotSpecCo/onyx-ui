@@ -1,7 +1,7 @@
 <script lang="ts">
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
-  import { dpad } from '../../actions/dpad';
+  import { keys } from '../../actions/keys';
   import { IconSize } from '../../enums/iconSize';
   import type { SelectOption } from '../../models';
   import { getIndex } from '../../utils/array';
@@ -24,7 +24,7 @@
 
 <div
   class="root"
-  use:dpad={{
+  use:keys={{
     onArrowLeft: () => {
       const index = options.findIndex((a) => a.id === value);
       const newIndex = getIndex(options, index, -1, wrap);
