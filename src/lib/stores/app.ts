@@ -1,3 +1,4 @@
+import type { SvelteComponent } from 'svelte';
 import { get, writable } from 'svelte/store';
 import { Animations, Density, MenuOpenState, TextSize, TextWeight } from '../enums';
 import type { BaseSettings } from '../models';
@@ -40,7 +41,7 @@ type ContextMenu = {
   title: string;
   body?: string;
   items: {
-    icon?: any;
+    icon?: typeof SvelteComponent;
     imageUrl?: string;
     label: string;
     workingLabel?: string;

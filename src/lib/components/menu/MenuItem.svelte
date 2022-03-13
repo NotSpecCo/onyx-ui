@@ -1,11 +1,12 @@
 <script lang="ts">
+  import type { SvelteComponent } from 'svelte';
   import { IconSize } from '../../enums';
   import type { Navigation } from '../../models';
   import { app } from '../../stores/app';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
-  export let icon: any = null;
+  export let icon: typeof SvelteComponent = null;
   export let primaryText: string = null;
   export let secondaryText: string = null;
   export let navi: Navigation;

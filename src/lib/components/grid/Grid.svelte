@@ -1,6 +1,5 @@
 <script lang="ts">
-  export let columns: number = 3;
-  export let gap: number = 10;
+  export let columns = 3;
 </script>
 
 <div class="root" style={`grid-template-columns: repeat(${columns}, 1fr)`}>

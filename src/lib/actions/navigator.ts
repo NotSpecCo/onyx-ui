@@ -52,6 +52,7 @@ export function navigator(node: HTMLElement, config: Config) {
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&
         target?.tagName.toLowerCase() === 'input') ||
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(key) &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (target?.attributes as any).role?.value === 'textbox')
     ) {
       return;

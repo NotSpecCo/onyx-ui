@@ -1,4 +1,4 @@
-export function getIndex(arr: any[], index: number, change: 1 | -1, wrap = false): number {
+export function getIndex(arr: unknown[], index: number, change: 1 | -1, wrap = false): number {
   let newIndex = index + change;
 
   if (newIndex < 0 && !wrap) {

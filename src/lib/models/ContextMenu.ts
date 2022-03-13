@@ -1,8 +1,10 @@
+import type { SvelteComponent } from 'svelte';
+
 export type ContextMenu = {
   title: string;
   body?: string;
   items: {
-    icon?: any;
+    icon?: typeof SvelteComponent;
     imageUrl?: string;
     label: string;
     workingLabel?: string;

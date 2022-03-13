@@ -12,8 +12,8 @@
   const itemId = uuidv4();
   let focused = false;
 
-  function handleChange(ev: any) {
-    onChange(ev.target.textContent);
+  function handleChange(ev: Event) {
+    onChange((ev.target as HTMLElement).textContent);
   }
 </script>
 

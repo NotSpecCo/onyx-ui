@@ -49,6 +49,7 @@ export function navigator(node: HTMLElement, config: Config) {
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(ev.key) &&
         target?.tagName.toLowerCase() === 'input') ||
       (!['ArrowUp', 'ArrowDown', 'Enter'].includes(ev.key) &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (target?.attributes as any).role?.value === 'textbox')
     ) {
       return;
@@ -104,7 +105,7 @@ export function navigator(node: HTMLElement, config: Config) {
     // console.log('here', items[currentItemIndex], ev.key);
 
     // if (items[currentItemIndex]) {
-    const item = new Item(items, currentItemIndex, scroller);
+    const item = new Item(items, currentItemIndex);
     switch (ev.key) {
       case 'ArrowUp':
         nextItem = item.findTop();
@@ -239,7 +240,7 @@ class Item {
   current?: ElementWithDimens;
   others: ElementWithDimens[];
 
-  constructor(elements: HTMLElement[], currentIndex: number, scroller: HTMLElement) {
+  constructor(elements: HTMLElement[], currentIndex: number) {
     if (elements[currentIndex]) {
       this.current = {
         element: elements[currentIndex],

@@ -5,7 +5,7 @@
 
   export let label: string;
   export let value: boolean;
-  export let disabled: boolean = false;
+  export let disabled = false;
   export let onChange: (val: boolean) => void;
 
   const itemId = uuidv4();

@@ -17,7 +17,7 @@ groups.subscribe((data) => {
     data.reduce((acc, val) => {
       acc[val.id] = val.focusedItemId;
       return acc;
-    }, {} as any)
+    }, {} as { [key: string]: string })
   );
 });
 
@@ -38,7 +38,7 @@ export function activateGroup(id: string) {
   groups.set(newGroups);
 }
 
-export function deactivateGroup(id: any) {
+export function deactivateGroup(id: string) {
   const newGroups = get(groups).filter((a) => a.id !== id);
   groups.set(newGroups);
 }

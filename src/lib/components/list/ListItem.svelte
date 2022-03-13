@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { SvelteComponent } from 'svelte';
   import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
   import { IconColor, IconSize } from '../../enums';
   import type { ContextMenu, Navigation } from '../../models';
@@ -7,7 +8,7 @@
   import NaviItem from '../nav/NavItem.svelte';
 
   export let imageUrl: string = null;
-  export let icon: any = null;
+  export let icon: typeof SvelteComponent = null;
   export let primaryText: string = null;
   export let secondaryText: string = null;
   export let accentText: string = null;

@@ -65,6 +65,7 @@ export function keys(node: HTMLElement, config: Config) {
       (!['SoftLeft', 'SoftRight', 'Enter'].includes(key) &&
         target?.tagName.toLowerCase() === 'input') ||
       (!['SoftLeft', 'SoftRight', 'Enter'].includes(key) &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (target?.attributes as any).role?.value === 'textbox') ||
       ev.repeat
     ) {
