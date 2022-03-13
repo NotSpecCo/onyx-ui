@@ -11,7 +11,7 @@
       colorValue = 'var(--accent-color)';
       break;
     case IconColor.Tertiary:
-      colorValue = 'var(--dividert-color)';
+      colorValue = 'var(--divider-color)';
       break;
     case IconColor.Secondary:
       colorValue = 'var(--secondary-text-color)';
