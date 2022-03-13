@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
   import { location, pop } from 'svelte-spa-router';
   import type { Readable } from 'svelte/store';
-  import { settings } from '../../../stores/settings';
   import { keys } from '../../actions/keys';
-  import { ContextKey, MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
-  import type { BaseSettings, SettingsContext } from '../../models';
+  import { MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
+  import type { BaseSettings } from '../../models';
   import { app } from '../../stores/app';
   import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
@@ -15,16 +13,14 @@
 
   $: app.setSettings($baseSettings);
 
-  setContext<SettingsContext<BaseSettings>>(ContextKey.Settings, baseSettings);
-
   // Apply settings
   $: {
     // Theme
-    applyTheme($settings);
+    applyTheme($baseSettings);
 
-    if ($settings.shortcutKeyColor === 'accent') {
+    if ($baseSettings.shortcutKeyColor === 'accent') {
       document.documentElement.style.setProperty('--shortcut-color', `var(--accent-color)`);
-    } else if ($settings.shortcutKeyColor === 'secondary') {
+    } else if ($baseSettings.shortcutKeyColor === 'secondary') {
       document.documentElement.style.setProperty('--shortcut-color', `var(--secondary-text-color)`);
     } else {
       document.documentElement.style.setProperty('--shortcut-color', `var(--primary-text-color)`);
@@ -40,7 +36,7 @@
     };
     document.documentElement.style.setProperty(
       '--base-font-size',
-      `${textSize[$settings.textSize]}px`
+      `${textSize[$baseSettings.textSize]}px`
     );
 
     const weight = {
@@ -50,21 +46,24 @@
     };
     document.documentElement.style.setProperty(
       '--regular-font-weight',
-      `${weight[$settings.textWeight].regular}`
+      `${weight[$baseSettings.textWeight].regular}`
     );
     document.documentElement.style.setProperty(
       '--bold-font-weight',
-      `${weight[$settings.textWeight].bold}`
+      `${weight[$baseSettings.textWeight].bold}`
     );
 
     // Display Density
-    document.body.dataset.density = $settings.displayDensity;
+    document.body.dataset.density = $baseSettings.displayDensity;
 
     // Border Radius
-    document.documentElement.style.setProperty('--radius', `${$settings.borderRadius}px`);
+    document.documentElement.style.setProperty('--radius', `${$baseSettings.borderRadius}px`);
 
     // Animations
-    document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
+    document.documentElement.style.setProperty(
+      '--animation-speed',
+      `${$baseSettings.animations}ms`
+    );
   }
 </script>
 
