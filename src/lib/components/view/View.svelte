@@ -1,52 +1,52 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
-	import { app } from '../../stores/app';
-	import { resetNavigation } from '../../stores/navigator';
-	import { resetView } from '../../stores/view';
-	import ViewCards from './ViewCards.svelte';
+  import { onDestroy } from 'svelte';
+  import { app } from '../../stores/app';
+  import { resetNavigation } from '../../stores/navigator';
+  import { resetView } from '../../stores/view';
+  import ViewCards from './ViewCards.svelte';
 
-	let cardsHeight: number | null = null;
+  let cardsHeight: number | null = null;
 
-	onDestroy(() => {
-		resetView();
-		resetNavigation();
-		app.resetContextMenu();
-	});
+  onDestroy(() => {
+    resetView();
+    resetNavigation();
+    app.resetContextMenu();
+  });
 </script>
 
 <div class="root">
-	{#if false}
-		<div bind:clientHeight={cardsHeight}>
-			<ViewCards />
-		</div>
-	{/if}
-	<div class="content" style={`transform: translateY(${cardsHeight || 0}px)`}>
-		<slot />
-	</div>
+  {#if false}
+    <div bind:clientHeight={cardsHeight}>
+      <ViewCards />
+    </div>
+  {/if}
+  <div class="content" style={`transform: translateY(${cardsHeight || 0}px)`}>
+    <slot />
+  </div>
 </div>
 
 <style>
-	.root {
-		position: relative;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
+  .root {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
 
-	.content {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		transition: transform var(--animation-speed);
-		transform: translateY(0px);
-		z-index: 9;
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-		box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
-		border-radius: var(--radius) var(--radius) 0 0;
-	}
+  .content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform var(--animation-speed);
+    transform: translateY(0px);
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
 </style>
