@@ -44,7 +44,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
     border-radius: var(--radius) var(--radius) 0 0;
   }
 </style>

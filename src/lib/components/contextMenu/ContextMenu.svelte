@@ -86,7 +86,7 @@
 
   .card {
     border: 1px solid var(--card-border-color);
-    box-shadow: 0 0 5px hsla(0, 0%, 0%, 20%);
+    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
     background-color: var(--card-color);
     position: absolute;
     bottom: 0;
