@@ -1,19 +1,21 @@
 <script lang="ts">
   import { setContext } from 'svelte';
-  import { querystring } from 'svelte-spa-router';
   import { ContextKey } from '../../enums';
   import type { CardContext } from '../../models';
-  import { getFocusedId } from '../../utils/route';
+  import { Route } from '../../utils/route';
   import NavGroup from '../nav/NavGroup.svelte';
 
   export let cardId: string | null = null;
 
-  let focusedId = getFocusedId($querystring);
-
   setContext<CardContext>(ContextKey.Card, { cardId });
 </script>
 
-<NavGroup groupId="card" enableCardSwitching={true} updateRoute={true} initialFocusedId={focusedId}>
+<NavGroup
+  groupId="card"
+  enableCardSwitching={true}
+  updateRoute={true}
+  initialFocusedId={Route.getState().focusedId}
+>
   <slot />
 </NavGroup>
 

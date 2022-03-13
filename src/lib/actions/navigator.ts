@@ -1,5 +1,4 @@
 import { tick } from 'svelte';
-import { replace } from 'svelte-spa-router';
 import { get } from 'svelte/store';
 import {
   activateGroup,
@@ -10,7 +9,7 @@ import {
 } from '../stores/navigator';
 import { switchCard } from '../stores/view';
 import { getIndex } from '../utils/array';
-import { setFocusedId } from '../utils/route';
+import { Route } from '../utils/route';
 
 type Config = {
   groupId: string;
@@ -90,7 +89,7 @@ export function navigator(node: HTMLElement, config: Config) {
       setSelectedId(config.groupId, shortcutItem.dataset.navId);
 
       if (config.updateRoute) {
-        replace(setFocusedId(shortcutItem.dataset.navId));
+        Route.updateState({ focusedId: shortcutItem.dataset.navId });
       }
 
       items[currentItemIndex]?.dispatchEvent(new CustomEvent('itemblur'));
@@ -140,7 +139,7 @@ export function navigator(node: HTMLElement, config: Config) {
     scrollIntoView(scroller, nextItem, 'smooth');
 
     if (config.updateRoute) {
-      replace(setFocusedId(nextItem?.dataset.navId));
+      Route.updateState({ focusedId: nextItem?.dataset.navId });
     }
   }
 
