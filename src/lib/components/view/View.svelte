@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
+  import { ViewState } from '../../enums';
   import { app } from '../../stores/app';
   import { resetNavigation } from '../../stores/navigator';
-  import { resetView } from '../../stores/view';
+  import { resetView, view } from '../../stores/view';
   import ViewCards from './ViewCards.svelte';
 
   let cardsHeight: number | null = null;
@@ -15,12 +16,15 @@
 </script>
 
 <div class="root">
-  {#if false}
+  {#if $view.viewing === ViewState.Stack}
     <div bind:clientHeight={cardsHeight}>
       <ViewCards />
     </div>
   {/if}
-  <div class="content" style={`transform: translateY(${cardsHeight || 0}px)`}>
+  <div
+    class="content"
+    style={`transform: translateY(${$view.viewing === ViewState.Stack ? cardsHeight : 0}px)`}
+  >
     <slot />
   </div>
 </div>

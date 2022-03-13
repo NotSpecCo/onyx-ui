@@ -1,5 +1,4 @@
 export enum ViewState {
-  AppMenu,
-  Cards,
-  Content,
+  Stack,
+  Card,
 }

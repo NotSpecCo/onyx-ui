@@ -78,10 +78,10 @@
       return true;
     },
     onSoftLeftLong: () => {
-      if ($view.viewing === ViewState.Content && $view.cards.length > 1) {
-        updateView({ viewing: ViewState.Cards });
+      if ($view.viewing === ViewState.Card && $view.cards.length > 1) {
+        updateView({ viewing: ViewState.Stack });
       } else {
-        updateView({ viewing: ViewState.Content });
+        updateView({ viewing: ViewState.Card });
       }
       return true;
     },
@@ -96,8 +96,8 @@
         return true;
       }
 
-      if ($view.viewing === ViewState.Cards) {
-        updateView({ viewing: ViewState.Content });
+      if ($view.viewing === ViewState.Stack) {
+        updateView({ viewing: ViewState.Card });
         return true;
       }
     },

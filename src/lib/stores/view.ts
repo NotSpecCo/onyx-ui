@@ -14,7 +14,7 @@ type ViewConfig = {
 };
 
 const defaultViewConfig: ViewConfig = {
-  viewing: ViewState.Content,
+  viewing: ViewState.Card,
   dataStatus: DataStatus.Init,
   cards: [],
   activeCardId: null,

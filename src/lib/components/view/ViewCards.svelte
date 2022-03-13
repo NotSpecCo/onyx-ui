@@ -22,7 +22,7 @@
           class:focused={card.id === $groupItemMap[NAV_GROUP_ID]}
           data-nav-id={card.id}
           data-nav-shortcut={i + 1}
-          on:itemselect={() => updateView({ viewing: ViewState.Content, activeCardId: card.id })}
+          on:itemselect={() => updateView({ viewing: ViewState.Card, activeCardId: card.id })}
         >
           {#if $app.settings.shortcutKeyLocation === 'left' && shortcutFromIndex(i)}
             <div class="shortcut">{shortcutFromIndex(i)}</div>
