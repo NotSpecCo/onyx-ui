@@ -1,7 +1,8 @@
 <script lang="ts">
   import { keys } from '../../actions/keys';
   import { RenderState } from '../../enums';
-  import { app } from '../../stores/app';
+  import { Onyx } from '../../services';
+  import { contextMenu } from '../../stores';
   import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
@@ -11,25 +12,25 @@
 </script>
 
 <div class="root">
-  <div class="scrim" class:open={$app.contextMenu.state === RenderState.Open} />
+  <div class="scrim" class:open={$contextMenu.state === RenderState.Open} />
   <div
     class="card"
-    class:open={$app.contextMenu.state === RenderState.Open}
+    class:open={$contextMenu.state === RenderState.Open}
     use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => {
-        app.closeContextMenu();
+        Onyx.contextMenu.close();
         return true;
       },
       priority: 'high',
     }}
   >
-    <div class="title">{$app.contextMenu.title}</div>
-    {#if $app.contextMenu.body}
-      <Typography>{$app.contextMenu.body}</Typography>
+    <div class="title">{$contextMenu.title}</div>
+    {#if $contextMenu.body}
+      <Typography>{$contextMenu.body}</Typography>
     {/if}
     <NavGroup groupId="contextMenu">
-      {#each $app.contextMenu.items as item, i}
+      {#each $contextMenu.items as item, i}
         <ContextMenuItem
           icon={item.icon}
           imageUrl={item.imageUrl}

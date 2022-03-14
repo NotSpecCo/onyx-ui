@@ -1,8 +1,8 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { ContextKey, RenderState } from '../../enums';
+  import { ContextKey } from '../../enums';
   import type { ContextMenu, Navigation } from '../../models';
-  import { app } from '../../stores/app';
+  import { Onyx } from '../../services';
   import { groupItemMap } from '../../stores/navigator';
 
   export let navi: Navigation;
@@ -29,11 +29,10 @@
       contextMenu.onMenu();
       return;
     }
-    app.openContextMenu({
+    Onyx.contextMenu.open({
       title: contextMenu.title,
       body: contextMenu.body,
       items: contextMenu.items,
-      state: RenderState.Closed,
     });
   }}
 >

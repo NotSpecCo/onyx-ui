@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { keys } from '../../actions/keys';
   import { RenderState } from '../../enums';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import { delay } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
 
@@ -18,13 +18,13 @@
     state = RenderState.Closed;
     await delay(50);
     state = RenderState.Open;
-    await delay($app.settings.animations);
+    await delay($settings.animations);
   }
   async function close() {
     if (state !== RenderState.Open) return;
 
     state = RenderState.Closed;
-    await delay($app.settings.animations);
+    await delay($settings.animations);
     state = RenderState.Destroyed;
   }
 
@@ -52,7 +52,7 @@
     <NavGroup groupId="menu">
       <slot />
     </NavGroup>
-    {#if $app.settings.showHelpText}
+    {#if $settings.showHelpText}
       <div class="footer">Save</div>
     {/if}
   </div>

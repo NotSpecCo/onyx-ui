@@ -2,7 +2,7 @@
   import type { SvelteComponent } from 'svelte';
   import { IconSize } from '../../enums';
   import type { Navigation } from '../../models';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
@@ -16,7 +16,7 @@
 
 <NaviItem {navi}>
   <div class="root">
-    {#if $app.settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
+    {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
     {#if icon}
@@ -34,7 +34,7 @@
         <div class="primary">{working ? workingText : text}</div>
       {/if}
     </div>
-    {#if $app.settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
+    {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
   </div>

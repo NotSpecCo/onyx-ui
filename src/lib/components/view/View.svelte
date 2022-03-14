@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
   import { ViewState } from '../../enums';
-  import { app } from '../../stores/app';
+  import { Onyx } from '../../services';
   import { resetNavigation } from '../../stores/navigator';
   import { resetView, view } from '../../stores/view';
   import ViewCards from './ViewCards.svelte';
@@ -11,7 +11,7 @@
   onDestroy(() => {
     resetView();
     resetNavigation();
-    app.resetContextMenu();
+    Onyx.contextMenu.reset();
   });
 </script>
 

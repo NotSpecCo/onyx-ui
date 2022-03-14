@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ViewState } from '../../enums';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import { groupItemMap } from '../../stores/navigator';
   import { updateView, view } from '../../stores/view';
   import { getShortcutFromIndex } from '../../utils';
@@ -11,7 +11,7 @@
 </script>
 
 <NavGroup groupId={NAV_GROUP_ID}>
-  {#if $app.settings.showHelpText}
+  {#if $settings.showHelpText}
     <Typography align="center" type="caption">Press again for app menu</Typography>
   {/if}
   <div data-nav-scroller>
@@ -24,11 +24,11 @@
           data-nav-shortcut={i + 1}
           on:itemselect={() => updateView({ viewing: ViewState.Card, activeCardId: card.id })}
         >
-          {#if $app.settings.shortcutKeyLocation === 'left' && getShortcutFromIndex(i)}
+          {#if $settings.shortcutKeyLocation === 'left' && getShortcutFromIndex(i)}
             <div class="shortcut">{getShortcutFromIndex(i)}</div>
           {/if}
           <div class="title">{card.title}</div>
-          {#if $app.settings.shortcutKeyLocation === 'right' && getShortcutFromIndex(i)}
+          {#if $settings.shortcutKeyLocation === 'right' && getShortcutFromIndex(i)}
             <div class="shortcut">{getShortcutFromIndex(i)}</div>
           {/if}
         </div>

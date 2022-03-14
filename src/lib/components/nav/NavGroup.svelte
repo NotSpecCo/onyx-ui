@@ -2,7 +2,7 @@
   import { setContext } from 'svelte';
   import { navigator } from '../../actions/navigator';
   import { ContextKey, DataStatus } from '../../enums';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import { view } from '../../stores/view';
 
   export let groupId: string;
@@ -18,7 +18,7 @@
     groupId,
     initialFocusedId,
     enableCardSwitching,
-    enableShortcuts: $app.settings.enableShortcutKeys,
+    enableShortcuts: $settings.enableShortcutKeys,
     updateRoute,
     viewLoaded: $view.dataStatus === DataStatus.Loaded,
   }}

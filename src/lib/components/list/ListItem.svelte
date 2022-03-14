@@ -3,7 +3,7 @@
   import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
   import { IconColor, IconSize } from '../../enums';
   import type { ContextMenu, Navigation } from '../../models';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import Icon from '../icon/Icon.svelte';
   import NaviItem from '../nav/NavItem.svelte';
 
@@ -18,7 +18,7 @@
 
 <NaviItem {navi} {contextMenu}>
   <div class="root">
-    {#if $app.settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
+    {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
     {#if icon}
@@ -38,10 +38,10 @@
         <div class="accent">{accentText}</div>
       {/if}
     </div>
-    {#if $app.settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
+    {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
-    {#if $app.settings.contextMenuIndicators && contextMenu}
+    {#if $settings.contextMenuIndicators && contextMenu}
       <div class="menu-icon">
         <Icon size={IconSize.Small} color={IconColor.Secondary}><MdMoreVert /></Icon>
       </div>

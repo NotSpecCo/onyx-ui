@@ -1,25 +1,20 @@
 <script lang="ts">
-  import type { Readable } from 'svelte/store';
   import { keys } from '../../actions/keys';
   import { RenderState, TextSize, TextWeight, ViewState } from '../../enums';
-  import type { BaseSettings } from '../../models';
-  import { app } from '../../stores/app';
+  import { Onyx } from '../../services';
+  import { appMenu, contextMenu, settings } from '../../stores';
   import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
 
-  export let baseSettings: Readable<BaseSettings>;
-
-  $: app.setSettings($baseSettings);
-
   // Apply settings
   $: {
     // Theme
-    applyTheme($baseSettings);
+    applyTheme($settings);
 
-    if ($baseSettings.shortcutKeyColor === 'accent') {
+    if ($settings.shortcutKeyColor === 'accent') {
       document.documentElement.style.setProperty('--shortcut-color', `var(--accent-color)`);
-    } else if ($baseSettings.shortcutKeyColor === 'secondary') {
+    } else if ($settings.shortcutKeyColor === 'secondary') {
       document.documentElement.style.setProperty('--shortcut-color', `var(--secondary-text-color)`);
     } else {
       document.documentElement.style.setProperty('--shortcut-color', `var(--primary-text-color)`);
@@ -35,7 +30,7 @@
     };
     document.documentElement.style.setProperty(
       '--base-font-size',
-      `${textSize[$baseSettings.textSize]}px`
+      `${textSize[$settings.textSize]}px`
     );
 
     const weight = {
@@ -45,24 +40,21 @@
     };
     document.documentElement.style.setProperty(
       '--regular-font-weight',
-      `${weight[$baseSettings.textWeight].regular}`
+      `${weight[$settings.textWeight].regular}`
     );
     document.documentElement.style.setProperty(
       '--bold-font-weight',
-      `${weight[$baseSettings.textWeight].bold}`
+      `${weight[$settings.textWeight].bold}`
     );
 
     // Display Density
-    document.body.dataset.density = $baseSettings.displayDensity;
+    document.body.dataset.density = $settings.displayDensity;
 
     // Border Radius
-    document.documentElement.style.setProperty('--radius', `${$baseSettings.borderRadius}px`);
+    document.documentElement.style.setProperty('--radius', `${$settings.borderRadius}px`);
 
     // Animations
-    document.documentElement.style.setProperty(
-      '--animation-speed',
-      `${$baseSettings.animations}ms`
-    );
+    document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
   }
 </script>
 
@@ -70,14 +62,16 @@
   class="root"
   use:keys={{
     onSoftLeft: () => {
-      if ($app.appMenu.state === RenderState.Destroyed) {
-        app.openAppMenu();
-      } else if ($app.appMenu.state === RenderState.Open) {
-        app.closeAppMenu();
+      if ($appMenu.state === RenderState.Destroyed) {
+        Onyx.appMenu.open();
+      } else if ($appMenu.state === RenderState.Open) {
+        Onyx.appMenu.close();
       }
       return true;
     },
     onSoftLeftLong: () => {
+      console.log('soft left long');
+
       if ($view.viewing === ViewState.Card && $view.cards.length > 1) {
         updateView({ viewing: ViewState.Stack });
       } else {
@@ -86,13 +80,13 @@
       return true;
     },
     onBackspace: () => {
-      if ($app.appMenu.state === RenderState.Open) {
-        app.closeAppMenu();
+      if ($appMenu.state === RenderState.Open) {
+        Onyx.appMenu.close();
         return true;
       }
 
-      if ($app.contextMenu.state === RenderState.Open) {
-        app.closeContextMenu();
+      if ($contextMenu.state === RenderState.Open) {
+        Onyx.contextMenu.close();
         return true;
       }
 
@@ -109,15 +103,15 @@
   <div class="dashboard">
     <slot name="dashboard" />
   </div>
-  {#if $app.appMenu.state !== RenderState.Destroyed}
+  {#if $appMenu.state !== RenderState.Destroyed}
     <div class="menu-container">
-      <div class="scrim" class:open={$app.appMenu.state === RenderState.Open} />
-      <div class="menu" class:open={$app.appMenu.state === RenderState.Open}>
+      <div class="scrim" class:open={$appMenu.state === RenderState.Open} />
+      <div class="menu" class:open={$appMenu.state === RenderState.Open}>
         <slot name="app-menu" />
       </div>
     </div>
   {/if}
-  {#if $app.contextMenu.state !== RenderState.Destroyed}
+  {#if $contextMenu.state !== RenderState.Destroyed}
     <ContextMenu />
   {/if}
 </div>

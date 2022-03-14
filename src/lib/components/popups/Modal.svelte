@@ -1,7 +1,7 @@
 <script lang="ts">
   import { keys } from '../../actions/keys';
   import { RenderState } from '../../enums';
-  import { app } from '../../stores/app';
+  import { settings } from '../../stores';
   import { delay } from '../../utils';
 
   type Actions = {
@@ -42,7 +42,7 @@
     state = RenderState.Closed;
     await delay(50);
     state = RenderState.Open;
-    await delay($app.settings.animations);
+    await delay($settings.animations);
   }
   async function closeModal() {
     if (state !== RenderState.Open) {
@@ -50,7 +50,7 @@
     }
 
     state = RenderState.Closed;
-    await delay($app.settings.animations);
+    await delay($settings.animations);
     state = RenderState.Destroyed;
     onClose();
   }
