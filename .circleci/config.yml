@@ -2,9 +2,13 @@ version: 2.1
 executors:
   node-lts:
     docker:
-      - image: cimg/node:lts
+      - image: circleci/node:16
 
 jobs:
+  setup:
+    executor: node-lts
+    steps:
+      - run: sudo apt-get install jq
   install:
     executor: node-lts
     steps:
@@ -21,6 +25,10 @@ jobs:
       - attach_workspace:
           at: .
       - run: npm run package
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./*
   version-and-publish:
     executor: node-lts
     steps:
@@ -31,7 +39,10 @@ jobs:
 workflows:
   build-test-deploy:
     jobs:
-      - install
+      - setup
+      - install:
+          requires:
+            - setup
       - build:
           requires:
             - install

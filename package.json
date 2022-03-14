@@ -5,7 +5,8 @@
     "package": "svelte-kit package",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-    "commit": "cz"
+    "commit": "cz",
+    "postversion": "./deploy/version.sh $npm_package_version"
   },
   "author": "Garrett Downs",
   "license": "MIT",
