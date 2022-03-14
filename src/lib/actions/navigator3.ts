@@ -1,5 +1,6 @@
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
+import { Route } from '../services';
 import {
   activateGroup,
   activeGroup,
@@ -7,7 +8,6 @@ import {
   getFocusedItemId,
   setSelectedId,
 } from '../stores/navigator';
-import { Route } from '../utils/route';
 
 type Config = {
   groupId: string;

@@ -1,4 +1,4 @@
-export function shortcutFromIndex(index: number): string | undefined {
+export function getShortcutFromIndex(index: number): string | undefined {
   if (index > 8 || index < 0) {
     return;
   }

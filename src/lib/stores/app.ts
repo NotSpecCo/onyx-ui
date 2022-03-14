@@ -3,7 +3,7 @@ import { get, writable } from 'svelte/store';
 import { Animations, Density, MenuOpenState, TextSize, TextWeight } from '../enums';
 import type { BaseSettings } from '../models';
 import { themes } from '../themes';
-import { delay } from '../utils/delay';
+import { delay } from '../utils';
 
 const defaultSettings: BaseSettings = {
   themeId: themes[0].id,

@@ -1,5 +1,6 @@
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
+import { Route } from '../services';
 import {
   activateGroup,
   activeGroup,
@@ -8,8 +9,7 @@ import {
   setSelectedId,
 } from '../stores/navigator';
 import { switchCard } from '../stores/view';
-import { getIndex } from '../utils/array';
-import { Route } from '../utils/route';
+import { getIndex } from '../utils';
 
 type Config = {
   groupId: string;

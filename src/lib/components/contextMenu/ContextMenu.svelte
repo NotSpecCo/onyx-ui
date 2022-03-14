@@ -2,7 +2,7 @@
   import { keys } from '../../actions/keys';
   import { MenuOpenState } from '../../enums';
   import { app } from '../../stores/app';
-  import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
+  import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
   import ContextMenuItem from './ContextMenuItem.svelte';
@@ -38,7 +38,7 @@
           working={working === `menuItem${i + 1}`}
           navi={{
             itemId: `menuItem${i + 1}`,
-            shortcutKey: shortcutFromIndex(i),
+            shortcutKey: getShortcutFromIndex(i),
             onSelect: async () => {
               if (working) return;
               working = `menuItem${i + 1}`;

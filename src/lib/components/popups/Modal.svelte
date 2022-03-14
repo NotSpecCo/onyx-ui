@@ -2,7 +2,7 @@
   import { keys } from '../../actions/keys';
   import { OpenState } from '../../enums';
   import { app } from '../../stores/app';
-  import { delay } from '../../utils/delay';
+  import { delay } from '../../utils';
 
   type Actions = {
     left?: {

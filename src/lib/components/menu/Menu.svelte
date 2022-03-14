@@ -3,7 +3,7 @@
   import { keys } from '../../actions/keys';
   import { OpenState } from '../../enums';
   import { app } from '../../stores/app';
-  import { delay } from '../../utils/delay';
+  import { delay } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
 
   export let title: string;

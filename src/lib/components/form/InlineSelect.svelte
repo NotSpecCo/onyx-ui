@@ -4,7 +4,7 @@
   import { keys } from '../../actions/keys';
   import { IconSize } from '../../enums/iconSize';
   import type { SelectOption } from '../../models';
-  import { getIndex } from '../../utils/array';
+  import { getIndex } from '../../utils';
   import Icon from '../icon/Icon.svelte';
 
   export let value: string | number = undefined;

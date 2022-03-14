@@ -3,7 +3,7 @@
   import { app } from '../../stores/app';
   import { groupItemMap } from '../../stores/navigator';
   import { updateView, view } from '../../stores/view';
-  import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
+  import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
   import Typography from '../Typography.svelte';
 
@@ -24,12 +24,12 @@
           data-nav-shortcut={i + 1}
           on:itemselect={() => updateView({ viewing: ViewState.Card, activeCardId: card.id })}
         >
-          {#if $app.settings.shortcutKeyLocation === 'left' && shortcutFromIndex(i)}
-            <div class="shortcut">{shortcutFromIndex(i)}</div>
+          {#if $app.settings.shortcutKeyLocation === 'left' && getShortcutFromIndex(i)}
+            <div class="shortcut">{getShortcutFromIndex(i)}</div>
           {/if}
           <div class="title">{card.title}</div>
-          {#if $app.settings.shortcutKeyLocation === 'right' && shortcutFromIndex(i)}
-            <div class="shortcut">{shortcutFromIndex(i)}</div>
+          {#if $app.settings.shortcutKeyLocation === 'right' && getShortcutFromIndex(i)}
+            <div class="shortcut">{getShortcutFromIndex(i)}</div>
           {/if}
         </div>
       </div>

@@ -3,7 +3,7 @@
   import { v4 as uuidv4 } from 'uuid';
   import { IconSize } from '../../enums';
   import type { SelectOption } from '../../models';
-  import { shortcutFromIndex } from '../../utils/shortcutFromIndex';
+  import { getShortcutFromIndex } from '../../utils';
   import Icon from '../icon/Icon.svelte';
   import Menu from '../menu/Menu.svelte';
   import MenuItem from '../menu/MenuItem.svelte';
@@ -44,7 +44,7 @@
         primaryText={option.label}
         navi={{
           itemId: `${i + 1}`,
-          shortcutKey: shortcutFromIndex(i),
+          shortcutKey: getShortcutFromIndex(i),
           onSelect: () => {
             onChange(option.id);
             open = false;

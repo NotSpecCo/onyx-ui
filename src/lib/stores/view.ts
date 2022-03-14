@@ -1,7 +1,7 @@
 import { get, writable } from 'svelte/store';
 import { DataStatus, ViewState } from '../enums';
 import type { Card } from '../models';
-import { getIndex } from '../utils/array';
+import { getIndex } from '../utils';
 
 // View
 
