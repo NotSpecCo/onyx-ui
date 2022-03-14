@@ -160,7 +160,7 @@
   .menu {
     transform: translateY(100%);
     transition: transform var(--animation-speed);
-    max-height: 80vh;
+    height: 100vh;
   }
 
   .menu.open {
