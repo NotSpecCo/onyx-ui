@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Readable } from 'svelte/store';
   import { keys } from '../../actions/keys';
-  import { MenuOpenState, TextSize, TextWeight, ViewState } from '../../enums';
+  import { RenderState, TextSize, TextWeight, ViewState } from '../../enums';
   import type { BaseSettings } from '../../models';
   import { app } from '../../stores/app';
   import { updateView, view } from '../../stores/view';
@@ -70,9 +70,9 @@
   class="root"
   use:keys={{
     onSoftLeft: () => {
-      if ($app.appMenu.state === MenuOpenState.Destroyed) {
+      if ($app.appMenu.state === RenderState.Destroyed) {
         app.openAppMenu();
-      } else if ($app.appMenu.state === MenuOpenState.Open) {
+      } else if ($app.appMenu.state === RenderState.Open) {
         app.closeAppMenu();
       }
       return true;
@@ -86,12 +86,12 @@
       return true;
     },
     onBackspace: () => {
-      if ($app.appMenu.state === MenuOpenState.Open) {
+      if ($app.appMenu.state === RenderState.Open) {
         app.closeAppMenu();
         return true;
       }
 
-      if ($app.contextMenu.state === MenuOpenState.Open) {
+      if ($app.contextMenu.state === RenderState.Open) {
         app.closeContextMenu();
         return true;
       }
@@ -109,15 +109,15 @@
   <div class="dashboard">
     <slot name="dashboard" />
   </div>
-  {#if $app.appMenu.state !== MenuOpenState.Destroyed}
+  {#if $app.appMenu.state !== RenderState.Destroyed}
     <div class="menu-container">
-      <div class="scrim" class:open={$app.appMenu.state === MenuOpenState.Open} />
-      <div class="menu" class:open={$app.appMenu.state === MenuOpenState.Open}>
+      <div class="scrim" class:open={$app.appMenu.state === RenderState.Open} />
+      <div class="menu" class:open={$app.appMenu.state === RenderState.Open}>
         <slot name="app-menu" />
       </div>
     </div>
   {/if}
-  {#if $app.contextMenu.state !== MenuOpenState.Destroyed}
+  {#if $app.contextMenu.state !== RenderState.Destroyed}
     <ContextMenu />
   {/if}
 </div>

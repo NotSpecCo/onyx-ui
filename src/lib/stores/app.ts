@@ -1,6 +1,6 @@
 import type { SvelteComponent } from 'svelte';
 import { get, writable } from 'svelte/store';
-import { Animations, Density, MenuOpenState, TextSize, TextWeight } from '../enums';
+import { Animations, Density, RenderState, TextSize, TextWeight } from '../enums';
 import type { BaseSettings } from '../models';
 import { themes } from '../themes';
 import { delay } from '../utils';
@@ -33,11 +33,11 @@ const defaultSettings: BaseSettings = {
 };
 
 type AppMenu = {
-  state: MenuOpenState;
+  state: RenderState;
 };
 
 type ContextMenu = {
-  state: MenuOpenState;
+  state: RenderState;
   title: string;
   body?: string;
   items: {
@@ -58,8 +58,8 @@ type AppConfig = {
 
 const defaultConfig: AppConfig = {
   settings: defaultSettings,
-  appMenu: { state: MenuOpenState.Destroyed },
-  contextMenu: { state: MenuOpenState.Destroyed, title: null, items: [] },
+  appMenu: { state: RenderState.Destroyed },
+  contextMenu: { state: RenderState.Destroyed, title: null, items: [] },
 };
 
 function createApp() {
@@ -74,26 +74,26 @@ function createApp() {
   // App Menu
 
   async function openAppMenu() {
-    if (get(app).contextMenu.state !== MenuOpenState.Destroyed) {
+    if (get(app).contextMenu.state !== RenderState.Destroyed) {
       await closeContextMenu();
     }
 
-    if (get(app).appMenu.state !== MenuOpenState.Destroyed) {
+    if (get(app).appMenu.state !== RenderState.Destroyed) {
       return;
     }
 
-    app.update((val) => ({ ...val, appMenu: { state: MenuOpenState.Closed } }));
+    app.update((val) => ({ ...val, appMenu: { state: RenderState.Closed } }));
     await delay(50);
-    app.update((val) => ({ ...val, appMenu: { state: MenuOpenState.Open } }));
+    app.update((val) => ({ ...val, appMenu: { state: RenderState.Open } }));
     await delay(get(app).settings.animations);
   }
 
   async function closeAppMenu() {
-    if (get(app).appMenu.state !== MenuOpenState.Open) {
+    if (get(app).appMenu.state !== RenderState.Open) {
       return;
     }
 
-    app.update((val) => ({ ...val, appMenu: { state: MenuOpenState.Closed } }));
+    app.update((val) => ({ ...val, appMenu: { state: RenderState.Closed } }));
     await delay(get(app).settings.animations);
     app.update((val) => ({ ...val, appMenu: defaultConfig.appMenu }));
   }
@@ -101,28 +101,28 @@ function createApp() {
   // Context Menu
 
   async function openContextMenu(menu: ContextMenu) {
-    if (get(app).appMenu.state !== MenuOpenState.Destroyed) {
+    if (get(app).appMenu.state !== RenderState.Destroyed) {
       await closeAppMenu();
     }
 
-    if (get(app).contextMenu.state !== MenuOpenState.Destroyed) {
+    if (get(app).contextMenu.state !== RenderState.Destroyed) {
       return;
     }
 
-    app.update((val) => ({ ...val, contextMenu: { ...menu, state: MenuOpenState.Closed } }));
+    app.update((val) => ({ ...val, contextMenu: { ...menu, state: RenderState.Closed } }));
     await delay(50);
-    app.update((val) => ({ ...val, contextMenu: { ...menu, state: MenuOpenState.Open } }));
+    app.update((val) => ({ ...val, contextMenu: { ...menu, state: RenderState.Open } }));
     await delay(get(app).settings.animations);
   }
 
   async function closeContextMenu() {
-    if (get(app).contextMenu.state !== MenuOpenState.Open) {
+    if (get(app).contextMenu.state !== RenderState.Open) {
       return;
     }
 
     app.update((val) => ({
       ...val,
-      contextMenu: { ...val.contextMenu, state: MenuOpenState.Closed },
+      contextMenu: { ...val.contextMenu, state: RenderState.Closed },
     }));
     await delay(get(app).settings.animations);
     app.update((val) => ({ ...val, contextMenu: defaultConfig.contextMenu }));

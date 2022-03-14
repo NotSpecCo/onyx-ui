@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { keys } from '../../actions/keys';
-  import { OpenState } from '../../enums';
+  import { RenderState } from '../../enums';
   import { app } from '../../stores/app';
   import { delay } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
@@ -10,31 +10,32 @@
   export let disabled = false;
   export let onEnter: () => void;
 
-  let state = OpenState.Closed;
+  let state = RenderState.Destroyed;
 
   async function open() {
-    state = OpenState.Closed;
-    await delay(0);
-    state = OpenState.Opening;
+    if (state !== RenderState.Destroyed) return;
+
+    state = RenderState.Closed;
+    await delay(50);
+    state = RenderState.Open;
     await delay($app.settings.animations);
-    state = OpenState.Open;
   }
   async function close() {
-    state = OpenState.Open;
-    await delay(0);
-    state = OpenState.Closing;
+    if (state !== RenderState.Open) return;
+
+    state = RenderState.Closed;
     await delay($app.settings.animations);
-    state = OpenState.Closed;
+    state = RenderState.Destroyed;
   }
 
   onMount(() => open());
 </script>
 
 <div class="root">
-  <div class="scrim" class:open={state >= OpenState.Opening} />
+  <div class="scrim" class:open={state === RenderState.Open} />
   <div
     class="card"
-    class:open={state >= OpenState.Opening}
+    class:open={state === RenderState.Open}
     use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => true,

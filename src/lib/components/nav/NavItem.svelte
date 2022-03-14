@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getContext } from 'svelte';
-  import { ContextKey, MenuOpenState } from '../../enums';
+  import { ContextKey, RenderState } from '../../enums';
   import type { ContextMenu, Navigation } from '../../models';
   import { app } from '../../stores/app';
   import { groupItemMap } from '../../stores/navigator';
@@ -33,7 +33,7 @@
       title: contextMenu.title,
       body: contextMenu.body,
       items: contextMenu.items,
-      state: MenuOpenState.Closed,
+      state: RenderState.Closed,
     });
   }}
 >

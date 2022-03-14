@@ -1,4 +1,4 @@
-export enum MenuOpenState {
+export enum RenderState {
   Destroyed,
   Closed,
   Open,

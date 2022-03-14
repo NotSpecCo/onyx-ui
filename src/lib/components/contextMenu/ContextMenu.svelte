@@ -1,6 +1,6 @@
 <script lang="ts">
   import { keys } from '../../actions/keys';
-  import { MenuOpenState } from '../../enums';
+  import { RenderState } from '../../enums';
   import { app } from '../../stores/app';
   import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
@@ -11,10 +11,10 @@
 </script>
 
 <div class="root">
-  <div class="scrim" class:open={$app.contextMenu.state === MenuOpenState.Open} />
+  <div class="scrim" class:open={$app.contextMenu.state === RenderState.Open} />
   <div
     class="card"
-    class:open={$app.contextMenu.state === MenuOpenState.Open}
+    class:open={$app.contextMenu.state === RenderState.Open}
     use:keys={{
       onSoftLeft: () => true,
       onSoftRight: () => {
