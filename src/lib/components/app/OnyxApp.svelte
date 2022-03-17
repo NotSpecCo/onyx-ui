@@ -27,22 +27,22 @@
         }
         return true;
       },
-      onBackspace: () => {
-        if ($appMenu.state === RenderState.Open) {
-          Onyx.appMenu.close();
-          return true;
-        }
+      // onBackspace: () => {
+      //   if ($appMenu.state === RenderState.Open) {
+      //     Onyx.appMenu.close();
+      //     return true;
+      //   }
 
-        if ($contextMenu.state === RenderState.Open) {
-          Onyx.contextMenu.close();
-          return true;
-        }
+      //   if ($contextMenu.state === RenderState.Open) {
+      //     Onyx.contextMenu.close();
+      //     return true;
+      //   }
 
-        if ($view.viewing === ViewState.Stack) {
-          updateView({ viewing: ViewState.Card });
-          return true;
-        }
-      },
+      //   if ($view.viewing === ViewState.Stack) {
+      //     updateView({ viewing: ViewState.Card });
+      //     return true;
+      //   }
+      // },
     },
     Priority.Low
   );
