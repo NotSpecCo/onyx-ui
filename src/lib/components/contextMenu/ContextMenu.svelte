@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { keys } from '../../actions/keys';
-  import { RenderState } from '../../enums';
+  import { onDestroy } from 'svelte';
+  import { Priority, RenderState } from '../../enums';
   import { Onyx } from '../../services';
+  import { KeyManager } from '../../services/keyManager';
   import { contextMenu } from '../../stores';
   import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
@@ -9,22 +10,25 @@
   import ContextMenuItem from './ContextMenuItem.svelte';
 
   let working: string | null = null;
-</script>
 
-<div class="root">
-  <div class="scrim" class:open={$contextMenu.state === RenderState.Open} />
-  <div
-    class="card"
-    class:open={$contextMenu.state === RenderState.Open}
-    use:keys={{
+  const keyMan = KeyManager.subscribe(
+    {
       onSoftLeft: () => true,
+      onSoftLeftLong: () => true,
       onSoftRight: () => {
         Onyx.contextMenu.close();
         return true;
       },
-      priority: 'high',
-    }}
-  >
+    },
+    Priority.Medium
+  );
+
+  onDestroy(() => keyMan.unsubscribe());
+</script>
+
+<div class="root">
+  <div class="scrim" class:open={$contextMenu.state === RenderState.Open} />
+  <div class="card" class:open={$contextMenu.state === RenderState.Open}>
     <div class="title">{$contextMenu.title}</div>
     {#if $contextMenu.body}
       <Typography>{$contextMenu.body}</Typography>

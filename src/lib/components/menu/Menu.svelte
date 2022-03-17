@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { keys } from '../../actions/keys';
-  import { RenderState } from '../../enums';
+  import { onDestroy, onMount } from 'svelte';
+  import { Priority, RenderState } from '../../enums';
+  import { KeyManager } from '../../services';
   import { settings } from '../../stores';
   import { delay } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
@@ -28,15 +28,8 @@
     state = RenderState.Destroyed;
   }
 
-  onMount(() => open());
-</script>
-
-<div class="root">
-  <div class="scrim" class:open={state === RenderState.Open} />
-  <div
-    class="card"
-    class:open={state === RenderState.Open}
-    use:keys={{
+  let keyMan = KeyManager.subscribe(
+    {
       onSoftLeft: () => true,
       onSoftRight: () => true,
       onEnter: () => {
@@ -44,10 +37,25 @@
         close().then(onEnter);
         return false;
       },
-      priority: 'high',
-      disabled,
-    }}
-  >
+    },
+    Priority.Medium
+  );
+
+  $: {
+    if (disabled) {
+      keyMan.disable();
+    } else {
+      keyMan.enable();
+    }
+  }
+  onDestroy(() => keyMan.unsubscribe());
+
+  onMount(() => open());
+</script>
+
+<div class="root">
+  <div class="scrim" class:open={state === RenderState.Open} />
+  <div class="card" class:open={state === RenderState.Open}>
     <div class="title">{title}</div>
     <NavGroup groupId="menu">
       <slot />

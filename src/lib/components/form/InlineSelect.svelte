@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { onDestroy } from 'svelte';
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
-  import { keys } from '../../actions/keys';
+  import { Priority } from '../../enums';
   import { IconSize } from '../../enums/iconSize';
   import type { SelectOption } from '../../models';
+  import { KeyManager } from '../../services/keyManager';
   import { getIndex } from '../../utils';
   import Icon from '../icon/Icon.svelte';
 
@@ -20,27 +22,35 @@
     hasNext = wrap || !!options[index + 1];
     hasPrev = wrap || !!options[index - 1];
   }
+
+  let keyMan = KeyManager.subscribe(
+    {
+      onArrowLeft: () => {
+        const index = options.findIndex((a) => a.id === value);
+        const newIndex = getIndex(options, index, -1, wrap);
+        onChange(options[newIndex].id);
+        return true;
+      },
+      onArrowRight: () => {
+        const index = options.findIndex((a) => a.id === value);
+        const newIndex = getIndex(options, index, 1, wrap);
+        onChange(options[newIndex].id);
+        return true;
+      },
+    },
+    Priority.High
+  );
+  $: {
+    if (disabled) {
+      keyMan.disable();
+    } else {
+      keyMan.enable();
+    }
+  }
+  onDestroy(() => keyMan.unsubscribe());
 </script>
 
-<div
-  class="root"
-  use:keys={{
-    onArrowLeft: () => {
-      const index = options.findIndex((a) => a.id === value);
-      const newIndex = getIndex(options, index, -1, wrap);
-      onChange(options[newIndex].id);
-      return true;
-    },
-    onArrowRight: () => {
-      const index = options.findIndex((a) => a.id === value);
-      const newIndex = getIndex(options, index, 1, wrap);
-      onChange(options[newIndex].id);
-      return true;
-    },
-    priority: 'high',
-    disabled,
-  }}
->
+<div class="root">
   <Icon size={IconSize.Small} disabled={!hasPrev}><MdChevronLeft /></Icon>
   <div class="title">{options.find((a) => a.id === value)?.label ?? '?'}</div>
   <Icon size={IconSize.Small} disabled={!hasNext}><MdChevronRight /></Icon>

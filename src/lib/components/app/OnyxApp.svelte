@@ -1,11 +1,51 @@
 <script lang="ts">
-  import { keys } from '../../actions/keys';
-  import { RenderState, TextSize, TextWeight, ViewState } from '../../enums';
+  import { Priority, RenderState, TextSize, TextWeight, ViewState } from '../../enums';
   import { Onyx } from '../../services';
+  import { KeyManager } from '../../services/keyManager';
   import { appMenu, contextMenu, settings } from '../../stores';
   import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
+
+  KeyManager.startListening();
+
+  const keyMan = KeyManager.subscribe(
+    {
+      onSoftLeft: () => {
+        if ($appMenu.state === RenderState.Destroyed) {
+          Onyx.appMenu.open();
+        } else if ($appMenu.state === RenderState.Open) {
+          Onyx.appMenu.close();
+        }
+        return true;
+      },
+      onSoftLeftLong: () => {
+        if ($view.viewing === ViewState.Card && $view.cards.length > 1) {
+          updateView({ viewing: ViewState.Stack });
+        } else {
+          updateView({ viewing: ViewState.Card });
+        }
+        return true;
+      },
+      onBackspace: () => {
+        if ($appMenu.state === RenderState.Open) {
+          Onyx.appMenu.close();
+          return true;
+        }
+
+        if ($contextMenu.state === RenderState.Open) {
+          Onyx.contextMenu.close();
+          return true;
+        }
+
+        if ($view.viewing === ViewState.Stack) {
+          updateView({ viewing: ViewState.Card });
+          return true;
+        }
+      },
+    },
+    Priority.Low
+  );
 
   // Apply settings
   $: {
@@ -58,45 +98,7 @@
   }
 </script>
 
-<div
-  class="root"
-  use:keys={{
-    onSoftLeft: () => {
-      if ($appMenu.state === RenderState.Destroyed) {
-        Onyx.appMenu.open();
-      } else if ($appMenu.state === RenderState.Open) {
-        Onyx.appMenu.close();
-      }
-      return true;
-    },
-    onSoftLeftLong: () => {
-      console.log('soft left long');
-
-      if ($view.viewing === ViewState.Card && $view.cards.length > 1) {
-        updateView({ viewing: ViewState.Stack });
-      } else {
-        updateView({ viewing: ViewState.Card });
-      }
-      return true;
-    },
-    onBackspace: () => {
-      if ($appMenu.state === RenderState.Open) {
-        Onyx.appMenu.close();
-        return true;
-      }
-
-      if ($contextMenu.state === RenderState.Open) {
-        Onyx.contextMenu.close();
-        return true;
-      }
-
-      if ($view.viewing === ViewState.Stack) {
-        updateView({ viewing: ViewState.Card });
-        return true;
-      }
-    },
-  }}
->
+<div class="root">
   <div class="view">
     <slot />
   </div>

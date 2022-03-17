@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { onDestroy } from 'svelte';
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import MdChevronRight from 'svelte-icons/md/MdChevronRight.svelte';
-  import { keys } from '../../actions/keys';
-  import { IconSize } from '../../enums';
+  import { IconSize, Priority } from '../../enums';
+  import { KeyManager } from '../../services';
   import Icon from '../icon/Icon.svelte';
 
   export let value: number;
@@ -11,29 +12,37 @@
   export let max: number;
   export let onChange: (val: number) => void;
   export let disabled = false;
+
+  let keyMan = KeyManager.subscribe(
+    {
+      onArrowLeft: () => {
+        const num = value - 1;
+        if (num >= min) {
+          onChange(num);
+        }
+        return true;
+      },
+      onArrowRight: () => {
+        const num = value + 1;
+        if (num <= max) {
+          onChange(num);
+        }
+        return true;
+      },
+    },
+    Priority.High
+  );
+  $: {
+    if (disabled) {
+      keyMan.disable();
+    } else {
+      keyMan.enable();
+    }
+  }
+  onDestroy(() => keyMan.unsubscribe());
 </script>
 
-<div
-  class="root"
-  use:keys={{
-    onArrowLeft: () => {
-      const num = value - 1;
-      if (num >= min) {
-        onChange(num);
-      }
-      return true;
-    },
-    onArrowRight: () => {
-      const num = value + 1;
-      if (num <= max) {
-        onChange(num);
-      }
-      return true;
-    },
-    priority: 'high',
-    disabled,
-  }}
->
+<div class="root">
   <Icon size={IconSize.Small}><MdChevronLeft /></Icon>
   <div>{`${value}${valueLabel ?? ''}`}</div>
   <Icon size={IconSize.Small}><MdChevronRight /></Icon>

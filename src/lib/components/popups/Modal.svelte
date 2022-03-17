@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { keys } from '../../actions/keys';
-  import { RenderState } from '../../enums';
+  import { onDestroy } from 'svelte';
+  import { Priority, RenderState } from '../../enums';
+  import { KeyManager } from '../../services';
   import { settings } from '../../stores';
   import { delay } from '../../utils';
 
@@ -54,33 +55,42 @@
     state = RenderState.Destroyed;
     onClose();
   }
+
+  let keyMan = KeyManager.subscribe(
+    {
+      onSoftLeft: () => {
+        actions.left?.actionFn?.();
+        closeModal();
+        return true;
+      },
+      onSoftRight: () => {
+        actions.right?.actionFn?.();
+        closeModal();
+        return true;
+      },
+      onEnter: () => {
+        actions.center?.actionFn?.();
+        closeModal();
+        return true;
+      },
+    },
+    Priority.Medium
+  );
+
+  $: {
+    if (state < RenderState.Open) {
+      keyMan.disable();
+    } else {
+      keyMan.enable();
+    }
+  }
+  onDestroy(() => keyMan.unsubscribe());
 </script>
 
 {#if state > RenderState.Destroyed}
   <div class="root">
     <div class="scrim" class:open={state >= RenderState.Open} />
-    <div
-      class="card"
-      class:open={state >= RenderState.Open}
-      use:keys={{
-        onSoftLeft: () => {
-          actions.left?.actionFn?.();
-          closeModal();
-          return true;
-        },
-        onSoftRight: () => {
-          actions.right?.actionFn?.();
-          closeModal();
-          return true;
-        },
-        onEnter: () => {
-          actions.center?.actionFn?.();
-          closeModal();
-          return true;
-        },
-        priority: 'high',
-      }}
-    >
+    <div class="card" class:open={state >= RenderState.Open}>
       <div class="title">{title}</div>
       <slot />
       <div class="footer">

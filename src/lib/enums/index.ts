@@ -4,6 +4,7 @@ export * from './dataStatus';
 export * from './density';
 export * from './iconColor';
 export * from './iconSize';
+export * from './priority';
 export * from './renderState';
 export * from './textSize';
 export * from './textWeight';
