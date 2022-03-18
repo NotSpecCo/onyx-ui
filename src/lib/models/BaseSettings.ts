@@ -6,7 +6,7 @@ export type BaseSettings = ThemeSettings & {
   textWeight: TextWeight;
   displayDensity: Density;
   borderRadius: number;
-  animations: Animations;
+  animationSpeed: Animations;
   themeId: string;
   // Shortcuts
   enableShortcutKeys: boolean;

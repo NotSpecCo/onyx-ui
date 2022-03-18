@@ -11,7 +11,7 @@ const defaultConfig: Config = {
   textWeight: TextWeight.Medium,
   displayDensity: Density.Normal,
   borderRadius: 14,
-  animations: Animations.Normal,
+  animationSpeed: Animations.Normal,
   showHelpText: true,
   // Shortcuts
   enableShortcutKeys: true,

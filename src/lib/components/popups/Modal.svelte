@@ -43,7 +43,7 @@
     state = RenderState.Closed;
     await delay(50);
     state = RenderState.Open;
-    await delay($settings.animations);
+    await delay($settings.animationSpeed);
   }
   async function closeModal() {
     if (state !== RenderState.Open) {
@@ -51,7 +51,7 @@
     }
 
     state = RenderState.Closed;
-    await delay($settings.animations);
+    await delay($settings.animationSpeed);
     state = RenderState.Destroyed;
     onClose();
   }
