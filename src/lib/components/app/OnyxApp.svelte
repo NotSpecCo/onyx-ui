@@ -2,10 +2,11 @@
   import { Priority, RenderState, TextSize, TextWeight, ViewState } from '../../enums';
   import { Onyx } from '../../services';
   import { KeyManager } from '../../services/keyManager';
-  import { appMenu, contextMenu, settings } from '../../stores';
+  import { appMenu, contextMenu, settings, toaster } from '../../stores';
   import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
+  import Toaster from '../toaster/Toaster.svelte';
 
   KeyManager.startListening();
 
@@ -115,6 +116,9 @@
   {/if}
   {#if $contextMenu.state !== RenderState.Destroyed}
     <ContextMenu />
+  {/if}
+  {#if $toaster.state !== RenderState.Destroyed}
+    <Toaster />
   {/if}
 </div>
 

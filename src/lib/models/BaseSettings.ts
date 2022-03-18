@@ -14,6 +14,9 @@ export type BaseSettings = ThemeSettings & {
   shortcutKeyColor: 'primary' | 'secondary' | 'accent';
   // Context Menus
   contextMenuIndicators: boolean;
+  // Toaster
+  toasterLocation: 'top' | 'bottom';
+  toasterDuration: number;
 
   showHelpText: boolean;
 };

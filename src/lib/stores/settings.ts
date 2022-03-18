@@ -30,6 +30,9 @@ const defaultConfig: Config = {
   textColorL: themes[0].values.textColorL,
   focusColorA: themes[0].values.focusColorA,
   dividerColorA: themes[0].values.dividerColorA,
+  // Toaster
+  toasterLocation: 'bottom',
+  toasterDuration: 3000,
 };
 
 function createStore() {

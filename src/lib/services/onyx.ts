@@ -1,5 +1,6 @@
-import type { BaseSettings, ContextMenu } from '../models';
+import type { BaseSettings, ContextMenu, Toast } from '../models';
 import { appMenu, contextMenu, settings } from '../stores';
+import { toaster } from '../stores/toaster';
 
 export class Onyx {
   static init(settings: Partial<BaseSettings>) {
@@ -12,6 +13,7 @@ export class Onyx {
       settings.update(data);
       appMenu.update({ animationSpeed: data.animations });
       contextMenu.update({ animationSpeed: data.animations });
+      toaster.update({ animationSpeed: data.animations * 2, duration: data.toasterDuration });
     },
   };
 
@@ -40,6 +42,17 @@ export class Onyx {
 
     async reset() {
       await contextMenu.reset();
+    },
+  };
+
+  // Toaster
+  static toaster = {
+    showToast(toast: Toast) {
+      toaster.showToast(toast);
+    },
+
+    reset() {
+      toaster.reset();
     },
   };
 }
