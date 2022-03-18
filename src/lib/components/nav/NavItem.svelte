@@ -7,6 +7,8 @@
 
   export let navi: Navigation;
   export let contextMenu: ContextMenu = null;
+  export let highlight = true;
+  export let disabled = false;
 
   const groupId = getContext<string>(ContextKey.NavGroup);
 
@@ -16,14 +18,15 @@
 
 <div
   class="root"
-  class:focused
+  class:focused={highlight && focused}
+  class:disabled
   data-nav-id={navi.itemId}
   data-nav-shortcut={navi.shortcutKey}
   on:itemfocus={navi.onFocus}
   on:itemblur={navi.onBlur}
-  on:itemselect={navi.onSelect}
+  on:itemselect={() => !disabled && navi.onSelect()}
   on:itemmenu={() => {
-    if (!contextMenu) return;
+    if (!contextMenu || disabled) return;
 
     if (contextMenu.onMenu) {
       contextMenu.onMenu();
@@ -42,5 +45,8 @@
 <style>
   .focused {
     background-color: var(--focus-color);
+  }
+  .disabled {
+    opacity: 0.2;
   }
 </style>

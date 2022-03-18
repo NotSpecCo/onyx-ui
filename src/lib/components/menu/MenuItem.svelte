@@ -4,7 +4,7 @@
   import type { Navigation } from '../../models';
   import { settings } from '../../stores';
   import Icon from '../icon/Icon.svelte';
-  import NaviItem from '../nav/NavItem.svelte';
+  import NavItem from '../nav/NavItem.svelte';
 
   export let icon: typeof SvelteComponent = null;
   export let primaryText: string = null;
@@ -12,7 +12,7 @@
   export let navi: Navigation;
 </script>
 
-<NaviItem {navi}>
+<NavItem {navi}>
   <div class="root">
     {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
@@ -32,7 +32,7 @@
       <div class="shortcut">{navi.shortcutKey}</div>
     {/if}
   </div>
-</NaviItem>
+</NavItem>
 
 <style>
   .root {

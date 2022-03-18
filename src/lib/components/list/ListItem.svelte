@@ -5,7 +5,7 @@
   import type { ContextMenu, Navigation } from '../../models';
   import { settings } from '../../stores';
   import Icon from '../icon/Icon.svelte';
-  import NaviItem from '../nav/NavItem.svelte';
+  import NavItem from '../nav/NavItem.svelte';
 
   export let imageUrl: string = null;
   export let icon: typeof SvelteComponent = null;
@@ -16,7 +16,7 @@
   export let contextMenu: ContextMenu = null;
 </script>
 
-<NaviItem {navi} {contextMenu}>
+<NavItem {navi} {contextMenu}>
   <div class="root">
     {#if $settings.shortcutKeyLocation === 'left' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
@@ -47,7 +47,7 @@
       </div>
     {/if}
   </div>
-</NaviItem>
+</NavItem>
 
 <style>
   .root {

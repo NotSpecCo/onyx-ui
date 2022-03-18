@@ -7,7 +7,7 @@
   export let navi: Navigation;
 </script>
 
-<NavItem {navi}>
+<NavItem {navi} {disabled}>
   <div class="root">
     <div class="content" class:disabled>
       <div>{label}</div>
@@ -27,8 +27,5 @@
     justify-content: space-between;
     white-space: nowrap;
     overflow: hidden;
-  }
-  .disabled {
-    opacity: 0.4;
   }
 </style>

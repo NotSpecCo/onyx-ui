@@ -3,7 +3,7 @@
   import { Color, IconSize } from '../../enums';
   import type { Navigation } from '../../models';
   import Icon from '../icon/Icon.svelte';
-  import NaviItem from '../nav/NavItem.svelte';
+  import NavItem from '../nav/NavItem.svelte';
 
   export let icon: typeof SvelteComponent = null;
   export let title: string;
@@ -12,7 +12,7 @@
   export let navi: Navigation;
 </script>
 
-<NaviItem {navi} {disabled}>
+<NavItem {navi} {disabled}>
   <button class="root" style={`color: ${color};`} {disabled}>
     {#if icon}
       <div class="icon">
@@ -21,7 +21,7 @@
     {/if}
     {title}
   </button>
-</NaviItem>
+</NavItem>
 
 <style>
   .root {
@@ -39,8 +39,5 @@
   }
   .icon {
     margin-right: 5px;
-  }
-  .root:disabled {
-    opacity: 0.3;
   }
 </style>
