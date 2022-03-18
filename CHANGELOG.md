@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/garredow/onyx-ui/compare/v0.2.0...v0.3.0) (2022-03-18)
+
+
+### Features
+
+* **alert:** handle long body content ([38776e0](https://github.com/garredow/onyx-ui/commit/38776e0ea4e95c9345a5359e7c10f43ad2edff43))
+* **button:** add button component ([edf063c](https://github.com/garredow/onyx-ui/commit/edf063c3b547dec2ac575bb12a3b8c623100065f))
+* **dialog:** handle long body content ([38f6585](https://github.com/garredow/onyx-ui/commit/38f658508196367067ca17194d32c30adaa34318))
+
 # [0.2.0](https://github.com/garredow/onyx-ui/compare/v0.1.0...v0.2.0) (2022-03-18)
 
 
