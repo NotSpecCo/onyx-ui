@@ -1,5 +1,5 @@
-import type { BaseSettings, ContextMenu, Toast } from '../models';
-import { alert, appMenu, contextMenu, settings } from '../stores';
+import type { BaseSettings, ContextMenu, Dialog, Toast } from '../models';
+import { alert, appMenu, contextMenu, dialog, settings } from '../stores';
 import { toaster } from '../stores/toaster';
 
 export class Onyx {
@@ -15,6 +15,7 @@ export class Onyx {
       contextMenu.update({ animationSpeed: data.animations });
       toaster.update({ animationSpeed: data.animations * 2, duration: data.toasterDuration });
       alert.update({ animationSpeed: data.animations });
+      dialog.update({ animationSpeed: data.animations });
     },
   };
 
@@ -61,6 +62,13 @@ export class Onyx {
   static alert = {
     showAlert(title: string, body?: string) {
       alert.showAlert(title, body);
+    },
+  };
+
+  // Dialog
+  static dialog = {
+    showDialog(data: Dialog) {
+      dialog.open(data);
     },
   };
 }
