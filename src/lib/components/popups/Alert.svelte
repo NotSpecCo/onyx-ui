@@ -3,6 +3,7 @@
   import { Priority, RenderState } from '../../enums';
   import { KeyManager } from '../../services';
   import { alert } from '../../stores';
+  import NavGroup from '../nav/NavGroup.svelte';
 
   let keyMan = KeyManager.subscribe(
     {
@@ -19,17 +20,19 @@
   onDestroy(() => keyMan.unsubscribe());
 </script>
 
-<div class="root">
+<NavGroup groupId="alert">
   <div class="scrim" class:open={$alert.state === RenderState.Open} />
   <div class="card" class:open={$alert.state >= RenderState.Open}>
     <div class="title">{$alert.data.title}</div>
-    <div class="body">{$alert.data.body}</div>
+    <div class="body" data-nav-scroller>
+      {$alert.data.body || ''}
+    </div>
     <div class="footer">OK</div>
   </div>
-</div>
+</NavGroup>
 
 <style>
-  .root {
+  :global([data-nav-group-id='alert']) {
     position: absolute;
     top: 0;
     right: 0;
@@ -37,6 +40,7 @@
     left: 0;
     z-index: 9;
   }
+
   .scrim {
     position: absolute;
     top: 0;
@@ -67,6 +71,7 @@
     transition: transform var(--animation-speed);
     transition-timing-function: ease-in;
     transform: translateY(300px);
+    max-height: 80vh;
   }
   .card.open {
     transform: translateY(0);
@@ -79,13 +84,17 @@
     padding: 5px 3px;
     font-weight: var(--bold-font-weight);
     text-align: center;
+    flex-shrink: 0;
   }
   .body {
     padding: 5px;
+    min-height: 0;
+    overflow-y: auto;
   }
   .footer {
     padding: 5px;
     text-align: center;
     font-weight: var(--bold-font-weight);
+    flex-shrink: 0;
   }
 </style>
