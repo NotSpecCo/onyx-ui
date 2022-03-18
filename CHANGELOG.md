@@ -1,3 +1,21 @@
+# [0.2.0](https://github.com/garredow/onyx-ui/compare/v0.1.0...v0.2.0) (2022-03-18)
+
+
+### Bug Fixes
+
+* **onyxapp:** disable handling of back button ([be6d3e3](https://github.com/garredow/onyx-ui/commit/be6d3e37c7c5de8c0664185b85d2cf79c7187ac4))
+
+
+### Features
+
+* **alert:** add alert component and methods ([b6fc081](https://github.com/garredow/onyx-ui/commit/b6fc081e30b9aceac1394f23be2fbabdc0e6579e))
+* **animations:** add easing to smooth animations ([d3b6cd9](https://github.com/garredow/onyx-ui/commit/d3b6cd9bc592673794634a06feeca9cf1b72e6d7))
+* **dialog:** add dialog component and methods ([6a4f5dd](https://github.com/garredow/onyx-ui/commit/6a4f5dd71413f2ea6c345338a264ebd636303db3))
+* **icon:** allow any color to be passed in ([df1fd5e](https://github.com/garredow/onyx-ui/commit/df1fd5eb2d690c907c88f82fb31fee931a317339))
+* provide public class to interact with onyx ([f690a40](https://github.com/garredow/onyx-ui/commit/f690a40e05d6135f62369ee96c29faad8a4cd61a))
+* replace keys action with new key manager ([ae2aa1d](https://github.com/garredow/onyx-ui/commit/ae2aa1d7a78e86632a9708d3cc1ceea0269d3f2f))
+* **toaster:** add toaster component and methods ([d6ebe1e](https://github.com/garredow/onyx-ui/commit/d6ebe1e03e5195db0b8401adbcb65ac4de6fedc6))
+
 # [0.1.0](https://github.com/garredow/onyx-ui/compare/v0.0.3...v0.1.0) (2022-03-14)
 
 
