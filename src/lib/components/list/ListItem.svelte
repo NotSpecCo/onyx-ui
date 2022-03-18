@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { SvelteComponent } from 'svelte';
   import MdMoreVert from 'svelte-icons/md/MdMoreVert.svelte';
-  import { IconColor, IconSize } from '../../enums';
+  import { Color, IconSize } from '../../enums';
   import type { ContextMenu, Navigation } from '../../models';
   import { settings } from '../../stores';
   import Icon from '../icon/Icon.svelte';
@@ -43,7 +43,7 @@
     {/if}
     {#if $settings.contextMenuIndicators && contextMenu}
       <div class="menu-icon">
-        <Icon size={IconSize.Small} color={IconColor.Secondary}><MdMoreVert /></Icon>
+        <Icon size={IconSize.Small} color={Color.Secondary}><MdMoreVert /></Icon>
       </div>
     {/if}
   </div>

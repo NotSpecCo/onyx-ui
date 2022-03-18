@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { IconColor, IconSize } from '../../enums';
+  import { Color, IconSize } from '../../enums';
 
   export let size: IconSize = IconSize.Medium;
-  export let color: IconColor | string = IconColor.Primary;
+  export let color: Color | string = Color.Primary;
   export let disabled = false;
 
   let colorValue;
   switch (color) {
-    case IconColor.Accent:
+    case Color.Accent:
       colorValue = 'var(--accent-color)';
       break;
-    case IconColor.Tertiary:
+    case Color.Tertiary:
       colorValue = 'var(--divider-color)';
       break;
-    case IconColor.Secondary:
+    case Color.Secondary:
       colorValue = 'var(--secondary-text-color)';
       break;
-    case IconColor.Primary:
+    case Color.Primary:
       colorValue = 'var(--text-color)';
       break;
     default:

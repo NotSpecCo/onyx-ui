@@ -1,6 +1,6 @@
 <script lang="ts">
   import MdCheck from 'svelte-icons/md/MdCheck.svelte';
-  import { IconColor } from '../../enums';
+  import { Color } from '../../enums';
   import Icon from '../icon/Icon.svelte';
 
   export let checked: boolean;
@@ -8,9 +8,9 @@
 
 <div class="root">
   {#if checked}
-    <Icon color={IconColor.Accent}><MdCheck /></Icon>
+    <Icon color={Color.Accent}><MdCheck /></Icon>
   {:else}
-    <Icon color={IconColor.Tertiary}><MdCheck /></Icon>
+    <Icon color={Color.Tertiary}><MdCheck /></Icon>
   {/if}
 </div>
 
