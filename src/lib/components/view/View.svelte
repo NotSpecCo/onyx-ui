@@ -45,6 +45,7 @@
     bottom: 0;
     left: 0;
     transition: transform var(--animation-speed);
+    transition-timing-function: ease-in-out;
     transform: translateY(0px);
     z-index: 9;
     display: flex;

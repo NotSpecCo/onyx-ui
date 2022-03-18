@@ -26,6 +26,7 @@
     height: 10px;
     width: 10px;
     transition: transform var(--animation-speed);
+    transition-timing-function: ease-in-out;
   }
   .toggle.on {
     background-color: var(--card-color);

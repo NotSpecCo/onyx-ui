@@ -65,7 +65,7 @@ function createStore() {
     store.update((val) => ({ ...val, state: RenderState.Closed }));
     await delay(50);
     store.update((val) => ({ ...val, state: RenderState.Open }));
-    await delay(get(settings).animationSpeed);
+    await delay(get(settings).animationSpeed * 2);
   }
 
   async function close() {
@@ -74,7 +74,7 @@ function createStore() {
     }
 
     store.update((val) => ({ ...val, state: RenderState.Closed }));
-    await delay(get(settings).animationSpeed);
+    await delay(get(settings).animationSpeed * 2);
     store.update((val) => ({ ...val, state: RenderState.Destroyed }));
   }
 

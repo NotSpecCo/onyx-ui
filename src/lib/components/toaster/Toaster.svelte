@@ -34,7 +34,8 @@
     right: 0;
     left: 0;
     z-index: 9;
-    transition: transform var(--animation-speed);
+    transition: transform calc(var(--animation-speed) * 2);
+    transition-timing-function: ease-in;
     transform: translateY(0px);
     display: flex;
     flex-direction: column;
@@ -44,12 +45,14 @@
   }
   .root.top.open {
     transform: translateY(100%);
+    transition-timing-function: ease-out;
   }
   .root.bottom {
     top: 100vh;
   }
   .root.bottom.open {
     transform: translateY(-100%);
+    transition-timing-function: ease-out;
   }
   .header {
     border-radius: var(--radius);

@@ -97,7 +97,10 @@
     document.documentElement.style.setProperty('--radius', `${$settings.borderRadius}px`);
 
     // Animations
-    document.documentElement.style.setProperty('--animation-speed', `${$settings.animations}ms`);
+    document.documentElement.style.setProperty(
+      '--animation-speed',
+      `${$settings.animationSpeed}ms`
+    );
   }
 </script>
 
@@ -168,10 +171,12 @@
   .menu {
     transform: translateY(100%);
     transition: transform var(--animation-speed);
+    transition-timing-function: ease-in;
     height: 100vh;
   }
 
   .menu.open {
+    transition-timing-function: ease-out;
     transform: translateY(0%);
   }
 </style>

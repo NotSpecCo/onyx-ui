@@ -102,10 +102,12 @@
     border-radius: var(--radius) var(--radius) 0 0;
     overflow: hidden;
     transition: transform var(--animation-speed);
+    transition-timing-function: ease-in;
     transform: translateY(300px);
   }
   .card.open {
     transform: translateY(0);
+    transition-timing-function: ease-out;
   }
 
   .title {
