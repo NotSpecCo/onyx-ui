@@ -29,12 +29,12 @@
 <div class="root">
   <div class="scrim" class:open={$contextMenu.state === RenderState.Open} />
   <div class="card" class:open={$contextMenu.state === RenderState.Open}>
-    <div class="title">{$contextMenu.title}</div>
-    {#if $contextMenu.body}
-      <Typography>{$contextMenu.body}</Typography>
+    <div class="title">{$contextMenu.data.title}</div>
+    {#if $contextMenu.data.body}
+      <Typography>{$contextMenu.data.body}</Typography>
     {/if}
     <NavGroup groupId="contextMenu">
-      {#each $contextMenu.items as item, i}
+      {#each $contextMenu.data.items as item, i}
         <ContextMenuItem
           icon={item.icon}
           imageUrl={item.imageUrl}
@@ -89,6 +89,7 @@
     border: 1px solid var(--card-border-color);
     box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.2);
     background-color: var(--card-color);
+    color: var(--text-color);
     position: absolute;
     bottom: 0;
     left: 0;

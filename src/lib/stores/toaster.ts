@@ -2,13 +2,14 @@ import { get, writable } from 'svelte/store';
 import { RenderState } from '../enums';
 import type { Toast } from '../models';
 import { delay } from '../utils';
+import { settings } from './settings';
 
 type Config = {
   state: RenderState;
   animationSpeed: number;
   duration: number;
   toasts: Toast[];
-  activeToast?: Toast;
+  data?: Toast;
   idle: boolean;
 };
 
@@ -33,7 +34,7 @@ function createStore() {
 
     store.update((a) => ({
       ...a,
-      activeToast: a.toasts[0],
+      data: a.toasts[0],
       toasts: a.toasts.slice(1),
       idle: false,
     }));
@@ -56,15 +57,6 @@ function createStore() {
     processNextToast();
   }
 
-  function reset() {
-    store.update((a) => ({
-      ...a,
-      state: RenderState.Destroyed,
-      toasts: [],
-      idle: true,
-    }));
-  }
-
   async function open() {
     if (get(store).state !== RenderState.Destroyed) {
       return;
@@ -73,7 +65,7 @@ function createStore() {
     store.update((val) => ({ ...val, state: RenderState.Closed }));
     await delay(50);
     store.update((val) => ({ ...val, state: RenderState.Open }));
-    await delay(get(store).animationSpeed);
+    await delay(get(settings).animations);
   }
 
   async function close() {
@@ -82,8 +74,18 @@ function createStore() {
     }
 
     store.update((val) => ({ ...val, state: RenderState.Closed }));
-    await delay(get(store).animationSpeed);
+    await delay(get(settings).animations);
     store.update((val) => ({ ...val, state: RenderState.Destroyed }));
+  }
+
+  function reset() {
+    store.update((a) => ({
+      ...a,
+      state: RenderState.Destroyed,
+      toasts: [],
+      data: null,
+      idle: true,
+    }));
   }
 
   return {

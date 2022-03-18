@@ -2,38 +2,34 @@ import { get, writable } from 'svelte/store';
 import { RenderState } from '../enums';
 import type { ContextMenu } from '../models';
 import { delay } from '../utils';
+import { settings } from './settings';
 
-type Config = ContextMenu & {
-  animationSpeed: number;
+type Config = {
   state: RenderState;
+  data: ContextMenu;
 };
 
-const defaultMenu: ContextMenu = {
+const defaultData: ContextMenu = {
   title: 'Menu',
   items: [],
 };
 const defaultConfig: Config = {
-  ...defaultMenu,
   state: RenderState.Destroyed,
-  animationSpeed: 500,
+  data: defaultData,
 };
 
 function createStore() {
   const store = writable<Config>(defaultConfig);
 
-  function update(config: Partial<Config>) {
-    store.set({ ...defaultConfig, ...config });
-  }
-
-  async function open(menu: Omit<Config, 'animationSpeed' | 'state'>) {
+  async function open(data: ContextMenu) {
     if (get(store).state !== RenderState.Destroyed) {
       return;
     }
 
-    store.update((val) => ({ ...val, ...menu, state: RenderState.Closed }));
+    store.update((val) => ({ ...val, state: RenderState.Closed, data }));
     await delay(50);
-    store.update((val) => ({ ...val, ...menu, state: RenderState.Open }));
-    await delay(get(store).animationSpeed);
+    store.update((val) => ({ ...val, state: RenderState.Open }));
+    await delay(get(settings).animations);
   }
 
   async function close() {
@@ -42,17 +38,16 @@ function createStore() {
     }
 
     store.update((val) => ({ ...val, state: RenderState.Closed }));
-    await delay(get(store).animationSpeed);
-    store.update((val) => ({ ...val, ...defaultMenu, state: RenderState.Destroyed }));
+    await delay(get(settings).animations);
+    store.update((val) => ({ ...val, state: RenderState.Destroyed, data: defaultData }));
   }
 
   async function reset() {
-    store.update((val) => ({ ...val, ...defaultMenu, state: RenderState.Destroyed }));
+    store.update((val) => ({ ...val, state: RenderState.Destroyed, data: defaultData }));
   }
 
   return {
     subscribe: store.subscribe,
-    update,
     open,
     close,
     reset,

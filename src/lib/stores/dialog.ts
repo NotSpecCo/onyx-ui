@@ -2,6 +2,7 @@ import { get, writable } from 'svelte/store';
 import { RenderState } from '../enums';
 import type { Dialog } from '../models';
 import { delay } from '../utils';
+import { settings } from './settings';
 
 type Config = {
   state: RenderState;
@@ -9,7 +10,7 @@ type Config = {
   data: Dialog;
 };
 
-const defaultDialog: Dialog = {
+const defaultData: Dialog = {
   title: 'Title',
   actions: {
     center: { label: 'OK', fn: () => null },
@@ -19,7 +20,7 @@ const defaultDialog: Dialog = {
 const defaultConfig: Config = {
   state: RenderState.Destroyed,
   animationSpeed: 500,
-  data: defaultDialog,
+  data: defaultData,
 };
 
 function createStore() {
@@ -37,7 +38,7 @@ function createStore() {
     store.update((val) => ({ ...val, state: RenderState.Closed, data }));
     await delay(50);
     store.update((val) => ({ ...val, state: RenderState.Open }));
-    await delay(get(store).animationSpeed);
+    await delay(get(settings).animations);
   }
 
   async function close() {
@@ -46,8 +47,12 @@ function createStore() {
     }
 
     store.update((val) => ({ ...val, state: RenderState.Closed }));
-    await delay(get(store).animationSpeed);
-    store.update((val) => ({ ...val, state: RenderState.Destroyed, data: defaultDialog }));
+    await delay(get(settings).animations);
+    store.update((val) => ({ ...val, state: RenderState.Destroyed, data: defaultData }));
+  }
+
+  async function reset() {
+    store.update((val) => ({ ...val, state: RenderState.Destroyed, data: defaultData }));
   }
 
   return {
@@ -55,6 +60,7 @@ function createStore() {
     update,
     open,
     close,
+    reset,
   };
 }
 

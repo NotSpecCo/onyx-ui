@@ -1,23 +1,18 @@
 import { get, writable } from 'svelte/store';
 import { RenderState } from '../enums';
 import { delay } from '../utils';
+import { settings } from './settings';
 
 type Config = {
   state: RenderState;
-  animationSpeed: number;
 };
 
 const defaultConfig: Config = {
   state: RenderState.Destroyed,
-  animationSpeed: 500,
 };
 
 function createStore() {
   const store = writable<Config>(defaultConfig);
-
-  function update(config: Partial<Config>) {
-    store.set({ ...defaultConfig, ...config });
-  }
 
   async function open() {
     if (get(store).state !== RenderState.Destroyed) {
@@ -27,7 +22,7 @@ function createStore() {
     store.update((val) => ({ ...val, state: RenderState.Closed }));
     await delay(50);
     store.update((val) => ({ ...val, state: RenderState.Open }));
-    await delay(get(store).animationSpeed);
+    await delay(get(settings).animations);
   }
 
   async function close() {
@@ -36,15 +31,19 @@ function createStore() {
     }
 
     store.update((val) => ({ ...val, state: RenderState.Closed }));
-    await delay(get(store).animationSpeed);
+    await delay(get(settings).animations);
+    store.update((val) => ({ ...val, state: RenderState.Destroyed }));
+  }
+
+  async function reset() {
     store.update((val) => ({ ...val, state: RenderState.Destroyed }));
   }
 
   return {
     subscribe: store.subscribe,
-    update,
     open,
     close,
+    reset,
   };
 }
 

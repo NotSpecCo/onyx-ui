@@ -1,4 +1,4 @@
-import type { BaseSettings, ContextMenu, Dialog, Toast } from '../models';
+import type { Alert, BaseSettings, ContextMenu, Dialog, Toast } from '../models';
 import { alert, appMenu, contextMenu, dialog, settings } from '../stores';
 import { toaster } from '../stores/toaster';
 
@@ -11,11 +11,6 @@ export class Onyx {
   static settings = {
     async update(data: Partial<BaseSettings>) {
       settings.update(data);
-      appMenu.update({ animationSpeed: data.animations });
-      contextMenu.update({ animationSpeed: data.animations });
-      toaster.update({ animationSpeed: data.animations * 2, duration: data.toasterDuration });
-      alert.update({ animationSpeed: data.animations });
-      dialog.update({ animationSpeed: data.animations });
     },
   };
 
@@ -26,8 +21,8 @@ export class Onyx {
       await appMenu.open();
     },
 
-    async close() {
-      await appMenu.close();
+    close() {
+      appMenu.close();
     },
   };
 
@@ -38,18 +33,18 @@ export class Onyx {
       await contextMenu.open(menu);
     },
 
-    async close() {
-      await contextMenu.close();
+    close() {
+      contextMenu.close();
     },
 
-    async reset() {
-      await contextMenu.reset();
+    reset() {
+      contextMenu.reset();
     },
   };
 
   // Toaster
   static toaster = {
-    showToast(toast: Toast) {
+    show(toast: Toast) {
       toaster.showToast(toast);
     },
 
@@ -60,15 +55,23 @@ export class Onyx {
 
   // Alert
   static alert = {
-    showAlert(title: string, body?: string) {
-      alert.showAlert(title, body);
+    show(data: Alert) {
+      alert.open(data);
+    },
+
+    reset() {
+      alert.reset();
     },
   };
 
   // Dialog
   static dialog = {
-    showDialog(data: Dialog) {
+    show(data: Dialog) {
       dialog.open(data);
+    },
+
+    reset() {
+      dialog.reset();
     },
   };
 }

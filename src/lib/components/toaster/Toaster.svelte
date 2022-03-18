@@ -14,14 +14,14 @@
     <div class="header" />
   {/if}
   <div class="toast">
-    {#if $toaster.activeToast.icon}
+    {#if $toaster.data.icon}
       <div class="icon">
         <Icon size={IconSize.Small} color="var(--app-text-color)">
-          <svelte:component this={$toaster.activeToast.icon} />
+          <svelte:component this={$toaster.data.icon} />
         </Icon>
       </div>
     {/if}
-    {$toaster.activeToast?.title}
+    {$toaster.data?.title}
   </div>
   {#if $settings.toasterLocation === 'top'}
     <div class="footer" />

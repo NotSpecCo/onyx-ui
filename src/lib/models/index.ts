@@ -1,3 +1,4 @@
+export * from './Alert';
 export * from './BaseSettings';
 export * from './Card';
 export * from './CardContext';

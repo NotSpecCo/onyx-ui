@@ -9,7 +9,7 @@
       onSoftLeft: () => true,
       onSoftRight: () => true,
       onEnter: () => {
-        alert.closeAlert();
+        alert.close();
         return true;
       },
     },
@@ -22,8 +22,8 @@
 <div class="root">
   <div class="scrim" class:open={$alert.state === RenderState.Open} />
   <div class="card" class:open={$alert.state >= RenderState.Open}>
-    <div class="title">{$alert.title}</div>
-    <div class="body">{$alert.body}</div>
+    <div class="title">{$alert.data.title}</div>
+    <div class="body">{$alert.data.body}</div>
     <div class="footer">OK</div>
   </div>
 </div>
