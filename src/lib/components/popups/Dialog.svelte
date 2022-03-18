@@ -3,6 +3,7 @@
   import { Priority, RenderState } from '../../enums';
   import { KeyManager } from '../../services';
   import { dialog } from '../../stores';
+  import NavGroup from '../nav/NavGroup.svelte';
 
   let keyMan = KeyManager.subscribe(
     {
@@ -32,21 +33,21 @@
   onDestroy(() => keyMan.unsubscribe());
 </script>
 
-<div class="root">
+<NavGroup groupId="dialog">
   <div class="scrim" class:open={$dialog.state === RenderState.Open} />
   <div class="card" class:open={$dialog.state >= RenderState.Open}>
     <div class="title">{$dialog.data.title}</div>
-    <div class="body">{$dialog.data.body}</div>
+    <div class="body" data-nav-scroller>{$dialog.data.body || ''}</div>
     <div class="footer">
       <div>{$dialog.data.actions.left?.label || ''}</div>
       <div>{$dialog.data.actions.center?.label || ''}</div>
       <div>{$dialog.data.actions.right?.label || ''}</div>
     </div>
   </div>
-</div>
+</NavGroup>
 
 <style>
-  .root {
+  :global([data-nav-group-id='dialog']) {
     position: absolute;
     top: 0;
     right: 0;
@@ -84,6 +85,7 @@
     transition: transform var(--animation-speed);
     transition-timing-function: ease-in;
     transform: translateY(300px);
+    max-height: 80vh;
   }
   .card.open {
     transform: translateY(0);
@@ -96,15 +98,19 @@
     padding: 5px 3px;
     font-weight: var(--bold-font-weight);
     text-align: center;
+    flex-shrink: 0;
   }
   .body {
     padding: 5px;
+    min-height: 0;
+    overflow-y: auto;
   }
   .footer {
     display: flex;
     padding: 5px;
     text-align: center;
     font-weight: var(--bold-font-weight);
+    flex-shrink: 0;
   }
   .footer > div {
     flex: 1;
