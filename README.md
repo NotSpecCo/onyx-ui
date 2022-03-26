@@ -1,6 +1,7 @@
 # Onyx UI
 
 [![CircleCI](https://circleci.com/gh/garredow/onyx-ui/tree/main.svg?style=svg)](https://circleci.com/gh/garredow/onyx-ui/tree/main)
+[![npm](https://img.shields.io/npm/v/onyx-ui.svg)](https://www.npmjs.com/package/onyx-ui)
 
 A Svelte UI component library for KaiOS
 
