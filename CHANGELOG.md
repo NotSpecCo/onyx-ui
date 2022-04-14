@@ -1,3 +1,15 @@
+# [0.4.0](https://github.com/garredow/onyx-ui/compare/v0.3.0...v0.4.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* **keyman:** fix long presses ([6f15ec7](https://github.com/garredow/onyx-ui/commit/6f15ec7f2695653d71e71d929d0b70953cbe009e))
+
+
+### Features
+
+* **progressbar:** add progressbar component ([68b7921](https://github.com/garredow/onyx-ui/commit/68b79215880826fecce99d3d0cfb8ba66073ddaf))
+
 # [0.3.0](https://github.com/garredow/onyx-ui/compare/v0.2.0...v0.3.0) (2022-03-18)
 
 
