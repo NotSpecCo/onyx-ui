@@ -31,6 +31,7 @@ type NewHandlerMap = { [key in HandlerKey]?: () => boolean };
 
 export class KeyManager {
   private static activeKey: string;
+  private static handledKey: string;
   private static listening = false;
   private static timerId: NodeJS.Timeout = null;
   private static handlers: Handler[] = [];
@@ -41,8 +42,8 @@ export class KeyManager {
   static startListening() {
     if (this.listening) return;
 
-    document.addEventListener('keydown', this.onKeyDown.bind(this));
-    document.addEventListener('keyup', this.onKeyUp.bind(this));
+    document.addEventListener('keydown', this.onKeyDown.bind(this), { capture: true });
+    document.addEventListener('keyup', this.onKeyUp.bind(this), { capture: true });
 
     this.listening = true;
   }
@@ -123,6 +124,7 @@ export class KeyManager {
     const handled = handler.fn();
 
     if (handled) {
+      this.handledKey = this.activeKey;
       this.downEv?.stopPropagation();
       this.downEv?.stopImmediatePropagation();
       this.downEv?.preventDefault();
@@ -137,6 +139,7 @@ export class KeyManager {
 
     if (!key) return;
 
+    this.handledKey = null;
     this.activeKey = key;
     this.keyPressHandled = false;
     this.downEv = ev;
@@ -149,6 +152,12 @@ export class KeyManager {
 
   private static onKeyUp(ev: KeyboardEvent) {
     const key = this.parseKey(ev);
+
+    if (key === this.handledKey) {
+      ev.stopImmediatePropagation();
+      ev.stopPropagation();
+      ev.preventDefault();
+    }
 
     if (!key || key !== this.activeKey) return;
 
