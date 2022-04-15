@@ -99,7 +99,7 @@
   }
 
   .wrap {
-    white-space: initial;
+    white-space: pre-line;
   }
 
   .nowrap {
