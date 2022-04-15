@@ -1,4 +1,3 @@
-import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { Route } from '../services';
 import {
@@ -9,7 +8,7 @@ import {
   setSelectedId,
 } from '../stores/navigator';
 import { switchCard } from '../stores/view';
-import { getIndex } from '../utils';
+import { delay, getIndex } from '../utils';
 
 type Config = {
   groupId: string;
@@ -195,7 +194,7 @@ export function navigator(node: HTMLElement, config: Config) {
     async update(newConfig: Config) {
       // Set initial focus only after data loaded and rendered
       if (!config.viewLoaded && newConfig.viewLoaded && newConfig.initialFocusedId) {
-        await tick();
+        await delay(50);
         setInitial(newConfig.initialFocusedId);
       }
 
