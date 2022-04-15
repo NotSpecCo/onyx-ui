@@ -1,3 +1,16 @@
+# [0.5.0](https://github.com/garredow/onyx-ui/compare/v0.4.0...v0.5.0) (2022-04-15)
+
+
+### Bug Fixes
+
+* fix selection restore on navigation ([6b8d64c](https://github.com/garredow/onyx-ui/commit/6b8d64c3dd4fd6120c28ca804a8d2c725dfb3e03))
+* **typography:** preserve whitespace ([80aaee4](https://github.com/garredow/onyx-ui/commit/80aaee4d5b7fd2db053ab1fa4025c4da3ea38631))
+
+
+### Features
+
+* add error to datastatus enum ([99057ff](https://github.com/garredow/onyx-ui/commit/99057ff50e825da67547596432f4df5ce5c48cf7))
+
 # [0.4.0](https://github.com/garredow/onyx-ui/compare/v0.3.0...v0.4.0) (2022-04-14)
 
 
