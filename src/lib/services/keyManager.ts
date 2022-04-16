@@ -42,8 +42,8 @@ export class KeyManager {
   static startListening() {
     if (this.listening) return;
 
-    document.addEventListener('keydown', this.onKeyDown.bind(this), { capture: true });
-    document.addEventListener('keyup', this.onKeyUp.bind(this), { capture: true });
+    document.addEventListener('keydown', this.onKeyDown.bind(this));
+    document.addEventListener('keyup', this.onKeyUp.bind(this));
 
     this.listening = true;
   }
@@ -153,7 +153,7 @@ export class KeyManager {
   private static onKeyUp(ev: KeyboardEvent) {
     const key = this.parseKey(ev);
 
-    if (key === this.handledKey) {
+    if (key && key === this.handledKey) {
       ev.stopImmediatePropagation();
       ev.stopPropagation();
       ev.preventDefault();
