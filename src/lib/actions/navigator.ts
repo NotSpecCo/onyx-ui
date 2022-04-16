@@ -39,7 +39,6 @@ export function navigator(node: HTMLElement, config: Config) {
 
   function handleKeyPress(ev: KeyboardEvent) {
     const key = parseKey(ev);
-    console.log('handleKeypress', key, ev);
 
     const groupActive = get(activeGroup)?.id === config.groupId;
 
