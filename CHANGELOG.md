@@ -1,3 +1,11 @@
+## [0.5.1](https://github.com/garredow/onyx-ui/compare/v0.5.0...v0.5.1) (2022-04-16)
+
+
+### Bug Fixes
+
+* **keyman:** fix disabled number keys ([451d572](https://github.com/garredow/onyx-ui/commit/451d57270d940178eb5b7e81fbe96ec915a122b5))
+* **navigator:** fix restoration delay ([83d3c6e](https://github.com/garredow/onyx-ui/commit/83d3c6ec24932cbee25f97f6f305f6e2709425a2))
+
 # [0.5.0](https://github.com/garredow/onyx-ui/compare/v0.4.0...v0.5.0) (2022-04-15)
 
 
