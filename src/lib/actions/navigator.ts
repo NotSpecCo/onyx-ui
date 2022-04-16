@@ -1,3 +1,4 @@
+import { tick } from 'svelte';
 import { get } from 'svelte/store';
 import { Route } from '../services';
 import {
@@ -8,7 +9,7 @@ import {
   setSelectedId,
 } from '../stores/navigator';
 import { switchCard } from '../stores/view';
-import { delay, getIndex } from '../utils';
+import { getIndex } from '../utils';
 
 type Config = {
   groupId: string;
@@ -38,6 +39,8 @@ export function navigator(node: HTMLElement, config: Config) {
 
   function handleKeyPress(ev: KeyboardEvent) {
     const key = parseKey(ev);
+    console.log('handleKeypress', key, ev);
+
     const groupActive = get(activeGroup)?.id === config.groupId;
 
     // Check if valid key
@@ -194,7 +197,7 @@ export function navigator(node: HTMLElement, config: Config) {
     async update(newConfig: Config) {
       // Set initial focus only after data loaded and rendered
       if (!config.viewLoaded && newConfig.viewLoaded && newConfig.initialFocusedId) {
-        await delay(50);
+        await tick();
         setInitial(newConfig.initialFocusedId);
       }
 
