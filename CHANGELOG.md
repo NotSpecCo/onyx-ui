@@ -1,3 +1,10 @@
+## [0.5.2](https://github.com/garredow/onyx-ui/compare/v0.5.1...v0.5.2) (2022-04-16)
+
+
+### Bug Fixes
+
+* cleanup ([f1ca313](https://github.com/garredow/onyx-ui/commit/f1ca313d52c7a624d429b0ed17a7bcff64b8a4be))
+
 ## [0.5.1](https://github.com/garredow/onyx-ui/compare/v0.5.0...v0.5.1) (2022-04-16)
 
 
