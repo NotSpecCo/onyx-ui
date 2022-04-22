@@ -1,6 +1,6 @@
 {
   "name": "onyx-ui",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "scripts": {
     "package": "svelte-kit package",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",

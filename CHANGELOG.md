@@ -1,3 +1,13 @@
+# [0.7.0](https://github.com/garredow/onyx-ui/compare/v0.6.0...v0.7.0) (2022-04-22)
+
+
+### Features
+
+* **divider:** make title optional and add option for color ([1ec4fb5](https://github.com/garredow/onyx-ui/commit/1ec4fb5543a69a492e676a580af5d5f5e4d6cbf7))
+* **formrow:** increase vertical padding ([3096610](https://github.com/garredow/onyx-ui/commit/3096610e982b32b6c7385179f7dc239bc0bf6077))
+* **listitem:** add image shape option ([a930959](https://github.com/garredow/onyx-ui/commit/a93095982d242b4c9f2d24ec77578ac560eca29a))
+* **listitem:** add option for image/icon size ([4e250ae](https://github.com/garredow/onyx-ui/commit/4e250ae73fdd7841fdf961f833d980c75696694d))
+
 # [0.6.0](https://github.com/garredow/onyx-ui/compare/v0.5.2...v0.6.0) (2022-04-20)
 
 
