@@ -8,6 +8,7 @@
   export let placeholder: string = undefined;
   export let disabled = false;
   export let onChange: (val: string) => void;
+  export let onSubmit: () => void = undefined;
 
   const itemId = uuidv4();
   let focused = false;
@@ -24,6 +25,7 @@
     itemId,
     onFocus: () => (focused = true),
     onBlur: () => (focused = false),
+    onSelect: () => onSubmit?.(),
   }}
 >
   {#if value?.length === 0 && !focused}
@@ -37,6 +39,12 @@
       contenteditable
       use:focus={{ focused }}
       on:input={handleChange}
+      on:keydown={(ev) => {
+        if (ev.key === 'Enter') ev.preventDefault();
+      }}
+      on:keyup={(ev) => {
+        if (ev.key === 'Enter') ev.preventDefault();
+      }}
     >
       {value}
     </div>
