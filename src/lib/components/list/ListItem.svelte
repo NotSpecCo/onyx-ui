@@ -9,6 +9,7 @@
 
   export let imageUrl: string = null;
   export let imageStyle: 'square' | 'circle' = 'square';
+  export let imageSize: IconSize = IconSize.Medium;
   export let icon: typeof SvelteComponent = null;
   export let primaryText: string = null;
   export let secondaryText: string = null;
@@ -24,11 +25,17 @@
     {/if}
     {#if icon}
       <div class="icon">
-        <Icon size={IconSize.Small}><svelte:component this={icon} /></Icon>
+        <Icon size={imageSize}><svelte:component this={icon} /></Icon>
       </div>
     {/if}
     {#if imageUrl}
-      <img class="image" class:circle={imageStyle === 'circle'} src={imageUrl} alt="" />
+      <img
+        class="image"
+        class:circle={imageStyle === 'circle'}
+        src={imageUrl}
+        alt=""
+        style={`height: ${imageSize}px; width: ${imageSize}px;`}
+      />
     {/if}
     <div class="container">
       <div class="primary">{primaryText}</div>
@@ -65,12 +72,13 @@
   .image {
     height: 30px;
     width: 30px;
-    margin-right: 5px;
+    margin-right: 10px;
     border-radius: 3px;
   }
   .image.circle {
     border-radius: 50%;
   }
+
   .container {
     flex: 1;
     min-width: 0;
