@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/garredow/onyx-ui/compare/v0.5.2...v0.6.0) (2022-04-20)
+
+
+### Features
+
+* **listitem:** increase default padding ([e4b0c14](https://github.com/garredow/onyx-ui/commit/e4b0c140027bd12c18b0d6dc70073a445b1441fd))
+
 ## [0.5.2](https://github.com/garredow/onyx-ui/compare/v0.5.1...v0.5.2) (2022-04-16)
 
 
