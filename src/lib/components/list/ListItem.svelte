@@ -8,6 +8,7 @@
   import NavItem from '../nav/NavItem.svelte';
 
   export let imageUrl: string = null;
+  export let imageStyle: 'square' | 'circle' = 'square';
   export let icon: typeof SvelteComponent = null;
   export let primaryText: string = null;
   export let secondaryText: string = null;
@@ -27,7 +28,7 @@
       </div>
     {/if}
     {#if imageUrl}
-      <img class="image" src={imageUrl} alt="" />
+      <img class="image" class:circle={imageStyle === 'circle'} src={imageUrl} alt="" />
     {/if}
     <div class="container">
       <div class="primary">{primaryText}</div>
@@ -66,6 +67,9 @@
     width: 30px;
     margin-right: 5px;
     border-radius: 3px;
+  }
+  .image.circle {
+    border-radius: 50%;
   }
   .container {
     flex: 1;
