@@ -1,12 +1,17 @@
 <script lang="ts">
-  export let title: string;
+  import { Color } from '../../enums';
+
+  export let title: string = null;
+  export let color: Color = Color.Accent;
   export let helpText: string = undefined;
 </script>
 
 <div class="root">
   <div class="row">
-    <div class="title">{title}</div>
-    <div class="divider" />
+    {#if title}
+      <div class="title" style={`color: ${color};`}>{title}</div>
+    {/if}
+    <div class="divider" style={`background-color: ${color};`} />
   </div>
   {#if helpText}
     <div class="info">{helpText}</div>
