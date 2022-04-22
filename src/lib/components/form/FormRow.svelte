@@ -21,7 +21,7 @@
     border-bottom: 1px solid var(--divider-color);
   }
   .content {
-    padding: 5px 7px;
+    padding: 7px;
     display: flex;
     align-items: center;
     justify-content: space-between;
