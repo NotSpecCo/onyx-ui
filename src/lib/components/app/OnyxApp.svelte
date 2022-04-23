@@ -169,14 +169,15 @@
   }
 
   .menu {
-    transform: translateY(100%);
+    transform: translateX(-100%);
     transition: transform var(--animation-speed);
     transition-timing-function: ease-in;
     height: 100vh;
+    width: 85vw;
   }
 
   .menu.open {
     transition-timing-function: ease-out;
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 </style>
