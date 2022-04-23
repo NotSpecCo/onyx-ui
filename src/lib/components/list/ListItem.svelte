@@ -11,6 +11,7 @@
   export let imageStyle: 'square' | 'circle' = 'square';
   export let imageSize: IconSize = IconSize.Medium;
   export let icon: typeof SvelteComponent = null;
+  export let iconColor: Color = Color.Primary;
   export let primaryText: string = null;
   export let secondaryText: string = null;
   export let accentText: string = null;
@@ -25,7 +26,7 @@
     {/if}
     {#if icon}
       <div class="icon">
-        <Icon size={imageSize}><svelte:component this={icon} /></Icon>
+        <Icon size={imageSize} color={iconColor}><svelte:component this={icon} /></Icon>
       </div>
     {/if}
     {#if imageUrl}
