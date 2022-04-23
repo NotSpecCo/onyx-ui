@@ -45,6 +45,7 @@
       {#if accentText}
         <div class="accent">{accentText}</div>
       {/if}
+      <slot name="bottom" />
     </div>
     {#if $settings.shortcutKeyLocation === 'right' && navi.shortcutKey}
       <div class="shortcut">{navi.shortcutKey}</div>
@@ -101,6 +102,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .primary {
+    /* font-weight: 600; */
   }
   .secondary {
     font-size: 1.2rem;
