@@ -1,3 +1,14 @@
+# [0.10.0](https://github.com/garredow/onyx-ui/compare/v0.9.0...v0.10.0) (2022-04-23)
+
+
+### Features
+
+* change app menu to slide in from the left ([1087599](https://github.com/garredow/onyx-ui/commit/108759997c31a8198cf5469f6d5d8b1a5a9c2dbf))
+* **inlineselect:** long press to go to beginning or end ([22006ef](https://github.com/garredow/onyx-ui/commit/22006ef68b521a8829a097628a7ff5964e6430e1))
+* **listitem:** add option for icon color ([2218ff3](https://github.com/garredow/onyx-ui/commit/2218ff39038205da9eb059aee9ceeeb4dfef56ae))
+* **numericrange:** long press to go to beginning or end ([5427ac4](https://github.com/garredow/onyx-ui/commit/5427ac4e02195059c03c807ba4e81843719f6d25))
+* **row:** standardize padding ([b2be62e](https://github.com/garredow/onyx-ui/commit/b2be62e43fcda1cadaa7c54164f3890afe187a81))
+
 # [0.9.0](https://github.com/garredow/onyx-ui/compare/v0.8.0...v0.9.0) (2022-04-23)
 
 
