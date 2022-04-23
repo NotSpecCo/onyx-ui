@@ -5,15 +5,11 @@
   import { updateView, view } from '../../stores/view';
   import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
-  import Typography from '../Typography.svelte';
 
   const NAV_GROUP_ID = 'cards';
 </script>
 
 <NavGroup groupId={NAV_GROUP_ID}>
-  {#if $settings.showHelpText}
-    <Typography align="center" type="caption">Press again for app menu</Typography>
-  {/if}
   <div data-nav-scroller>
     {#each $view.cards as card, i}
       <div class="card-root">
