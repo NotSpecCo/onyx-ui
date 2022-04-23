@@ -7,6 +7,7 @@
   import NavGroup from '../nav/NavGroup.svelte';
 
   export let title: string;
+  export let footerText: string = 'Save';
   export let disabled = false;
   export let onEnter: () => void;
 
@@ -61,7 +62,7 @@
       <slot />
     </NavGroup>
     {#if $settings.showHelpText}
-      <div class="footer">Save</div>
+      <div class="footer">{footerText}</div>
     {/if}
   </div>
 </div>

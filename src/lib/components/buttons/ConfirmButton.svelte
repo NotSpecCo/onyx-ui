@@ -41,6 +41,7 @@
 {#if open}
   <Menu
     title={menuTitle}
+    footerText="Select"
     onEnter={() => {
       open = false;
     }}
