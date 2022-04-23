@@ -4,7 +4,7 @@ type Config = {
 
 export function focus(node: HTMLElement, config: Config) {
   if (config.focused) {
-    node.focus();
+    node.focus({ preventScroll: true });
   } else {
     node.blur();
   }
@@ -12,7 +12,7 @@ export function focus(node: HTMLElement, config: Config) {
   return {
     update(newConfig: Config) {
       if (newConfig.focused) {
-        node.focus();
+        node.focus({ preventScroll: true });
       } else {
         node.blur();
       }
