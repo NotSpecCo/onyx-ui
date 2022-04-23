@@ -11,7 +11,7 @@
 
 <style>
   .root {
-    padding: 4px 7px;
+    padding: 7px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid var(--divider-color);
