@@ -1,3 +1,20 @@
+# [0.9.0](https://github.com/garredow/onyx-ui/compare/v0.8.0...v0.9.0) (2022-04-23)
+
+
+### Bug Fixes
+
+* prevent scroll on focus ([a2ddf4b](https://github.com/garredow/onyx-ui/commit/a2ddf4baabd4cd5618ddbaf4a983e042c38921e7))
+
+
+### Features
+
+* add confirm button component ([656b693](https://github.com/garredow/onyx-ui/commit/656b693853131105178b661117f3cef10f8a21de))
+* **divider:** hide help text if disabled ([5ec8bb9](https://github.com/garredow/onyx-ui/commit/5ec8bb96b9b5539030836cd79f0d57e359e6c665))
+* **icon:** add smaller size option ([918caad](https://github.com/garredow/onyx-ui/commit/918caadc84ad51589cd734f46414b2a72474bf9c))
+* **listitem:** add slot for custom content ([73698d6](https://github.com/garredow/onyx-ui/commit/73698d6bcb4088a4847067c16255ff58fbe79767))
+* **menu:** add option for custom footer text ([7c525bb](https://github.com/garredow/onyx-ui/commit/7c525bba051057752c111ba83242d9de267803de))
+* **toaster:** add message types ([62a233c](https://github.com/garredow/onyx-ui/commit/62a233c15a225a54ab4e553935b4a8e731296078))
+
 # [0.8.0](https://github.com/garredow/onyx-ui/compare/v0.7.0...v0.8.0) (2022-04-22)
 
 
