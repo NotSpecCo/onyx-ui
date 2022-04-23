@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { settings } from '../../stores';
+
   export let title: string;
   export let helpText: string = undefined;
 </script>
@@ -8,7 +10,7 @@
     <div class="title">{title}</div>
     <div class="divider" />
   </div>
-  {#if helpText}
+  {#if $settings.showHelpText && helpText}
     <div class="info">{helpText}</div>
   {/if}
 </div>

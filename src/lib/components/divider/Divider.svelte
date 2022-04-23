@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Color } from '../../enums';
+  import { settings } from '../../stores';
 
   export let title: string = null;
   export let color: Color = Color.Accent;
@@ -13,7 +14,7 @@
     {/if}
     <div class="divider" style={`background-color: ${color};`} />
   </div>
-  {#if helpText}
+  {#if $settings.showHelpText && helpText}
     <div class="info">{helpText}</div>
   {/if}
 </div>
