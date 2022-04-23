@@ -31,10 +31,18 @@
         onChange(options[newIndex].id);
         return true;
       },
+      onArrowLeftLong: () => {
+        onChange(options[0].id);
+        return true;
+      },
       onArrowRight: () => {
         const index = options.findIndex((a) => a.id === value);
         const newIndex = getIndex(options, index, 1, wrap);
         onChange(options[newIndex].id);
+        return true;
+      },
+      onArrowRightLong: () => {
+        onChange(options[options.length - 1].id);
         return true;
       },
     },
