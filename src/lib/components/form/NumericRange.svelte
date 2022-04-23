@@ -22,11 +22,19 @@
         }
         return true;
       },
+      onArrowLeftLong: () => {
+        onChange(min);
+        return true;
+      },
       onArrowRight: () => {
         const num = value + 1;
         if (num <= max) {
           onChange(num);
         }
+        return true;
+      },
+      onArrowRightLong: () => {
+        onChange(max);
         return true;
       },
     },
