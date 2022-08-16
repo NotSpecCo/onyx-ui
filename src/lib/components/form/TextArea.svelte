@@ -59,7 +59,7 @@
     justify-content: center;
     outline: none;
     padding: 5px;
-    margin: 0 10px;
+    margin: 0 5px;
     border-bottom: 2px solid var(--accent-color);
   }
   .placeholder {
