@@ -1,3 +1,10 @@
+## [0.11.1](https://github.com/garredow/onyx-ui/compare/v0.11.0...v0.11.1) (2022-08-16)
+
+
+### Bug Fixes
+
+* **textarea:** reduce padding ([7f060c2](https://github.com/garredow/onyx-ui/commit/7f060c2a5461d2d88f1af9aae78bee1cfb075b8e))
+
 # [0.11.0](https://github.com/garredow/onyx-ui/compare/v0.10.0...v0.11.0) (2022-08-13)
 
 
