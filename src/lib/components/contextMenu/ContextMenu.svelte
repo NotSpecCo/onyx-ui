@@ -33,7 +33,7 @@
     {#if $contextMenu.data.body}
       <Typography>{$contextMenu.data.body}</Typography>
     {/if}
-    <NavGroup groupId="contextMenu">
+    <NavGroup groupId="contextMenu" isScroller={true} style="flex:1; min-height:0; overflow: auto;">
       {#each $contextMenu.data.items as item, i}
         <ContextMenuItem
           icon={item.icon}
@@ -94,6 +94,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     border-radius: var(--radius) var(--radius) 0 0;
@@ -115,6 +116,7 @@
     font-weight: var(--bold-font-weight);
     text-align: center;
   }
+
   .footer {
     display: flex;
     padding: 5px;

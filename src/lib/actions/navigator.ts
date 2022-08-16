@@ -65,7 +65,9 @@ export function navigator(node: HTMLElement, config: Config) {
       return;
     }
 
-    const scroller: HTMLElement = node.querySelector(`[data-nav-scroller]`);
+    const scroller: HTMLElement = node.dataset.navScroller
+      ? node
+      : node.querySelector(`[data-nav-scroller]`);
 
     const focusedItemId = getFocusedItemId(config.groupId);
     const items: HTMLElement[] = Array.from(node.querySelectorAll(`[data-nav-id]`));
