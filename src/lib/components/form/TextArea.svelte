@@ -58,7 +58,7 @@
     flex-direction: column;
     justify-content: center;
     outline: none;
-    padding: 10px;
+    padding: 5px;
     margin: 0 10px;
     border-bottom: 2px solid var(--accent-color);
   }
