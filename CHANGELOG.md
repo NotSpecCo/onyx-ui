@@ -1,3 +1,10 @@
+## [0.11.2](https://github.com/garredow/onyx-ui/compare/v0.11.1...v0.11.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* **textarea:** fix margin ([5a55bab](https://github.com/garredow/onyx-ui/commit/5a55babcf62e214b3471704c89b2379421b492cb))
+
 ## [0.11.1](https://github.com/garredow/onyx-ui/compare/v0.11.0...v0.11.1) (2022-08-16)
 
 
