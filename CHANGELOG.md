@@ -1,3 +1,10 @@
+# [0.11.0](https://github.com/garredow/onyx-ui/compare/v0.10.0...v0.11.0) (2022-08-13)
+
+
+### Features
+
+* add textarea component ([6a1788a](https://github.com/garredow/onyx-ui/commit/6a1788afb92bc5a3e0828bbc6754dda49a4d30cf))
+
 # [0.10.0](https://github.com/garredow/onyx-ui/compare/v0.9.0...v0.10.0) (2022-04-23)
 
 
