@@ -59,6 +59,10 @@ export class Onyx {
       alert.open(data);
     },
 
+    close() {
+      alert.close();
+    },
+
     reset() {
       alert.reset();
     },
@@ -68,6 +72,10 @@ export class Onyx {
   static dialog = {
     show(data: Dialog) {
       dialog.open(data);
+    },
+
+    close() {
+      dialog.close();
     },
 
     reset() {
