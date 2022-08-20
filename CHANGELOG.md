@@ -1,3 +1,10 @@
+# [0.12.0](https://github.com/garredow/onyx-ui/compare/v0.11.3...v0.12.0) (2022-08-20)
+
+
+### Features
+
+* **toaster:** reduce icon size ([fe97f94](https://github.com/garredow/onyx-ui/commit/fe97f94e15d0e636c3c1a2a76f1443beecb1b34e))
+
 ## [0.11.3](https://github.com/garredow/onyx-ui/compare/v0.11.2...v0.11.3) (2022-08-16)
 
 
