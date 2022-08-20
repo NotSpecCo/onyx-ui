@@ -1,3 +1,10 @@
+# [0.14.0](https://github.com/garredow/onyx-ui/compare/v0.13.0...v0.14.0) (2022-08-20)
+
+
+### Features
+
+* **popups:** add close methods for alerts and dialogs ([f41e61e](https://github.com/garredow/onyx-ui/commit/f41e61ea31f01ce8605c4a1708e397c347731d5d))
+
 # [0.13.0](https://github.com/garredow/onyx-ui/compare/v0.12.0...v0.13.0) (2022-08-20)
 
 
