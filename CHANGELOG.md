@@ -1,3 +1,10 @@
+## [0.11.3](https://github.com/garredow/onyx-ui/compare/v0.11.2...v0.11.3) (2022-08-16)
+
+
+### Bug Fixes
+
+* **contextmenu:** allow scrolling if too many items ([761720a](https://github.com/garredow/onyx-ui/commit/761720a3c767093105ad68a43b8135d6f8f04e0e))
+
 ## [0.11.2](https://github.com/garredow/onyx-ui/compare/v0.11.1...v0.11.2) (2022-08-16)
 
 
