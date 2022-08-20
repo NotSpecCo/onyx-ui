@@ -1,3 +1,10 @@
+# [0.13.0](https://github.com/garredow/onyx-ui/compare/v0.12.0...v0.13.0) (2022-08-20)
+
+
+### Features
+
+* **inputrow:** add icon option and more display styles ([ccf6d58](https://github.com/garredow/onyx-ui/commit/ccf6d587aeac2cfc3be62df5df99f1bc0aa53c6c))
+
 # [0.12.0](https://github.com/garredow/onyx-ui/compare/v0.11.3...v0.12.0) (2022-08-20)
 
 
