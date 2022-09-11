@@ -3,9 +3,10 @@
 
 declare namespace svelte.JSX {
   interface HTMLAttributes<T> {
-    onitemfocus?: () => void;
-    onitemblur?: () => void;
-    onitemselect?: () => void;
-    onitemmenu?: () => void;
+    'ononyx:focus'?: () => void;
+    'ononyx:blur'?: () => void;
+    'ononyx:select'?: () => void;
+    'ononyx:softleft'?: () => void;
+    'ononyx:softright'?: () => void;
   }
 }

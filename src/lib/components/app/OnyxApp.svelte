@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Priority, RenderState, TextSize, TextWeight, ViewState } from '../../enums';
+  import { OnyxNavigation } from 'onyx-navigation';
+  import { Priority, RenderState, TextSize, TextWeight } from '../../enums';
   import { Onyx } from '../../services';
   import { KeyManager } from '../../services/keyManager';
   import { alert, appMenu, contextMenu, dialog, settings, toaster } from '../../stores';
-  import { updateView, view } from '../../stores/view';
   import { applyTheme } from '../../themes';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
   import Alert from '../popups/Alert.svelte';
@@ -11,6 +11,7 @@
   import Toaster from '../toaster/Toaster.svelte';
 
   KeyManager.startListening();
+  OnyxNavigation.startListening();
 
   const keyMan = KeyManager.subscribe(
     {
@@ -23,30 +24,6 @@
         }
         return true;
       },
-      onSoftLeftLong: () => {
-        if ($view.viewing === ViewState.Card && $view.cards.length > 1) {
-          updateView({ viewing: ViewState.Stack });
-        } else {
-          updateView({ viewing: ViewState.Card });
-        }
-        return true;
-      },
-      // onBackspace: () => {
-      //   if ($appMenu.state === RenderState.Open) {
-      //     Onyx.appMenu.close();
-      //     return true;
-      //   }
-
-      //   if ($contextMenu.state === RenderState.Open) {
-      //     Onyx.contextMenu.close();
-      //     return true;
-      //   }
-
-      //   if ($view.viewing === ViewState.Stack) {
-      //     updateView({ viewing: ViewState.Card });
-      //     return true;
-      //   }
-      // },
     },
     Priority.Low
   );
