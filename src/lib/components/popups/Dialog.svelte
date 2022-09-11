@@ -30,7 +30,7 @@
   <div class="scrim" class:open={$dialog.state === RenderState.Open} />
   <div class="card" class:open={$dialog.state >= RenderState.Open}>
     <div class="title">{$dialog.data.title}</div>
-    <div class="body" data-nav-scroller>{$dialog.data.body || ''}</div>
+    <div class="body" data-onyx-scroller>{$dialog.data.body || ''}</div>
     <div class="footer">
       <div>{$dialog.data.actions.left?.label || ''}</div>
       <div>{$dialog.data.actions.center?.label || ''}</div>
@@ -40,7 +40,7 @@
 </NavGroup>
 
 <style>
-  :global([data-nav-group-id='dialog']) {
+  :global([data-onyx-group-id='dialog']) {
     position: absolute;
     top: 0;
     right: 0;

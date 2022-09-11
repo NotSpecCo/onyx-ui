@@ -20,7 +20,7 @@
   <div class="scrim" class:open={$alert.state === RenderState.Open} />
   <div class="card" class:open={$alert.state >= RenderState.Open}>
     <div class="title">{$alert.data.title}</div>
-    <div class="body" data-nav-scroller>
+    <div class="body" data-onyx-scroller>
       {$alert.data.body || ''}
     </div>
     <div class="footer">OK</div>
@@ -28,7 +28,7 @@
 </NavGroup>
 
 <style>
-  :global([data-nav-group-id='alert']) {
+  :global([data-onyx-group-id='alert']) {
     position: absolute;
     top: 0;
     right: 0;
