@@ -2,6 +2,12 @@
   import { onDestroy } from 'svelte';
   import { Onyx } from '../../services';
 
+  export let backgroundImageUrl: string = null;
+
+  const style = backgroundImageUrl
+    ? `background-image: url('${backgroundImageUrl}'); background-size: cover;`
+    : '';
+
   // onMount(() => OnyxNavigation.restoreFocusedItems());
   onDestroy(() => {
     Onyx.contextMenu.reset();
@@ -9,7 +15,7 @@
   });
 </script>
 
-<div class="root">
+<div class="root" {style}>
   <slot />
 </div>
 
