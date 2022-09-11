@@ -15,6 +15,7 @@
   const keyMan = KeyManager.subscribe(
     {
       onSoftLeft: () => {
+        if (!$settings.useAppMenu) return;
         if ($appMenu.state === RenderState.Destroyed) {
           Onyx.appMenu.open();
         } else if ($appMenu.state === RenderState.Open) {
