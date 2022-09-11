@@ -5,6 +5,7 @@
   // onMount(() => OnyxNavigation.restoreFocusedItems());
   onDestroy(() => {
     Onyx.contextMenu.reset();
+    Onyx.appMenu.close();
   });
 </script>
 
