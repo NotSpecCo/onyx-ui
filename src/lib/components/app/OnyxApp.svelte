@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { OnyxKeys } from 'onyx-keys';
   import { OnyxNavigation } from 'onyx-navigation';
-  import { Priority, RenderState, TextSize, TextWeight } from '../../enums';
+  import { RenderState, TextSize, TextWeight } from '../../enums';
   import { Onyx } from '../../services';
-  import { KeyManager } from '../../services/keyManager';
   import { alert, appMenu, contextMenu, dialog, settings, toaster } from '../../stores';
   import { applyTheme } from '../../themes';
   import ContextMenu from '../contextMenu/ContextMenu.svelte';
@@ -10,22 +10,20 @@
   import Dialog from '../popups/Dialog.svelte';
   import Toaster from '../toaster/Toaster.svelte';
 
-  KeyManager.startListening();
   OnyxNavigation.startListening();
 
-  const keyMan = KeyManager.subscribe(
+  const keyMan = OnyxKeys.subscribe(
     {
-      onSoftLeft: () => {
+      onSoftLeft: async () => {
         if (!$settings.useAppMenu) return;
         if ($appMenu.state === RenderState.Destroyed) {
           Onyx.appMenu.open();
         } else if ($appMenu.state === RenderState.Open) {
           Onyx.appMenu.close();
         }
-        return true;
       },
     },
-    Priority.Low
+    { priority: 2 }
   );
 
   // Apply settings

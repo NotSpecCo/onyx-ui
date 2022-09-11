@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { OnyxKeys } from 'onyx-keys';
   import { onDestroy } from 'svelte';
-  import { Priority, RenderState } from '../../enums';
+  import { RenderState } from '../../enums';
   import { Onyx } from '../../services';
-  import { KeyManager } from '../../services/keyManager';
   import { contextMenu } from '../../stores';
   import { getShortcutFromIndex } from '../../utils';
   import NavGroup from '../nav/NavGroup.svelte';
@@ -11,17 +11,13 @@
 
   let working: string | null = null;
 
-  const keyMan = KeyManager.subscribe(
-    {
-      onSoftLeft: () => true,
-      onSoftLeftLong: () => true,
-      onSoftRight: () => {
-        Onyx.contextMenu.close();
-        return true;
-      },
+  const keyMan = OnyxKeys.subscribe({
+    onSoftLeft: async () => {},
+    onSoftLeftLong: async () => {},
+    onSoftRight: async () => {
+      Onyx.contextMenu.close();
     },
-    Priority.Medium
-  );
+  });
 
   onDestroy(() => keyMan.unsubscribe());
 </script>
@@ -33,7 +29,7 @@
     {#if $contextMenu.data.body}
       <Typography>{$contextMenu.data.body}</Typography>
     {/if}
-    <NavGroup groupId="contextMenu" isScroller={true} style="flex:1; min-height:0; overflow: auto;">
+    <NavGroup groupId="contextMenu" style="flex:1; min-height:0; overflow: auto;">
       {#each $contextMenu.data.items as item, i}
         <ContextMenuItem
           icon={item.icon}

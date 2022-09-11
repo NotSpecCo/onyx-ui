@@ -19,6 +19,7 @@
   },
   "type": "module",
   "dependencies": {
+    "onyx-keys": "^1.1.3",
     "onyx-navigation": "^1.4.1",
     "svelte-icons": "^2.1.0",
     "uuid": "^8.3.2"

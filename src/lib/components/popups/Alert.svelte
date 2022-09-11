@@ -1,21 +1,17 @@
 <script lang="ts">
+  import { OnyxKeys } from 'onyx-keys';
   import { onDestroy } from 'svelte';
-  import { Priority, RenderState } from '../../enums';
-  import { KeyManager } from '../../services';
+  import { RenderState } from '../../enums';
   import { alert } from '../../stores';
   import NavGroup from '../nav/NavGroup.svelte';
 
-  let keyMan = KeyManager.subscribe(
-    {
-      onSoftLeft: () => true,
-      onSoftRight: () => true,
-      onEnter: () => {
-        alert.close();
-        return true;
-      },
+  let keyMan = OnyxKeys.subscribe({
+    onSoftLeft: async () => {},
+    onSoftRight: async () => {},
+    onEnter: async () => {
+      alert.close();
     },
-    Priority.Medium
-  );
+  });
 
   onDestroy(() => keyMan.unsubscribe());
 </script>
