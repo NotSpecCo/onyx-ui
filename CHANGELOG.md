@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/garredow/onyx-ui/compare/v1.0.1...v1.1.0) (2022-09-11)
+
+
+### Features
+
+* add app menu width option ([2cc6ba2](https://github.com/garredow/onyx-ui/commit/2cc6ba2fee007f8fb1b1a2f670c3998c19c40c62))
+
 ## [1.0.1](https://github.com/garredow/onyx-ui/compare/v1.0.0...v1.0.1) (2022-09-11)
 
 
