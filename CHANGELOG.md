@@ -1,3 +1,18 @@
+# [1.0.0](https://github.com/garredow/onyx-ui/compare/v0.14.0...v1.0.0) (2022-09-11)
+
+
+### Features
+
+* add option to disable app menu ([ec0a7d9](https://github.com/garredow/onyx-ui/commit/ec0a7d9e275bcbba5e04f8356009fc388e9db4df))
+* refactor ([fac053c](https://github.com/garredow/onyx-ui/commit/fac053cfcbe4d1da20b6d5a3f66ef0311b009f16))
+* replace keymanager ([67a11c2](https://github.com/garredow/onyx-ui/commit/67a11c2c119a3657d15ec4c31222774c1766d2b9))
+
+
+### BREAKING CHANGES
+
+* removed keymanager
+* removed cards and changed api
+
 # [0.14.0](https://github.com/garredow/onyx-ui/compare/v0.13.0...v0.14.0) (2022-08-20)
 
 
