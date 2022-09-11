@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/garredow/onyx-ui/compare/v1.0.0...v1.0.1) (2022-09-11)
+
+
+### Bug Fixes
+
+* **view:** close app menu when view destroyed ([f77c7ef](https://github.com/garredow/onyx-ui/commit/f77c7ef856ff6179d56f97a72275193985219c16))
+
 # [1.0.0](https://github.com/garredow/onyx-ui/compare/v0.14.0...v1.0.0) (2022-09-11)
 
 
