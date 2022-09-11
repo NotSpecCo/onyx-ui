@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/garredow/onyx-ui/compare/v1.1.0...v1.2.0) (2022-09-11)
+
+
+### Features
+
+* **view:** add option for background image ([6bbdeee](https://github.com/garredow/onyx-ui/commit/6bbdeee41cd07901fd2c88c324d54c6f5c7db910))
+
 # [1.1.0](https://github.com/garredow/onyx-ui/compare/v1.0.1...v1.1.0) (2022-09-11)
 
 
