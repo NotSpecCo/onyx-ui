@@ -9,6 +9,7 @@ export type BaseSettings = ThemeSettings & {
   animationSpeed: Animations;
   themeId: string;
   useAppMenu: boolean;
+  appMenuWidth: number;
   // Shortcuts
   enableShortcutKeys: boolean;
   shortcutKeyLocation: 'left' | 'right' | 'hidden';

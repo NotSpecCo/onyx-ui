@@ -77,6 +77,9 @@
       '--animation-speed',
       `${$settings.animationSpeed}ms`
     );
+
+    // App Menu
+    document.documentElement.style.setProperty('--app-menu-width', `${$settings.appMenuWidth}vw`);
   }
 </script>
 
@@ -149,7 +152,7 @@
     transition: transform var(--animation-speed);
     transition-timing-function: ease-in;
     height: 100vh;
-    width: 85vw;
+    width: var(--app-menu-width);
   }
 
   .menu.open {

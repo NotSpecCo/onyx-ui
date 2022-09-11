@@ -14,6 +14,7 @@ const defaultConfig: Config = {
   animationSpeed: Animations.Normal,
   showHelpText: true,
   useAppMenu: true,
+  appMenuWidth: 85,
   // Shortcuts
   enableShortcutKeys: true,
   shortcutKeyLocation: 'right',
