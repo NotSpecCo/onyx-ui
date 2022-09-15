@@ -68,6 +68,6 @@
     padding: 0 2px;
   }
   .placeholder {
-    opacity: 0.3;
+    opacity: 0.5;
   }
 </style>
