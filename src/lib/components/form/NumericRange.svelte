@@ -28,7 +28,7 @@
         }
       },
     },
-    { priority: 5 }
+    { priority: 4 }
   );
   $: {
     if (disabled) {

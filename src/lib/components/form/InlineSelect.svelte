@@ -41,7 +41,7 @@
         onChange(options[options.length - 1].id);
       },
     },
-    { priority: 5 }
+    { priority: 4 }
   );
   $: {
     if (disabled) {
