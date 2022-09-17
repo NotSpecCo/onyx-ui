@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/garredow/onyx-ui/compare/v1.3.0...v1.3.1) (2022-09-17)
+
+
+### Bug Fixes
+
+* fix menu ([fef5575](https://github.com/garredow/onyx-ui/commit/fef557571d228ba0077995f830771d076ebd326a))
+
 # [1.3.0](https://github.com/garredow/onyx-ui/compare/v1.2.1...v1.3.0) (2022-09-17)
 
 
