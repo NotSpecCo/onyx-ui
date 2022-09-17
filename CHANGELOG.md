@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/garredow/onyx-ui/compare/v1.2.1...v1.3.0) (2022-09-17)
+
+
+### Features
+
+* add methods to see if menus are open ([5375c9c](https://github.com/garredow/onyx-ui/commit/5375c9c53fbdb75e24a553b29c773b4decf1f393))
+
 ## [1.2.1](https://github.com/garredow/onyx-ui/compare/v1.2.0...v1.2.1) (2022-09-15)
 
 
