@@ -16,6 +16,10 @@ export class Onyx {
 
   // App Menu
   static appMenu = {
+    isOpen() {
+      return appMenu.isOpen();
+    },
+
     async open() {
       await contextMenu.close();
       await appMenu.open();
@@ -28,6 +32,10 @@ export class Onyx {
 
   // Context Menu
   static contextMenu = {
+    isOpen() {
+      return contextMenu.isOpen();
+    },
+
     async open(menu: ContextMenu) {
       await appMenu.close();
       await contextMenu.open(menu);
