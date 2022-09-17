@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/garredow/onyx-ui/compare/v1.3.1...v1.3.2) (2022-09-17)
+
+
+### Bug Fixes
+
+* fix inline setting selectors ([faedb86](https://github.com/garredow/onyx-ui/commit/faedb8616cc930971268bc27eac3013ff0c7e323))
+
 ## [1.3.1](https://github.com/garredow/onyx-ui/compare/v1.3.0...v1.3.1) (2022-09-17)
 
 
