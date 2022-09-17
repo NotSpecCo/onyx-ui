@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/garredow/onyx-ui/compare/v1.2.0...v1.2.1) (2022-09-15)
+
+
+### Bug Fixes
+
+* **inputrow:** increase opacity of placeholder text ([c8ae33d](https://github.com/garredow/onyx-ui/commit/c8ae33d9b7101053aa1ea4e3ee358bcbde716e50))
+
 # [1.2.0](https://github.com/garredow/onyx-ui/compare/v1.1.0...v1.2.0) (2022-09-11)
 
 
