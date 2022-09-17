@@ -29,14 +29,17 @@
     state = RenderState.Destroyed;
   }
 
-  let keyMan = OnyxKeys.subscribe({
-    onSoftLeft: async () => {},
-    onSoftRight: async () => {},
-    onEnter: async () => {
-      // TODO: Don't do async things in event handlers
-      close().then(onEnter);
+  let keyMan = OnyxKeys.subscribe(
+    {
+      onSoftLeft: async () => {},
+      onSoftRight: async () => {},
+      onEnter: async () => {
+        // TODO: Don't do async things in event handlers
+        close().then(onEnter);
+      },
     },
-  });
+    { priority: 1 }
+  );
 
   $: {
     if (disabled) {
