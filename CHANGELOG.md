@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/garredow/onyx-ui/compare/v1.3.2...v1.4.0) (2022-09-21)
+
+
+### Features
+
+* export onyx-navigation ([102c486](https://github.com/garredow/onyx-ui/commit/102c486e30546e26c908ced8b0ab3b0f32910010))
+
 ## [1.3.2](https://github.com/garredow/onyx-ui/compare/v1.3.1...v1.3.2) (2022-09-17)
 
 
